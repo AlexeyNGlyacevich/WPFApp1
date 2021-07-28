@@ -1,0 +1,73 @@
+﻿<Page x:Class="WPFApp1.Pages.EditorPages.AddNewObjektPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApp1.Pages.EditorPages"
+      mc:Ignorable="d" 
+      DataContext="{Binding Source={StaticResource VmLocator}, Path = AddNewObjektPageViewModel}"
+      d:DesignHeight="400" d:DesignWidth="400"
+      Title="AddNewObjektPage">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Width="400" Height="400">
+
+            <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    Width="380" Height="400">
+
+
+                <TextBlock Text="Регистрационный номер"  
+                       Margin="5 25 5 1" Height="18" Width="200" 
+                       TextAlignment="Center"/>
+                <TextBox  x:Name="RegNumber" 
+                       Margin=" 5 1 5 2" Height="18" Width="250" 
+                       PreviewTextInput="TextBox_PreviewTextInput"
+                       TextAlignment="Center" Text="{Binding registrnumber, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Стадия"  
+                       Margin=" 5 5 5 1" Height= "18" Width="200" 
+                       TextAlignment="Center"/>
+                <TextBox  x:Name="stage" 
+                       Margin=" 5 1 5 2" Height="18" Width="250" 
+                       TextAlignment="Center" Text="{Binding cstage, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Наименование Объекта"  
+                       Margin=" 5 5 5 1" Height="18" Width="200" 
+                       TextAlignment="Center" />
+                <TextBox x:Name="objNum" 
+                       Margin=" 5 1 5 2" Height="80" Width="250" 
+                       TextAlignment="Center" Text="{Binding objektName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Тип Проекта"  
+                       Margin=" 5 5 5 1" Height="18" Width="200" 
+                       TextAlignment="Center"/>
+             
+                <TextBox x:Name="projektType" 
+                       Margin=" 5 1 5 2" Height="18" Width="250" 
+                       TextAlignment="Center" Text="{Binding projektType, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Ответственный"  
+                       Margin=" 5 5 5 1" Height="18" Width="200" 
+                       TextAlignment="Center"/>
+                <ComboBox x:Name="otvts" 
+                       Margin=" 5 1 5 3" Height="22" Width="250" 
+                       ItemsSource="{Binding RespPersons}"
+                       DisplayMemberPath="First_Name" 
+                       SelectedValuePath="ID"
+                       SelectedValue="{Binding resp_person, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+
+
+                <Button Content="Добавить Запись" 
+                     Margin="5 40 5 2" Height="25" Width="250"
+                 
+                     Command="{Binding AddNewObjekt}"/>
+
+            </StackPanel>
+
+        </Border>
+
+
+    </Grid>
+</Page>

@@ -1,0 +1,84 @@
+﻿<Page x:Class="WPFApp1.Pages.AllContractsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApp1.Pages"
+      mc:Ignorable="d" 
+      DataContext="{Binding Source={StaticResource VmLocator}, Path = AllContractsViewModel}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AllContractsPage">
+
+    
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" Height="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Button Grid.Column=" 0" Margin="1" Content="Объекты"
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch"/>
+                <Button Grid.Column="1" Margin="1" Content="Контракты"
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch"/>
+                <Button Grid.Column="2" Margin="1" Content="Тендеры"
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch"/>
+                <Button Grid.Column="3" Margin="1" Content="Реестра Актов"
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Contract }">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="3" Padding="3" BorderBrush="Black" BorderThickness="1" CornerRadius="3">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" 
+                                           Text="{Binding ID}"/>
+                                    <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"
+                                           Text="{Binding IDKey}"/>
+                                    <TextBlock Grid.Column="2" VerticalAlignment="Center" TextAlignment="Center"
+                                           Text="{Binding Contract_Number}"/>
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center"
+                                           Text="{Binding start_date}"/>
+                                    <TextBlock Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center" 
+                                           Text="{Binding finish_date}" />
+                                    <Button x:Name="ret" Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" Content="Редактировать"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            </Grid>
+        </Grid>
+
+
+    
+</Page>

@@ -1,0 +1,39 @@
+﻿<Page x:Class="WPFApp1.Pages.Admin.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApp1.Pages.Admin"
+      mc:Ignorable="d" 
+      DataContext="{Binding Source={StaticResource VmLocator}, Path= AdminPageViewModel}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Height="200" Width="400">
+
+            <Button  Content="Добавить Соединение с Сервером" 
+                Margin="0,10,0,5" 
+                HorizontalAlignment="Center"
+                Width="250"/>
+            <Button Content="Добавить нового пользователя" 
+                Margin="0,20,0,5" 
+                HorizontalAlignment="Center"
+                Width="250"
+                    Command="{Binding AddUser}"/>
+            <Button  Content="Редактировать данные пользователя" 
+                Margin="0,10,0,5" 
+                HorizontalAlignment="Center"
+                Width="250"
+                     Command="{Binding EditUsers}"/>
+        </StackPanel>
+
+        
+    </Grid>
+</Page>
