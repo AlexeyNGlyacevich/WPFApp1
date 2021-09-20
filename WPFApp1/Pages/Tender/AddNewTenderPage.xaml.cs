@@ -13,17 +13,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFApp1.Pages
+namespace WPFApp1.Pages.Tender
 {
     /// <summary>
-    /// Логика взаимодействия для ObjectPage.xaml
+    /// Логика взаимодействия для AddNewTenderPage.xaml
     /// </summary>
-    public partial class ObjectPage : Page
+    public partial class AddNewTenderPage : Page
     {
-        public ObjectPage()
+        public AddNewTenderPage()
         {
             InitializeComponent();
         }
-
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text == null || !e.Text.All(char.IsDigit))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

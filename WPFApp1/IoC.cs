@@ -29,6 +29,13 @@ namespace WPFApp1
             _ = services.AddTransient<AllUsersEditorPageViewModel>();
             _ = services.AddTransient<UpdateUserPageViewModel>();
             _ = services.AddTransient<AddNewObjektPageViewModel>();
+            _ = services.AddTransient<ContractViewModel>();
+            _ = services.AddTransient<AddNewConrtactViewModel>();
+            _ = services.AddTransient<TenderViewModel>();
+            _ = services.AddTransient<AddNewTenderViewModel>();
+            _ = services.AddTransient<AllTendersPageViewModel>();
+            _ = services.AddTransient<AddNewTTNPageViewModel>();
+            _ = services.AddTransient<TTNPageViewModel>();
 
 
             _ = services.AddScoped<StDBEntities>();

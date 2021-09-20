@@ -1,0 +1,373 @@
+﻿<Page x:Class="WPFApp1.Pages.Tender.TenderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApp1.Pages.Tender"
+      mc:Ignorable="d" 
+      DataContext="{Binding Source={StaticResource VmLocator}, Path = TenderViewModel}"
+      d:DesignHeight="680" d:DesignWidth="1300"
+      Title="TenderPage">
+
+    <Grid Background="WhiteSmoke">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <TabControl Height="620"
+                        VerticalContentAlignment="Top"
+                        Margin="5">
+
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Общие данные по Тендеру"/>
+                    </TabItem.Header>
+
+
+                    <Grid Background="WhiteSmoke"
+                          Height="auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="380"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Header="ОБщие данные:"         
+                                   HorizontalAlignment="Left" 
+                                   Width="360"
+                                   Margin="5,5,0,35"    
+                                   Grid.Column="0">
+                            <StackPanel Height="500" VerticalAlignment="Top" >
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5 10 5 1">
+                                    <TextBlock Text="Шифр Проекта :"             
+                                               Margin="5 5 1 1 " 
+                                               TextAlignment="Center" 
+                                               Height="20" 
+                                               VerticalAlignment="Stretch"/>
+
+                                    <TextBlock Text="{Binding Tender.Main_Reestr.Doc_Number}" 
+                                               Margin="21 1 1 1 "
+                                               Padding="1 1 1 1"                 
+                                               TextAlignment="Center"        
+                                               Height="20"          
+                                               Width="200"          
+                                               VerticalAlignment="Bottom" 
+                                               FontWeight="Bold"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="5 10 1 1">
+
+                                    <TextBlock Text="Номер Тендера:"
+                                               Margin="5 1 1 1 "
+                                               Padding="0 0 5 5"
+                                               TextAlignment="Center"
+                                               Height="20"
+                                               VerticalAlignment="Top" 
+                                               HorizontalAlignment="Left"/>
+                                    
+                                    <TextBox  Text="{Binding Tender.Tender_number}" 
+                                              Margin="16 1 1 1 " 
+                                              TextAlignment="Center" 
+                                              Height="20"
+                                              Width="200" 
+                                              IsReadOnly="True"
+                                              VerticalAlignment="Top" 
+                                              HorizontalAlignment="Left" 
+                                              FontWeight="Bold"/>
+                                </StackPanel>
+
+
+
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5 10 1 1">
+                                    <TextBlock Text="Дата размещения:" 
+                                               Margin="5 1 1 1 " 
+                                               TextAlignment="Center"
+                                               Height="20" 
+                                               VerticalAlignment="Top" />
+                                    <DatePicker Name="ContractCreationDate" 
+                                                Margin="9 0 0 0"
+                                                TextBlock.FontWeight="Bold"
+                                                Width="200"
+                                                SelectedDate="{Binding Tender.Date_purchase, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5 10 1 1">
+                                    <TextBlock Text="Дата торгов:" 
+                                               Margin="5 1 1 1 " 
+                                               TextAlignment="Center"
+                                               Height="20" 
+                                               VerticalAlignment="Top"/>
+                                    <DatePicker Name="StartDate" 
+                                                Margin="42 0 0 0"
+                                                TextBlock.FontWeight="Bold"
+                                                Width="200"
+                                                SelectedDate="{Binding Tender.trading_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" 
+                                            Margin="5 10 1 1">
+
+                                    <TextBlock Text="Окончательный срок подачи предложения:" 
+                                               Margin="5 1 5 1 " 
+                                               TextAlignment="Left"
+                                               Height="20" 
+                                               VerticalAlignment="Top"/>
+                                    <DatePicker Name="EndTime" 
+                                                Margin="90 0 0 0"
+                                                TextBlock.FontWeight="Bold"
+                                                Width="200"
+                                                SelectedDate="{Binding Tender.final__proposal_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"/>
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                        </GroupBox>
+
+                        <GroupBox Header="Данные по договору" 
+                                  Grid.Column="1"
+                                  Margin="10 5 5 35">
+                            
+                            <StackPanel Orientation="Vertical">
+
+                                <TextBlock Text="Предмет договора: "
+                                           Margin="5 13 5 5 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="Auto"
+                                           VerticalAlignment="Top"/>
+
+                                <TextBox  Text="{Binding Tender.subject_of_a_contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                          Margin="5 1 5 5 "            
+                                          Padding="0 0 5 5"      
+                                          TextAlignment="Left"              
+                                          Height="80"           
+                                          Width="320"          
+                                          VerticalAlignment="Top"            
+                                          FontWeight="Bold"          
+                                          TextWrapping="Wrap"/>
+
+                                <TextBlock Text="Наименование Заказчика(покупателя, подрядчика): "                                    
+                                           Margin="5 20 5 1 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="auto"
+                                           VerticalAlignment="Top"/>
+
+                                <TextBox Text="{Binding Tender.Main_Reestr.Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"            
+                                         Margin="5 1 5 5 "            
+                                         Padding="0 0 5 5"            
+                                         TextAlignment="Left"            
+                                         Height="80"  
+                                         Width="320"
+                                         VerticalAlignment="Top"
+                                         FontWeight="Bold"
+                                         IsReadOnly="True"
+                                         TextWrapping="Wrap"/>
+
+                                <TextBlock Text="Наименование объекта: "           
+                                           Margin="5 20 5 1 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="Auto"
+                                           VerticalAlignment="Top"/>
+
+                                <TextBox Text="{Binding Tender.Object_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"           
+                                         Margin="5 1 5 5 "         
+                                         Padding="0 0 5 5" 
+                                         TextAlignment="Left"
+                                         Height="80"
+                                         Width="320"
+                                         VerticalAlignment="Top"
+                                         FontWeight="Bold"
+                                         TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+
+               
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Экономическая часть"/>
+                    </TabItem.Header>
+                    <Grid Background="WhiteSmoke">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Данные по тендеру" Grid.Column="0" 
+                                  Margin="5 5 5 10">
+                            <StackPanel >
+                                <TextBlock Text="Стартовая цена согласно конкурсной документации :"     
+                                           Margin="5 5 5 1 "  
+                                           TextAlignment="Left"      
+                                           Height="20"/>
+                                
+                                <TextBox Text="{Binding Tender.starting_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+                                         Height="22"
+                                         Margin="5 1 10 1"         
+                                         TextBlock.FontWeight="Bold"      
+                                         TextBlock.TextAlignment="Center"/>
+                                
+                                <TextBlock Text="Цена предложения на дату подачи ООО ЭТР"          
+                                           Margin="5 10 5 1 " 
+                                           TextAlignment="Left"            
+                                           Height="20"/>
+                                <TextBox Text="{Binding Tender.price_date_submission, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}" 
+                                         Height="22"
+                                         Margin="5 1 10 1"       
+                                         TextBlock.FontWeight="Bold"   
+                                         TextBlock.TextAlignment="Center"
+                                                    />
+                                <TextBlock Text="Цена предложения с учетом снижения ООО ЭТР"        
+                                           Margin="5 10 5 1 "       
+                                           TextAlignment="Left"        
+                                           Height="20" 
+                                                   />
+                                <TextBox Text="{Binding Tender.price_inclusive_reduction, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+                                         Height="22"
+                                         Margin="5 1 10 1"           
+                                         TextBlock.FontWeight="Bold"         
+                                         TextBlock.TextAlignment="Center" />
+                            </StackPanel>
+                        </GroupBox>
+                        
+                        <GroupBox Header="Итоги"
+                                  Grid.Column="1"  
+                                  Margin="5 5 5 10" 
+                                  Width="300">
+                            <StackPanel >
+                                <TextBlock Text="Результаты :"           
+                                           Margin="5 5 5 1 "         
+                                           TextAlignment="Left"     
+                                           Height="20"/>
+                                <TextBox x:Name="results" Text="{Binding Tender.Result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                             
+                                         Margin="5 1 5 5 "                            
+                                         Padding="1 1 1 1"                             
+                                         TextAlignment="Center"                             
+                                         Height="22"                          
+                                         Width="auto"                       
+                                         VerticalAlignment="Top"                         
+                                         FontWeight="Bold"                       
+                                         BorderThickness="1"/>
+                                
+                                <TextBlock Text="Цена по результату торгов(переговоров) :"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="20" />
+                                
+                                <TextBox  Text="{Binding Tender.final_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                       
+                                          Margin="5 1 5 5 "                      
+                                          Padding="1 1 1 1" 
+                                          TextAlignment="Center"  
+                                          Height="22"
+                                          Width="auto" 
+                                          VerticalAlignment="Top"  
+                                          FontWeight="Bold"
+                                          BorderThickness="1"/>
+                                
+                                <TextBlock Text="Дата Акцепта :"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="20"/>
+                                
+                                <DatePicker SelectedDate="{Binding Tender.Acceptance_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                            Margin="5 1 5 1"
+                                            TextBlock.FontWeight="Bold"
+                                            TextBlock.TextAlignment="Center"/>
+                                
+                                <TextBlock Text="Срок заключения договора до :"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="20"/>
+                                
+                                <DatePicker SelectedDate="{Binding Tender.Term_of_the_contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                            Margin="5 1 5 1"
+                                            TextBlock.FontWeight="Bold"
+                                            TextBlock.TextAlignment="Center"/>
+
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Ссылка документы" 
+                                  Grid.Column="2"
+                                  Margin="5 5 5 10" 
+                                  Width="300">
+                            <StackPanel >
+                                <TextBlock Text="Ссылка на папку с документами Репозиторй :"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="20"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+ 
+            </TabControl>
+        </Grid>
+        <Grid Grid.Row="0"
+              VerticalAlignment="Bottom">
+            <StackPanel HorizontalAlignment="Left">
+
+                <Button Content="Сохранить Изменения" 
+                        Height="30"
+                        Width="130"
+                        Margin="5"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.TenderSaveChanged}" CommandParameter="{Binding}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF01A3FF" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                            <Grid>
+                                                <ContentPresenter x:Name="MyContentPresenter" 
+                                              Content="{TemplateBinding Content}"                 
+                                              HorizontalAlignment="Center" 
+                                              TextBlock.FontSize="12"
+                                              VerticalAlignment="Center" 
+                                              Margin="0,0,0,0" />
+                                            </Grid>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#E59400" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="OrangeRed" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="LightSkyBlue"/>
+                                                <Setter Property="TextBlock.Opacity" Value="0.7"/>
+                                            </Trigger>
+
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

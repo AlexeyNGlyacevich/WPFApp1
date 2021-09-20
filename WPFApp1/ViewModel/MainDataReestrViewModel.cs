@@ -20,23 +20,21 @@ namespace WPFApp1.ViewModel
 
         private readonly PageService _navigation;
         private readonly DataService _dataService;
-        private readonly MessageBus _messageBus;
-        public ObservableCollection<Objekt> Objekt { get; set; } = new ObservableCollection<Objekt>();
 
+        public ObservableCollection<Main_Reestr> Main_Reestr { get; set; } = new ObservableCollection<Main_Reestr>();
 
-        public MainDataReestrViewModel(PageService navigation, DataService dataService, MessageBus messageBus)
+        public MainDataReestrViewModel(PageService navigation, DataService dataService)
         {
             _navigation = navigation;
             _dataService = dataService;
-            _messageBus = messageBus;
-            Objekt = new ObservableCollection<Objekt>(_dataService.GetDataToView());
+          
+            Main_Reestr = new ObservableCollection<Main_Reestr>(_dataService.GetDataToView());
 
         }
 
-        public ICommand EditObject => new DelegateCommand<Objekt>((Objekt objekt) =>
+        public ICommand EditObject => new DelegateCommand<Main_Reestr>((Main_Reestr objekt) =>
         {
-            //await _messageBus.SendTo<ObjectPageViewModel>(new Message(objekt.Id));
-            _dataService.GetData(objekt.Id);
+            _dataService.GetCurrentObjektID(objekt);
             _navigation.Navigate(new ObjectPage());
         });
 

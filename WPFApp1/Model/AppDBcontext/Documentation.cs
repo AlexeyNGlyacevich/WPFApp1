@@ -17,8 +17,6 @@ namespace WPFApp1.Model.AppDBcontext
         public int ID { get; set; }
         public Nullable<int> ContractID { get; set; }
         public Nullable<System.DateTime> ProjectStartDate { get; set; }
-        public string GIP { get; set; }
-        public string ResponsPersonsID { get; set; }
         public string Document_Index { get; set; }
         public Nullable<System.DateTime> date_of_transfer_to_settlement_group { get; set; }
         public Nullable<System.DateTime> date_of_transfer_to_the_customer_for_approval { get; set; }
@@ -29,16 +27,16 @@ namespace WPFApp1.Model.AppDBcontext
         public Nullable<System.DateTime> date_of_submission_of_documentation_to_MPO { get; set; }
         public Nullable<System.DateTime> date_of_transfer_for_picking_from_MPO { get; set; }
         public Nullable<System.DateTime> build_start_date { get; set; }
-        public string Installer_person { get; set; }
         public Nullable<System.DateTime> Operational_control { get; set; }
         public string Operational_control_result { get; set; }
         public Nullable<System.DateTime> Acceptance_control { get; set; }
         public string Acceptance_control_results { get; set; }
         public string Acceptance_control_protocol { get; set; }
         public Nullable<System.DateTime> Date_of_shipment { get; set; }
-        public string Act_number_and_date { get; set; }
-        public string TTN_TN_ { get; set; }
+        public Nullable<int> Act_number { get; set; }
+        public Nullable<System.DateTime> Act_Date { get; set; }
+        public Nullable<System.DateTime> PSI { get; set; }
     
-        public virtual Main_Reestr Main_Reestr { get; set; }
+        public virtual Contracts Contracts { get; set; }
     }
 }

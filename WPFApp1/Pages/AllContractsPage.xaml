@@ -28,16 +28,16 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Grid.Column=" 0" Margin="1" Content="Объекты"
+            <Button Grid.Column=" 0" Margin="1" Content="Реестр Проектов"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"/>
-                <Button Grid.Column="1" Margin="1" Content="Контракты"
+            <Button Grid.Column="1" Margin="1" Content="Реестр Договоров"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"/>
-                <Button Grid.Column="2" Margin="1" Content="Тендеры"
+            <Button Grid.Column="2" Margin="1" Content="Реестр Тендеров"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"/>
-                <Button Grid.Column="3" Margin="1" Content="Реестра Актов"
+                <Button Grid.Column="3" Margin="1" Content="Реестр Актов"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"/>
             </Grid>
@@ -51,23 +51,28 @@
                             <Border Margin="3" Padding="3" BorderBrush="Black" BorderThickness="1" CornerRadius="3">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" VerticalAlignment="Center" 
                                            Text="{Binding ID}"/>
-                                    <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"
+
+                                    <StackPanel Grid.Column="1" Orientation="Vertical" >
+                                        <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="10"
                                            Text="{Binding IDKey}"/>
-                                    <TextBlock Grid.Column="2" VerticalAlignment="Center" TextAlignment="Center"
+                                        <TextBlock Grid.Column="2" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="10"
                                            Text="{Binding Contract_Number}"/>
+                                        <TextBlock Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="10"
+                                           Text="{Binding start_date}"/>
+                                    </StackPanel>
+                                    
+                                   
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center"
                                            Text="{Binding start_date}"/>
-                                    <TextBlock Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center" 
+                                    <TextBlock Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Stretch"
                                            Text="{Binding finish_date}" />
                                     <Button x:Name="ret" Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" Content="Редактировать"/>
                                 </Grid>

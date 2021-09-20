@@ -28,7 +28,7 @@
                     Height="50"
                     BorderBrush="AliceBlue"
                     BorderThickness="0"
-                    Background="AliceBlue"
+                    Background="Transparent"
                     HorizontalAlignment="Left"
                     Command="{Binding GoToBack}">
                 <Button.ContentTemplate>
@@ -47,7 +47,7 @@
                     Height="50"
                     BorderBrush="AliceBlue"
                     BorderThickness="0"
-                    Background="AliceBlue"
+                    Background="Transparent"
                     HorizontalAlignment="Left"
                     Command="{Binding GoToMainReestr}">
                 <Button.ContentTemplate>

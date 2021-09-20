@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace WPFApp1.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ObjectPage.xaml
+    /// Логика взаимодействия для AllTendersPage.xaml
     /// </summary>
-    public partial class ObjectPage : Page
+    public partial class AllTendersPage : Page
     {
-        public ObjectPage()
+        public AllTendersPage()
         {
             InitializeComponent();
         }
-
     }
 }

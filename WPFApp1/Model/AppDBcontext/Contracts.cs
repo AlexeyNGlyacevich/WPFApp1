@@ -14,13 +14,20 @@ namespace WPFApp1.Model.AppDBcontext
     
     public partial class Contracts
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Contracts()
+        {
+            this.Documentation = new HashSet<Documentation>();
+            this.TTN = new HashSet<TTN>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> IDKey { get; set; }
         public Nullable<int> Contract_Number { get; set; }
         public Nullable<System.DateTime> Contract_Signing { get; set; }
         public string Object_name { get; set; }
         public string subject_of_contract { get; set; }
-        public Nullable<int> Contract_amount { get; set; }
+        public Nullable<decimal> Contract_amount { get; set; }
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> finish_date { get; set; }
         public string Project_Manager { get; set; }
@@ -31,5 +38,9 @@ namespace WPFApp1.Model.AppDBcontext
         public virtual Approval_List Approval_List { get; set; }
         public virtual Approval_List Approval_List1 { get; set; }
         public virtual Main_Reestr Main_Reestr { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Documentation> Documentation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TTN> TTN { get; set; }
     }
 }

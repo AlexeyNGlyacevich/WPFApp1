@@ -14,37 +14,54 @@ using WPFApp1.Services.Event;
 
 namespace WPFApp1.ViewModel
 {
-   public class AllUsersEditorPageViewModel : BindableBase
+    public class AllUsersEditorPageViewModel : BindableBase
     {
         public int ide;
-        private readonly EventBus _eventBus;
+
         private readonly PageService _navigation;
         private readonly DataService _dataservice;
         public ObservableCollection<Users_DB> Users { get; set; }
-        public ObservableCollection<int> Guid { get; set; } = new ObservableCollection<int>();
 
-        public AllUsersEditorPageViewModel(PageService navigation, DataService dataservice, EventBus eventBus)
+
+        public AllUsersEditorPageViewModel(PageService navigation, DataService dataservice)
         {
             _navigation = navigation;
             _dataservice = dataservice;
-            _eventBus = eventBus;
+
             Users = new ObservableCollection<Users_DB>(_dataservice.GetAllUsers());
         }
 
         public ICommand EditUser => new DelegateCommand<Users_DB>((Users_DB user) =>
         {
             _dataservice.GetCurrentUserId(user.ID);
-            _ = _eventBus.Publish(new OnEditEvent<Users_DB>(user));
             _navigation.Navigate(new UpdateUserPage());
 
         });
 
         public ICommand RemoveCurrentUser => new DelegateCommand<Users_DB>((Users_DB user) =>
         {
-            _dataservice.RemoveUser(user);
-            _ = MessageBox.Show("Пользователь удален");
-            _navigation.GoToBack();
 
+            MessageBoxResult result = MessageBox.Show("Удалить Пользователя?", "Удаление пользователя", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    _dataservice.RemoveUser(user);
+                    _ = MessageBox.Show("Пользователь Удален.", "Удаление пользователя", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _navigation.GoToBack();
+                    break;
+                case MessageBoxResult.No:
+                    _ = MessageBox.Show("Удаление Пользователя отменено", "Удаление пользователя", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _navigation.GoToBack();
+                    break;
+                case MessageBoxResult.None:
+                    break;
+                case MessageBoxResult.OK:
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+                default:
+                    break;
+            }
         });
 
     }

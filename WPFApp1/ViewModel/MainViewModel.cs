@@ -28,7 +28,7 @@ namespace WPFApp1.ViewModel
         public ICommand GoToBack => new DelegateCommand(() =>
         {
             _navigation.GoToBack();
-        
+
         }, () => _navigation.CanGoToBack);
 
         public ICommand GoToMainReestr => new DelegateCommand(() =>
@@ -43,5 +43,5 @@ namespace WPFApp1.ViewModel
 
     }
 
-  
+
 }

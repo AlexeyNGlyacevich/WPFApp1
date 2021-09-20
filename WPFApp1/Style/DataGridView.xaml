@@ -7,15 +7,13 @@
         <Setter Property="Background"
                 Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Content" Value="{Binding Name}"/>
+        <Setter Property="Content" Value="{Binding}"/>
         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Setter Property="MinHeight" Value="50"/>
         <Setter Property="ToolTip" Value="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-        <!--<Setter Property="With" Value ="50"/>-->
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Template"
-                >
+        <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid Background="{TemplateBinding Background}">
@@ -53,6 +51,18 @@
                                 </ContentPresenter>
                             </Grid>
                         </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="bBorder" Property="Opacity" Value=".5"/>
+                            <Setter TargetName="bBorder" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bBorder" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding IsHidden, UpdateSourceTrigger=PropertyChanged}" Value="True"/>
+
+
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -71,7 +81,7 @@
        
     </Style>
     <!-- DataGridColumnHeader style -->
-    <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">
+    <Style x:Key="ColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Height" Value="25"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="DarkCyan"/>
@@ -79,36 +89,14 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Margin" Value="10,5"/>
-        
-        
-            <Style.Triggers>
+        <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="ToolTip" Value="Click to sort."/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <GridView x:Key="GridView"
-        x:Name="ListViewStyle"
-        AllowsColumnReorder="True">
-        <GridViewColumn
-            Header="Name"
-            DisplayMemberBinding="{Binding BindingGroupName, UpdateSourceTrigger=PropertyChanged}"
-            Width="200"/>
-        <GridViewColumn
-            Header="Type"
-            DisplayMemberBinding="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
-            Width="80"/>
-        <GridViewColumn
-            Header="Date Modified"
-            DisplayMemberBinding="{Binding ModifiedOn, UpdateSourceTrigger=PropertyChanged}"
-            Width="120"/>
-        <GridViewColumn
-            Header="Size"
-            DisplayMemberBinding="{Binding FileSize, UpdateSourceTrigger=PropertyChanged}"
-            Width="150"/>
 
-    </GridView>
 
     <Style x:Key="GridViewColumnHeader"
         TargetType="{x:Type GridViewColumnHeader}">
@@ -118,6 +106,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="MinHeight" Value="25"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="0,5"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
@@ -136,7 +125,6 @@
                                   Stretch="Uniform"
                                   Visibility="Collapsed"
                                   Width="10"/>
-
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -148,5 +136,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="ListView">
+
+    </Style>
+
 
 </ResourceDictionary>

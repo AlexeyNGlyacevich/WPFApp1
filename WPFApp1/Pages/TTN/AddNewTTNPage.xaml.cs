@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFApp1.Pages
+namespace WPFApp1.Pages.TTN
 {
     /// <summary>
-    /// Логика взаимодействия для ObjectPage.xaml
+    /// Логика взаимодействия для AssNewTTNPage.xaml
     /// </summary>
-    public partial class ObjectPage : Page
+    public partial class AddNewTTNPage : Page
     {
-        public ObjectPage()
+        public AddNewTTNPage()
         {
             InitializeComponent();
         }
-
     }
 }

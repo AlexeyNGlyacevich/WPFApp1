@@ -17,8 +17,7 @@
                           FontSize="12"
                           FontWeight="SemiBold"
                           IsReadOnly="True" 
-                          ItemsSource="{Binding Users}" 
-                          >
+                          ItemsSource="{Binding Users}">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Имя пользователя" Binding="{Binding Path= FirstName}"/>
                     <DataGridTextColumn Header="Фамилия пользователя" Width="auto" Binding="{Binding Path=LastName}"/>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFApp1.CustomControls"
-             DataContext="{Binding Source={StaticResource VmLocator}, Path = TeacherLoginPageViewModel}"
+             DataContext="{Binding Source={StaticResource VmLocator}, Path = LoginPageViewModel}"
              mc:Ignorable="d" 
              MinWidth="300"
              x:Name="_this">
@@ -162,6 +162,13 @@
                             <DataTrigger Binding="{Binding IsPassword,ElementName=_this}" Value="false">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="Aqua"/>
+                            </Trigger>
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

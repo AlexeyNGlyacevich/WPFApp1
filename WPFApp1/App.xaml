@@ -8,6 +8,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style\Icons.xaml"/>
                 <ResourceDictionary Source="Style\DataGridView.xaml"/>
+                <ResourceDictionary Source="Style\DataPicker.xaml"/>
+                <ResourceDictionary Source="Style\Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
         <local:ViewModelLocator x:Key="VmLocator"/>

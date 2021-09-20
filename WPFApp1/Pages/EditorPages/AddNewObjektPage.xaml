@@ -35,8 +35,12 @@
                        Margin=" 5 5 5 1" Height="18" Width="200" 
                        TextAlignment="Center" />
                 <TextBox x:Name="objNum" 
-                       Margin=" 5 1 5 2" Height="80" Width="250" 
-                       TextAlignment="Center" Text="{Binding objektName, UpdateSourceTrigger=PropertyChanged}"/>
+                         Margin=" 5 1 5 2"
+                         Height="80" 
+                         Width="250"
+                         TextWrapping="Wrap" 
+                         TextAlignment="Left"
+                         Text="{Binding objektName, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Тип Проекта"  
                        Margin=" 5 5 5 1" Height="18" Width="200" 

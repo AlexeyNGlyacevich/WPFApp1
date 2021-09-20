@@ -17,18 +17,15 @@ namespace WPFApp1.Model.AppDBcontext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Main_Reestr()
         {
-            this.Contracts = new HashSet<Contracts>();
-            this.Documentation = new HashSet<Documentation>();
             this.Tenders = new HashSet<Tenders>();
+            this.Contracts = new HashSet<Contracts>();
         }
     
         public int ID { get; set; }
         public Nullable<int> Doc_Number { get; set; }
         public Nullable<int> CustomerID { get; set; }
-        public string Contract_Number { get; set; }
-        public Nullable<System.DateTime> Contract_Date { get; set; }
+        public Nullable<System.DateTime> Creation_Date { get; set; }
         public string Object_name { get; set; }
-        public Nullable<System.DateTime> date_of_invoice { get; set; }
         public Nullable<int> general_contractor { get; set; }
         public Nullable<int> sub_contractor { get; set; }
         public string Link { get; set; }
@@ -36,13 +33,11 @@ namespace WPFApp1.Model.AppDBcontext
         public string stage { get; set; }
         public Nullable<int> resp_personID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contracts> Contracts { get; set; }
         public virtual Customers Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Documentation> Documentation { get; set; }
+        public virtual Respons_persons Respons_persons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tenders> Tenders { get; set; }
-        public virtual Respons_persons Respons_persons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contracts> Contracts { get; set; }
     }
 }

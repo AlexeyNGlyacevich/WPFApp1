@@ -117,11 +117,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\AppDBcontext\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,6 +135,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Tenders.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AppDBcontext\TTN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Users_DB.cs">
@@ -165,6 +163,15 @@
     <Compile Include="Pages\AllContractsPage.xaml.cs">
       <DependentUpon>AllContractsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AllTendersPage.xaml.cs">
+      <DependentUpon>AllTendersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Contract\ContractPage.xaml.cs">
+      <DependentUpon>ContractPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Contract\AddNewContractPage.xaml.cs">
+      <DependentUpon>AddNewContractPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditorPages\AddNewObjektPage.xaml.cs">
       <DependentUpon>AddNewObjektPage.xaml</DependentUpon>
     </Compile>
@@ -183,6 +190,18 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Tender\AddNewTenderPage.xaml.cs">
+      <DependentUpon>AddNewTenderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tender\TenderPage.xaml.cs">
+      <DependentUpon>TenderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TTN\AddNewTTNPage.xaml.cs">
+      <DependentUpon>AddNewTTNPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TTN\TTNPage.xaml.cs">
+      <DependentUpon>TTNPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\EventBus.cs" />
     <Compile Include="Services\Event\ChangePageEvent.cs" />
@@ -194,15 +213,22 @@
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\EventSubscriber.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModel\AddNewConrtactViewModel.cs" />
     <Compile Include="ViewModel\AddNewObjektPageViewModel.cs" />
+    <Compile Include="ViewModel\AddNewTenderViewModel.cs" />
+    <Compile Include="ViewModel\AddNewTTNPageViewModel.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\AllContractsViewModel.cs" />
+    <Compile Include="ViewModel\AllTendersPageViewModel.cs" />
     <Compile Include="ViewModel\AllUsersEditorPageViewModel.cs" />
+    <Compile Include="ViewModel\ContractViewModel.cs" />
     <Compile Include="ViewModel\MainDataReestrViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ObjectPageViewModel.cs" />
     <Compile Include="ViewModel\SelectRolePageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
+    <Compile Include="ViewModel\TenderViewModel.cs" />
+    <Compile Include="ViewModel\TTNPageViewModel.cs" />
     <Compile Include="ViewModel\UpdateUserPageViewModel.cs" />
     <Compile Include="ViewModel\UserEditorPageViewModel.cs" />
     <Page Include="CustomControl\TextBoxWithPlaceHolder.xaml">
@@ -242,6 +268,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AllTendersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Contract\ContractPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Contract\AddNewContractPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditorPages\AddNewObjektPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,11 +304,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Tender\AddNewTenderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Tender\TenderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TTN\AddNewTTNPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TTN\TTNPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\DataGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\DataPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

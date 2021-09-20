@@ -13,14 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFApp1.Pages
+namespace WPFApp1.Pages.Contract
 {
     /// <summary>
-    /// Логика взаимодействия для ObjectPage.xaml
+    /// Логика взаимодействия для Contract.xaml
     /// </summary>
-    public partial class ObjectPage : Page
+    public partial class ContractPage : Page
     {
-        public ObjectPage()
+
+        public ContractPage()
         {
             InitializeComponent();
         }

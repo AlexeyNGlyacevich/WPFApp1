@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Height="auto">
+        <Grid Grid.Row="1" Height="auto" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -27,38 +27,70 @@
             </Grid.ColumnDefinitions>
 
 
-            <Button Grid.Column=" 0" Margin="1" Content="Объекты"
+            <Button Grid.Column=" 0" Margin="1" Content="Реестр Проектов"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"
                     />
-            <Button Grid.Column="1" Margin="1" Content="Контракты"
+            <Button Grid.Column="1" Margin="1" Content="Реестр Договоров"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"
                     Command="{Binding Jointocontracts}"/>
-            <Button Grid.Column="2" Margin="1" Content="Тендеры"
+            <Button Grid.Column="2" Margin="1" Content="Реестр Тендеров"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="3" Margin="1" Content="Реестра Актов"
+            <Button Grid.Column="3" Margin="1" Content="Реестр Актов"
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"/>
         </Grid>
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal">
-                <Button Content=""    
-                        Margin="3 3 1 3"
-                        Height="32"
-                        Width="35"
-                        Background="Transparent"
-                        Command="{Binding AddNewObjekt}">
-                    <Button.ContentTemplate>
-                        <DataTemplate>
-                            <Path x:Name="Path"
-                              Data="{Binding Source={StaticResource NewFolder}}"
-                              Fill="Black"
-                              Stretch="Uniform"
-                              />
-                        </DataTemplate>
-                    </Button.ContentTemplate>
+                <Button Content="Новый Проект" 
+                        Height="30"
+                        Width="130"
+                        Margin="5"
+                        Command="{Binding AddNewObjekt }">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF01A3FF" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                            <Grid>
+                                                <ContentPresenter x:Name="MyContentPresenter" 
+                                              Content="{TemplateBinding Content}"                 
+                                              HorizontalAlignment="Center" 
+                                              TextBlock.FontSize="12"
+                                              VerticalAlignment="Center" 
+                                              Margin="0,0,0,0" />
+                                            </Grid>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#E59400" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="OrangeRed" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="LightSkyBlue"/>
+                                                <Setter Property="TextBlock.Opacity" Value="0.7"/>
+                                            </Trigger>
+
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
                 <Button Content=""    
                         Margin="3 3 1 3"
@@ -88,10 +120,10 @@
                         Command="{Binding}"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" Margin="5,20,5,5">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding Objekt}">
+                    <ItemsControl ItemsSource="{Binding Main_Reestr }">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="3" Padding="3" BorderBrush="Black" BorderThickness="1" CornerRadius="3">
@@ -100,24 +132,42 @@
                             </Border.InputBindings>-->
                                     <Grid>
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="150"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
                                         <TextBlock Grid.Column="0" VerticalAlignment="Center" 
-                                           Text="{Binding objectNumber}"/>
+                                           Text="{Binding Doc_Number}"/>
                                         <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"
                                            Text="{Binding stage}"/>
-                                        <TextBlock Grid.Column="2" VerticalAlignment="Center" TextAlignment="Center"
-                                           Text="{Binding objectName}"/>
-                                        <TextBlock Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center"
-                                           Text="{Binding projectType}"/>
-                                        <TextBlock Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center" 
-                                           Text="{Binding resp_person}" />
+
+                                        <StackPanel Grid.Column="2" Orientation="Vertical" >
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
+                                                           Foreground="#a3a3a4"
+                                                           Text="Тип Проекта :                   "/>
+                                                <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
+                                                            Margin="5,0,0,0" 
+                                                           Text="{Binding project_type}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
+                                                           Foreground="#a3a3a4"
+                                                           Text="Наименование Проекта : "/>
+                                                <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding Object_name}"/>
+                                            </StackPanel>
+                                            <Expander Header="Ответственные за проект">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock  VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Left"
+                                                     Text="{Binding Respons_persons.First_Name}" />
+                                                </StackPanel>
+                                            </Expander>
+                                           
+                                        </StackPanel>
+                                     
                                         <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" Content="Редактировать"/>
 
                                     </Grid>

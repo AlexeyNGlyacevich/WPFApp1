@@ -19,13 +19,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDKey" Type="int" />
           <Property Name="Contract_Number" Type="int" />
-          <Property Name="Contract_Signing" Type="date" />
-          <Property Name="Object_name" Type="nvarchar" MaxLength="30" />
-          <Property Name="subject_of_contract" Type="nvarchar" MaxLength="30" />
-          <Property Name="Contract_amount" Type="int" />
-          <Property Name="start_date" Type="date" />
-          <Property Name="finish_date" Type="date" />
-          <Property Name="Project_Manager" Type="nvarchar" MaxLength="30" />
+          <Property Name="Contract_Signing" Type="datetime" />
+          <Property Name="Object_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="subject_of_contract" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contract_amount" Type="money" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="finish_date" Type="datetime" />
+          <Property Name="Project_Manager" Type="nvarchar" MaxLength="100" />
           <Property Name="approval_list_id" Type="int" />
           <Property Name="orders_Id" Type="int" />
           <Property Name="Note" Type="nvarchar(max)" />
@@ -48,27 +48,25 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ContractID" Type="int" />
           <Property Name="ProjectStartDate" Type="date" />
-          <Property Name="GIP" Type="nvarchar" MaxLength="50" />
-          <Property Name="ResponsPersonsID" Type="nvarchar" MaxLength="50" />
           <Property Name="Document_Index" Type="nvarchar" MaxLength="50" />
-          <Property Name="date_of_transfer_to_settlement_group" Type="date" />
-          <Property Name="date_of_transfer_to_the_customer_for_approval" Type="date" />
-          <Property Name="date_of_agreement_by_the_customer" Type="date" />
-          <Property Name="date_of_submission_for_inspection" Type="date" />
-          <Property Name="date_of_receipt_of_inspection" Type="date" />
-          <Property Name="start_date_of_picking_and_purchasing" Type="date" />
-          <Property Name="date_of_submission_of_documentation_to_MPO" Type="date" />
-          <Property Name="date_of_transfer_for_picking_from_MPO" Type="date" />
-          <Property Name="build_start_date" Type="date" />
-          <Property Name="Installer_person" Type="nvarchar" MaxLength="50" />
-          <Property Name="Operational_control" Type="date" />
+          <Property Name="date_of_transfer_to_settlement_group" Type="datetime" />
+          <Property Name="date_of_transfer_to_the_customer_for_approval" Type="datetime" />
+          <Property Name="date_of_agreement_by_the_customer" Type="datetime" />
+          <Property Name="date_of_submission_for_inspection" Type="datetime" />
+          <Property Name="date_of_receipt_of_inspection" Type="datetime" />
+          <Property Name="start_date_of_picking_and_purchasing" Type="datetime" />
+          <Property Name="date_of_submission_of_documentation_to_MPO" Type="datetime" />
+          <Property Name="date_of_transfer_for_picking_from_MPO" Type="datetime" />
+          <Property Name="build_start_date" Type="datetime" />
+          <Property Name="Operational_control" Type="datetime" />
           <Property Name="Operational_control_result" Type="nvarchar" MaxLength="50" />
-          <Property Name="Acceptance_control" Type="date" />
+          <Property Name="Acceptance_control" Type="datetime" />
           <Property Name="Acceptance_control_results" Type="nvarchar" MaxLength="50" />
           <Property Name="Acceptance_control_protocol" Type="nvarchar" MaxLength="50" />
-          <Property Name="Date_of_shipment" Type="date" />
-          <Property Name="Act_number_and_date" Type="nvarchar" MaxLength="50" />
-          <Property Name="TTN(TN)" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_of_shipment" Type="datetime" />
+          <Property Name="Act_number" Type="int" />
+          <Property Name="Act_Date" Type="datetime" />
+          <Property Name="PSI" Type="datetime" />
         </EntityType>
         <EntityType Name="Main_Reestr">
           <Key>
@@ -77,15 +75,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Doc_Number" Type="int" />
           <Property Name="CustomerID" Type="int" />
-          <Property Name="Contract_Number" Type="nvarchar" MaxLength="30" />
-          <Property Name="Contract_Date" Type="date" />
-          <Property Name="Object_name" Type="nvarchar" MaxLength="30" />
-          <Property Name="date_of_invoice" Type="date" />
+          <Property Name="Creation_Date" Type="datetime" />
+          <Property Name="Object_name" Type="nvarchar" MaxLength="255" />
           <Property Name="general_contractor" Type="int" />
           <Property Name="sub_contractor" Type="int" />
           <Property Name="Link" Type="nvarchar" MaxLength="50" />
-          <Property Name="project_type" Type="nvarchar" MaxLength="20" />
-          <Property Name="stage" Type="nvarchar" MaxLength="20" />
+          <Property Name="project_type" Type="nvarchar" MaxLength="100" />
+          <Property Name="stage" Type="nvarchar" MaxLength="50" />
           <Property Name="resp_personID" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
@@ -135,19 +131,35 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDKey" Type="int" />
-          <Property Name="Num_purchase" Type="int" />
           <Property Name="Date_purchase" Type="date" />
           <Property Name="final _proposal_date" Type="date" />
           <Property Name="trading_date" Type="date" />
           <Property Name="Object_name" Type="nvarchar(max)" />
           <Property Name="subject_of_a_contract" Type="nvarchar(max)" />
-          <Property Name="starting_price" Type="float" />
-          <Property Name="price_date_submission" Type="float" />
-          <Property Name="price_inclusive_reduction" Type="float" />
+          <Property Name="starting_price" Type="money" />
+          <Property Name="price_date_submission" Type="money" />
+          <Property Name="price_inclusive_reduction" Type="money" />
           <Property Name="Result" Type="nvarchar" MaxLength="50" />
           <Property Name="Acceptance_date" Type="date" />
           <Property Name="Term_of_the_contract" Type="date" />
           <Property Name="Repository" Type="nvarchar(max)" />
+          <Property Name="Tender_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="final_price" Type="money" />
+        </EntityType>
+        <EntityType Name="TTN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractID" Type="int" />
+          <Property Name="Act_number" Type="int" />
+          <Property Name="Date_of_accept" Type="date" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_of_contract" Type="date" />
+          <Property Name="Value_with_NDS" Type="float" />
+          <Property Name="Date_of_invoice_ESF" Type="date" />
+          <Property Name="with_general_contractor" Type="float" />
+          <Property Name="with_subcontractors" Type="float" />
         </EntityType>
         <EntityType Name="User_Types">
           <Key>
@@ -206,11 +218,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Documentation_Main_Reestr">
-          <End Role="Main_Reestr" Type="Self.Main_Reestr" Multiplicity="0..1" />
+        <Association Name="FK_Documentation_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
           <End Role="Documentation" Type="Self.Documentation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Main_Reestr">
+            <Principal Role="Contracts">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Documentation">
@@ -254,6 +266,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TTN_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="TTN" Type="Self.TTN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TTN">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_DB_User_Types">
           <End Role="User_Types" Type="Self.User_Types" Multiplicity="0..1" />
           <End Role="Users_DB" Type="Self.Users_DB" Multiplicity="*" />
@@ -277,6 +301,7 @@
           <EntitySet Name="Respons_persons" EntityType="Self.Respons_persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tenders" EntityType="Self.Tenders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTN" EntityType="Self.TTN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Types" EntityType="Self.User_Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users_DB" EntityType="Self.Users_DB" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Contracts_Approval_List" Association="Self.FK_Contracts_Approval_List">
@@ -291,8 +316,8 @@
             <End Role="Main_Reestr" EntitySet="Main_Reestr" />
             <End Role="Contracts" EntitySet="Contracts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Documentation_Main_Reestr" Association="Self.FK_Documentation_Main_Reestr">
-            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
+          <AssociationSet Name="FK_Documentation_Contracts" Association="Self.FK_Documentation_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
             <End Role="Documentation" EntitySet="Documentation" />
           </AssociationSet>
           <AssociationSet Name="FK_Main_Reestr_Respons_persons" Association="Self.FK_Main_Reestr_Respons_persons">
@@ -306,6 +331,10 @@
           <AssociationSet Name="FK_Tenders_Main_Reestr" Association="Self.FK_Tenders_Main_Reestr">
             <End Role="Main_Reestr" EntitySet="Main_Reestr" />
             <End Role="Tenders" EntitySet="Tenders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTN_Contracts" Association="Self.FK_TTN_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="TTN" EntitySet="TTN" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_DB_User_Types" Association="Self.FK_Users_DB_User_Types">
             <End Role="User_Types" EntitySet="User_Types" />
@@ -322,30 +351,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Current_Values" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_Approval_List" FromRole="Approval_List" ToRole="Contracts" />
-          <NavigationProperty Name="Contracts1" Relationship="Self.FK_Contracts_Approval_List1" FromRole="Approval_List" ToRole="Contracts" />
-        </EntityType>
-        <EntityType Name="Contracts">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDKey" Type="Int32" />
-          <Property Name="Contract_Number" Type="Int32" />
-          <Property Name="Contract_Signing" Type="DateTime" Precision="0" />
-          <Property Name="Object_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="subject_of_contract" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Contract_amount" Type="Int32" />
-          <Property Name="start_date" Type="DateTime" Precision="0" />
-          <Property Name="finish_date" Type="DateTime" Precision="0" />
-          <Property Name="Project_Manager" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="approval_list_id" Type="Int32" />
-          <Property Name="orders_Id" Type="Int32" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Approval_List" Relationship="Self.FK_Contracts_Approval_List" FromRole="Contracts" ToRole="Approval_List" />
-          <NavigationProperty Name="Approval_List1" Relationship="Self.FK_Contracts_Approval_List1" FromRole="Contracts" ToRole="Approval_List" />
-          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Contracts_Reestr" FromRole="Contracts" ToRole="Main_Reestr" />
-        </EntityType>
+          <NavigationProperty Name="Contracts" Relationship="ProjectStDBModel.FK_Contracts_Approval_List" FromRole="Approval_List" ToRole="Contracts" />
+          <NavigationProperty Name="Contracts1" Relationship="ProjectStDBModel.FK_Contracts_Approval_List1" FromRole="Approval_List" ToRole="Contracts" />
+          </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="ID" />
@@ -393,27 +401,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Tenders">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDKey" Type="Int32" />
-          <Property Name="Num_purchase" Type="Int32" />
-          <Property Name="Date_purchase" Type="DateTime" Precision="0" />
-          <Property Name="final__proposal_date" Type="DateTime" Precision="0" />
-          <Property Name="trading_date" Type="DateTime" Precision="0" />
-          <Property Name="Object_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="subject_of_a_contract" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="starting_price" Type="Double" />
-          <Property Name="price_date_submission" Type="Double" />
-          <Property Name="price_inclusive_reduction" Type="Double" />
-          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Acceptance_date" Type="DateTime" Precision="0" />
-          <Property Name="Term_of_the_contract" Type="DateTime" Precision="0" />
-          <Property Name="Repository" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Tenders_Main_Reestr" FromRole="Tenders" ToRole="Main_Reestr" />
-        </EntityType>
         <EntityType Name="User_Types">
           <Key>
             <PropertyRef Name="ID" />
@@ -435,30 +422,6 @@
           <Property Name="TypeID" Type="Int32" />
           <NavigationProperty Name="User_Types" Relationship="Self.FK_Users_DB_User_Types" FromRole="Users_DB" ToRole="User_Types" />
         </EntityType>
-        <Association Name="FK_Contracts_Approval_List">
-          <End Role="Approval_List" Type="Self.Approval_List" Multiplicity="0..1" />
-          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Approval_List">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contracts">
-              <PropertyRef Name="approval_list_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contracts_Approval_List1">
-          <End Role="Approval_List" Type="Self.Approval_List" Multiplicity="0..1" />
-          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Approval_List">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contracts">
-              <PropertyRef Name="orders_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_DB_User_Types">
           <End Role="User_Types" Type="Self.User_Types" Multiplicity="0..1" />
           <End Role="Users_DB" Type="Self.Users_DB" Multiplicity="*" />
@@ -473,86 +436,61 @@
         </Association>
         <EntityContainer Name="StDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Approval_List" EntityType="Self.Approval_List" />
-          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
           <EntitySet Name="Customers" EntityType="Self.Customers" />
           <EntitySet Name="Reestr_of_Contracts" EntityType="Self.Reestr_of_Contracts" />
           <EntitySet Name="Respons_persons" EntityType="Self.Respons_persons" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Tenders" EntityType="Self.Tenders" />
           <EntitySet Name="User_Types" EntityType="Self.User_Types" />
           <EntitySet Name="Users_DB" EntityType="Self.Users_DB" />
-          <AssociationSet Name="FK_Contracts_Approval_List" Association="Self.FK_Contracts_Approval_List">
-            <End Role="Approval_List" EntitySet="Approval_List" />
-            <End Role="Contracts" EntitySet="Contracts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contracts_Approval_List1" Association="Self.FK_Contracts_Approval_List1">
-            <End Role="Approval_List" EntitySet="Approval_List" />
-            <End Role="Contracts" EntitySet="Contracts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_DB_User_Types" Association="Self.FK_Users_DB_User_Types">
             <End Role="User_Types" EntitySet="User_Types" />
             <End Role="Users_DB" EntitySet="Users_DB" />
           </AssociationSet>
           <EntitySet Name="Orders" EntityType="ProjectStDBModel.Orders" />
-          <EntitySet Name="Documentation" EntityType="ProjectStDBModel.Documentation" />
           <EntitySet Name="Main_Reestr" EntityType="ProjectStDBModel.Main_Reestr" />
-          <AssociationSet Name="FK_Contracts_Reestr" Association="ProjectStDBModel.FK_Contracts_Reestr">
-            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
-            <End Role="Contracts" EntitySet="Contracts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Reestr_Customers" Association="ProjectStDBModel.FK_Reestr_Customers">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Main_Reestr" EntitySet="Main_Reestr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Documentation_Main_Reestr" Association="ProjectStDBModel.FK_Documentation_Main_Reestr">
-            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
-            <End Role="Documentation" EntitySet="Documentation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tenders_Main_Reestr" Association="ProjectStDBModel.FK_Tenders_Main_Reestr">
-            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
-            <End Role="Tenders" EntitySet="Tenders" />
           </AssociationSet>
           <AssociationSet Name="FK_Main_Reestr_Respons_persons" Association="ProjectStDBModel.FK_Main_Reestr_Respons_persons">
             <End Role="Respons_persons" EntitySet="Respons_persons" />
             <End Role="Main_Reestr" EntitySet="Main_Reestr" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Documentation" EntityType="ProjectStDBModel.Documentation" />
+          <EntitySet Name="Tenders" EntityType="ProjectStDBModel.Tenders" />
+          <AssociationSet Name="FK_Tenders_Main_Reestr" Association="ProjectStDBModel.FK_Tenders_Main_Reestr">
+            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
+            <End Role="Tenders" EntitySet="Tenders" />
+          </AssociationSet>
+          <EntitySet Name="Contracts" EntityType="ProjectStDBModel.Contracts" />
+          <AssociationSet Name="FK_Contracts_Approval_List" Association="ProjectStDBModel.FK_Contracts_Approval_List">
+            <End Role="Approval_List" EntitySet="Approval_List" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Approval_List1" Association="ProjectStDBModel.FK_Contracts_Approval_List1">
+            <End Role="Approval_List" EntitySet="Approval_List" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Reestr" Association="ProjectStDBModel.FK_Contracts_Reestr">
+            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documentation_Contracts" Association="ProjectStDBModel.FK_Documentation_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Documentation" EntitySet="Documentation" />
+          </AssociationSet>
+          <EntitySet Name="TTN" EntityType="ProjectStDBModel.TTN" />
+          <AssociationSet Name="FK_TTN_Contracts" Association="ProjectStDBModel.FK_TTN_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="TTN" EntitySet="TTN" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Current_Values" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Documentation">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContractID" Type="Int32" />
-          <Property Name="ProjectStartDate" Type="DateTime" Precision="0" />
-          <Property Name="GIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ResponsPersonsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Document_Index" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="date_of_transfer_to_settlement_group" Type="DateTime" Precision="0" />
-          <Property Name="date_of_transfer_to_the_customer_for_approval" Type="DateTime" Precision="0" />
-          <Property Name="date_of_agreement_by_the_customer" Type="DateTime" Precision="0" />
-          <Property Name="date_of_submission_for_inspection" Type="DateTime" Precision="0" />
-          <Property Name="date_of_receipt_of_inspection" Type="DateTime" Precision="0" />
-          <Property Name="start_date_of_picking_and_purchasing" Type="DateTime" Precision="0" />
-          <Property Name="date_of_submission_of_documentation_to_MPO" Type="DateTime" Precision="0" />
-          <Property Name="date_of_transfer_for_picking_from_MPO" Type="DateTime" Precision="0" />
-          <Property Name="build_start_date" Type="DateTime" Precision="0" />
-          <Property Name="Installer_person" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Operational_control" Type="DateTime" Precision="0" />
-          <Property Name="Operational_control_result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Acceptance_control" Type="DateTime" Precision="0" />
-          <Property Name="Acceptance_control_results" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Acceptance_control_protocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Date_of_shipment" Type="DateTime" Precision="0" />
-          <Property Name="Act_number_and_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TTN_TN_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Documentation_Main_Reestr" FromRole="Documentation" ToRole="Main_Reestr" />
         </EntityType>
         <EntityType Name="Main_Reestr">
           <Key>
@@ -561,36 +499,19 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Doc_Number" Type="Int32" />
           <Property Name="CustomerID" Type="Int32" />
-          <Property Name="Contract_Number" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Contract_Date" Type="DateTime" Precision="0" />
-          <Property Name="Object_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="date_of_invoice" Type="DateTime" Precision="0" />
+          <Property Name="Creation_Date" Type="DateTime" Precision="3" />
+          <Property Name="Object_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="general_contractor" Type="Int32" />
           <Property Name="sub_contractor" Type="Int32" />
           <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="project_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="stage" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contracts" Relationship="ProjectStDBModel.FK_Contracts_Reestr" FromRole="Main_Reestr" ToRole="Contracts" />
-          <NavigationProperty Name="Customers" Relationship="ProjectStDBModel.FK_Reestr_Customers" FromRole="Main_Reestr" ToRole="Customers" />
-          <NavigationProperty Name="Documentation" Relationship="ProjectStDBModel.FK_Documentation_Main_Reestr" FromRole="Main_Reestr" ToRole="Documentation" />
-          <NavigationProperty Name="Tenders" Relationship="ProjectStDBModel.FK_Tenders_Main_Reestr" FromRole="Main_Reestr" ToRole="Tenders" />
+          <Property Name="project_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="stage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="resp_personID" Type="Int32" />
+          <NavigationProperty Name="Customers" Relationship="ProjectStDBModel.FK_Reestr_Customers" FromRole="Main_Reestr" ToRole="Customers" />
           <NavigationProperty Name="Respons_persons" Relationship="ProjectStDBModel.FK_Main_Reestr_Respons_persons" FromRole="Main_Reestr" ToRole="Respons_persons" />
+          <NavigationProperty Name="Tenders" Relationship="ProjectStDBModel.FK_Tenders_Main_Reestr" FromRole="Main_Reestr" ToRole="Tenders" />
+          <NavigationProperty Name="Contracts" Relationship="ProjectStDBModel.FK_Contracts_Reestr" FromRole="Main_Reestr" ToRole="Contracts" />
         </EntityType>
-        <Association Name="FK_Contracts_Reestr">
-          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Main_Reestr">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contracts">
-              <PropertyRef Name="IDKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Reestr_Customers">
           <End Type="ProjectStDBModel.Customers" Role="Customers" Multiplicity="0..1" />
           <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="*" />
@@ -600,30 +521,6 @@
             </Principal>
             <Dependent Role="Main_Reestr">
               <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Documentation_Main_Reestr">
-          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="0..1" />
-          <End Type="ProjectStDBModel.Documentation" Role="Documentation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Main_Reestr">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Documentation">
-              <PropertyRef Name="ContractID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tenders_Main_Reestr">
-          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="0..1" />
-          <End Type="ProjectStDBModel.Tenders" Role="Tenders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Main_Reestr">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Tenders">
-              <PropertyRef Name="IDKey" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -639,7 +536,170 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Documentation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="ProjectStartDate" Type="DateTime" Precision="0" />
+          <Property Name="Document_Index" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_of_transfer_to_settlement_group" Type="DateTime" Precision="3" />
+          <Property Name="date_of_transfer_to_the_customer_for_approval" Type="DateTime" Precision="3" />
+          <Property Name="date_of_agreement_by_the_customer" Type="DateTime" Precision="3" />
+          <Property Name="date_of_submission_for_inspection" Type="DateTime" Precision="3" />
+          <Property Name="date_of_receipt_of_inspection" Type="DateTime" Precision="3" />
+          <Property Name="start_date_of_picking_and_purchasing" Type="DateTime" Precision="3" />
+          <Property Name="date_of_submission_of_documentation_to_MPO" Type="DateTime" Precision="3" />
+          <Property Name="date_of_transfer_for_picking_from_MPO" Type="DateTime" Precision="3" />
+          <Property Name="build_start_date" Type="DateTime" Precision="3" />
+          <Property Name="Operational_control" Type="DateTime" Precision="3" />
+          <Property Name="Operational_control_result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acceptance_control" Type="DateTime" Precision="3" />
+          <Property Name="Acceptance_control_results" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acceptance_control_protocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_shipment" Type="DateTime" Precision="3" />
+          <Property Name="Act_number" Type="Int32" />
+          <Property Name="Act_Date" Type="DateTime" Precision="3" />
+          <Property Name="PSI" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Contracts" Relationship="ProjectStDBModel.FK_Documentation_Contracts" FromRole="Documentation" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Tenders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKey" Type="Int32" />
+          <Property Name="Date_purchase" Type="DateTime" Precision="0" />
+          <Property Name="final__proposal_date" Type="DateTime" Precision="0" />
+          <Property Name="trading_date" Type="DateTime" Precision="0" />
+          <Property Name="Object_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="subject_of_a_contract" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="starting_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="price_date_submission" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="price_inclusive_reduction" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acceptance_date" Type="DateTime" Precision="0" />
+          <Property Name="Term_of_the_contract" Type="DateTime" Precision="0" />
+          <Property Name="Repository" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tender_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="final_price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Tenders_Main_Reestr" FromRole="Tenders" ToRole="Main_Reestr" />
+        </EntityType>
+        <Association Name="FK_Tenders_Main_Reestr">
+          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="0..1" />
+          <End Type="ProjectStDBModel.Tenders" Role="Tenders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main_Reestr">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tenders">
+              <PropertyRef Name="IDKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKey" Type="Int32" />
+          <Property Name="Contract_Number" Type="Int32" />
+          <Property Name="Contract_Signing" Type="DateTime" Precision="3" />
+          <Property Name="Object_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="subject_of_contract" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contract_amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="finish_date" Type="DateTime" Precision="3" />
+          <Property Name="Project_Manager" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="approval_list_id" Type="Int32" />
+          <Property Name="orders_Id" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Approval_List" Relationship="ProjectStDBModel.FK_Contracts_Approval_List" FromRole="Contracts" ToRole="Approval_List" />
+          <NavigationProperty Name="Approval_List1" Relationship="ProjectStDBModel.FK_Contracts_Approval_List1" FromRole="Contracts" ToRole="Approval_List" />
+          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Contracts_Reestr" FromRole="Contracts" ToRole="Main_Reestr" />
+          <NavigationProperty Name="Documentation" Relationship="ProjectStDBModel.FK_Documentation_Contracts" FromRole="Contracts" ToRole="Documentation" />
+          <NavigationProperty Name="TTN" Relationship="ProjectStDBModel.FK_TTN_Contracts" FromRole="Contracts" ToRole="TTN" />
+        </EntityType>
+        <Association Name="FK_Contracts_Approval_List">
+          <End Type="ProjectStDBModel.Approval_List" Role="Approval_List" Multiplicity="0..1" />
+          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Approval_List">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="approval_list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Approval_List1">
+          <End Type="ProjectStDBModel.Approval_List" Role="Approval_List" Multiplicity="0..1" />
+          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Approval_List">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="orders_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Reestr">
+          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main_Reestr">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="IDKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documentation_Contracts">
+          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="0..1" />
+          <End Type="ProjectStDBModel.Documentation" Role="Documentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Documentation">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TTN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="Act_number" Type="Int32" />
+          <Property Name="Date_of_accept" Type="DateTime" Precision="0" />
+          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_contract" Type="DateTime" Precision="0" />
+          <Property Name="Value_with_NDS" Type="Double" />
+          <Property Name="Date_of_invoice_ESF" Type="DateTime" Precision="0" />
+          <Property Name="with_general_contractor" Type="Double" />
+          <Property Name="with_subcontractors" Type="Double" />
+          <NavigationProperty Name="Contracts" Relationship="ProjectStDBModel.FK_TTN_Contracts" FromRole="TTN" ToRole="Contracts" />
+        </EntityType>
+        <Association Name="FK_TTN_Contracts">
+          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="0..1" />
+          <End Type="ProjectStDBModel.TTN" Role="TTN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TTN">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -650,25 +710,6 @@
               <MappingFragment StoreEntitySet="Approval_List">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Current_Values" ColumnName="Current_Values" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contracts">
-            <EntityTypeMapping TypeName="ProjectStDBModel.Contracts">
-              <MappingFragment StoreEntitySet="Contracts">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IDKey" ColumnName="IDKey" />
-                <ScalarProperty Name="Contract_Number" ColumnName="Contract_Number" />
-                <ScalarProperty Name="Contract_Signing" ColumnName="Contract_Signing" />
-                <ScalarProperty Name="Object_name" ColumnName="Object_name" />
-                <ScalarProperty Name="subject_of_contract" ColumnName="subject_of_contract" />
-                <ScalarProperty Name="Contract_amount" ColumnName="Contract_amount" />
-                <ScalarProperty Name="start_date" ColumnName="start_date" />
-                <ScalarProperty Name="finish_date" ColumnName="finish_date" />
-                <ScalarProperty Name="Project_Manager" ColumnName="Project_Manager" />
-                <ScalarProperty Name="approval_list_id" ColumnName="approval_list_id" />
-                <ScalarProperty Name="orders_Id" ColumnName="orders_Id" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -721,27 +762,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tenders">
-            <EntityTypeMapping TypeName="ProjectStDBModel.Tenders">
-              <MappingFragment StoreEntitySet="Tenders">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IDKey" ColumnName="IDKey" />
-                <ScalarProperty Name="Num_purchase" ColumnName="Num_purchase" />
-                <ScalarProperty Name="Date_purchase" ColumnName="Date_purchase" />
-                <ScalarProperty Name="final__proposal_date" ColumnName="final _proposal_date" />
-                <ScalarProperty Name="trading_date" ColumnName="trading_date" />
-                <ScalarProperty Name="Object_name" ColumnName="Object_name" />
-                <ScalarProperty Name="subject_of_a_contract" ColumnName="subject_of_a_contract" />
-                <ScalarProperty Name="starting_price" ColumnName="starting_price" />
-                <ScalarProperty Name="price_date_submission" ColumnName="price_date_submission" />
-                <ScalarProperty Name="price_inclusive_reduction" ColumnName="price_inclusive_reduction" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="Acceptance_date" ColumnName="Acceptance_date" />
-                <ScalarProperty Name="Term_of_the_contract" ColumnName="Term_of_the_contract" />
-                <ScalarProperty Name="Repository" ColumnName="Repository" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="User_Types">
             <EntityTypeMapping TypeName="ProjectStDBModel.User_Types">
               <MappingFragment StoreEntitySet="User_Types">
@@ -771,18 +791,35 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Main_Reestr">
+            <EntityTypeMapping TypeName="ProjectStDBModel.Main_Reestr">
+              <MappingFragment StoreEntitySet="Main_Reestr">
+                <ScalarProperty Name="resp_personID" ColumnName="resp_personID" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="project_type" ColumnName="project_type" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="sub_contractor" ColumnName="sub_contractor" />
+                <ScalarProperty Name="general_contractor" ColumnName="general_contractor" />
+                <ScalarProperty Name="Object_name" ColumnName="Object_name" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Doc_Number" ColumnName="Doc_Number" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Documentation">
             <EntityTypeMapping TypeName="ProjectStDBModel.Documentation">
               <MappingFragment StoreEntitySet="Documentation">
-                <ScalarProperty Name="TTN_TN_" ColumnName="TTN(TN)" />
-                <ScalarProperty Name="Act_number_and_date" ColumnName="Act_number_and_date" />
+                <ScalarProperty Name="PSI" ColumnName="PSI" />
+                <ScalarProperty Name="Act_Date" ColumnName="Act_Date" />
+                <ScalarProperty Name="Act_number" ColumnName="Act_number" />
                 <ScalarProperty Name="Date_of_shipment" ColumnName="Date_of_shipment" />
                 <ScalarProperty Name="Acceptance_control_protocol" ColumnName="Acceptance_control_protocol" />
                 <ScalarProperty Name="Acceptance_control_results" ColumnName="Acceptance_control_results" />
                 <ScalarProperty Name="Acceptance_control" ColumnName="Acceptance_control" />
                 <ScalarProperty Name="Operational_control_result" ColumnName="Operational_control_result" />
                 <ScalarProperty Name="Operational_control" ColumnName="Operational_control" />
-                <ScalarProperty Name="Installer_person" ColumnName="Installer_person" />
                 <ScalarProperty Name="build_start_date" ColumnName="build_start_date" />
                 <ScalarProperty Name="date_of_transfer_for_picking_from_MPO" ColumnName="date_of_transfer_for_picking_from_MPO" />
                 <ScalarProperty Name="date_of_submission_of_documentation_to_MPO" ColumnName="date_of_submission_of_documentation_to_MPO" />
@@ -793,30 +830,66 @@
                 <ScalarProperty Name="date_of_transfer_to_the_customer_for_approval" ColumnName="date_of_transfer_to_the_customer_for_approval" />
                 <ScalarProperty Name="date_of_transfer_to_settlement_group" ColumnName="date_of_transfer_to_settlement_group" />
                 <ScalarProperty Name="Document_Index" ColumnName="Document_Index" />
-                <ScalarProperty Name="ResponsPersonsID" ColumnName="ResponsPersonsID" />
-                <ScalarProperty Name="GIP" ColumnName="GIP" />
                 <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
                 <ScalarProperty Name="ContractID" ColumnName="ContractID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Main_Reestr">
-            <EntityTypeMapping TypeName="ProjectStDBModel.Main_Reestr">
-              <MappingFragment StoreEntitySet="Main_Reestr">
-                <ScalarProperty Name="resp_personID" ColumnName="resp_personID" />
-                <ScalarProperty Name="stage" ColumnName="stage" />
-                <ScalarProperty Name="project_type" ColumnName="project_type" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="sub_contractor" ColumnName="sub_contractor" />
-                <ScalarProperty Name="general_contractor" ColumnName="general_contractor" />
-                <ScalarProperty Name="date_of_invoice" ColumnName="date_of_invoice" />
+          <EntitySetMapping Name="Tenders">
+            <EntityTypeMapping TypeName="ProjectStDBModel.Tenders">
+              <MappingFragment StoreEntitySet="Tenders">
+                <ScalarProperty Name="final_price" ColumnName="final_price" />
+                <ScalarProperty Name="Tender_number" ColumnName="Tender_number" />
+                <ScalarProperty Name="Repository" ColumnName="Repository" />
+                <ScalarProperty Name="Term_of_the_contract" ColumnName="Term_of_the_contract" />
+                <ScalarProperty Name="Acceptance_date" ColumnName="Acceptance_date" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="price_inclusive_reduction" ColumnName="price_inclusive_reduction" />
+                <ScalarProperty Name="price_date_submission" ColumnName="price_date_submission" />
+                <ScalarProperty Name="starting_price" ColumnName="starting_price" />
+                <ScalarProperty Name="subject_of_a_contract" ColumnName="subject_of_a_contract" />
                 <ScalarProperty Name="Object_name" ColumnName="Object_name" />
-                <ScalarProperty Name="Contract_Date" ColumnName="Contract_Date" />
-                <ScalarProperty Name="Contract_Number" ColumnName="Contract_Number" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="Doc_Number" ColumnName="Doc_Number" />
+                <ScalarProperty Name="trading_date" ColumnName="trading_date" />
+                <ScalarProperty Name="final__proposal_date" ColumnName="final _proposal_date" />
+                <ScalarProperty Name="Date_purchase" ColumnName="Date_purchase" />
+                <ScalarProperty Name="IDKey" ColumnName="IDKey" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="ProjectStDBModel.Contracts">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="orders_Id" ColumnName="orders_Id" />
+                <ScalarProperty Name="approval_list_id" ColumnName="approval_list_id" />
+                <ScalarProperty Name="Project_Manager" ColumnName="Project_Manager" />
+                <ScalarProperty Name="finish_date" ColumnName="finish_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="Contract_amount" ColumnName="Contract_amount" />
+                <ScalarProperty Name="subject_of_contract" ColumnName="subject_of_contract" />
+                <ScalarProperty Name="Object_name" ColumnName="Object_name" />
+                <ScalarProperty Name="Contract_Signing" ColumnName="Contract_Signing" />
+                <ScalarProperty Name="Contract_Number" ColumnName="Contract_Number" />
+                <ScalarProperty Name="IDKey" ColumnName="IDKey" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTN">
+            <EntityTypeMapping TypeName="ProjectStDBModel.TTN">
+              <MappingFragment StoreEntitySet="TTN">
+                <ScalarProperty Name="with_subcontractors" ColumnName="with_subcontractors" />
+                <ScalarProperty Name="with_general_contractor" ColumnName="with_general_contractor" />
+                <ScalarProperty Name="Date_of_invoice_ESF" ColumnName="Date_of_invoice_ESF" />
+                <ScalarProperty Name="Value_with_NDS" ColumnName="Value_with_NDS" />
+                <ScalarProperty Name="Date_of_contract" ColumnName="Date_of_contract" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Date_of_accept" ColumnName="Date_of_accept" />
+                <ScalarProperty Name="Act_number" ColumnName="Act_number" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

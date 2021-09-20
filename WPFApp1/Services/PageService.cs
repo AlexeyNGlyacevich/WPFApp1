@@ -33,9 +33,13 @@ namespace WPFApp1.Services
 
         internal void GoToBack()
        {
-            _history.Pop();
+            _ = _history.Pop();
             var page = _history.Peek();
             OnePageChanged?.Invoke(_history.Peek());
        }
+        internal void Refresh()
+        {
+            _ = _history.Pop();
+        }
     }
 }

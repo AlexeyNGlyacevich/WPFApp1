@@ -15,16 +15,10 @@ namespace WPFApp1.ViewModel
     class AdminPageViewModel : BindableBase
     {
         private readonly PageService _navigation;
-       //  private readonly DataService _dataService;
-       // public ObservableCollection<User_Types> UserTypes { get; set; } = new ObservableCollection<User_Types>();
 
-
-        public AdminPageViewModel(PageService navigation/*, DataService dataService, MessageBus messageBus*/)
+        public AdminPageViewModel(PageService navigation)
         {
             _navigation = navigation;
-          //  _dataService = dataService;
-          //  UserTypes = new ObservableCollection<User_Types>(_dataService.GetAllTypes());
-
         }
 
         public ICommand AddUser => new DelegateCommand(() =>

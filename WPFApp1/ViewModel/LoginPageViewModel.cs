@@ -25,10 +25,8 @@ namespace WPFApp1.ViewModel
         public LoginPageViewModel(PageService navigation)
         {
             _navigation = navigation;
-          
 
         }
-
 
         public ICommand Login => new DelegateCommand(() =>
         {
@@ -50,7 +48,7 @@ namespace WPFApp1.ViewModel
             }
             else
             {
-                _ = MessageBox.Show("Неверный пароль");
+                _ = MessageBox.Show("Неверный пароль или логин!", "Aторизация", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }/*, () => !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(User_Login)*/);
 

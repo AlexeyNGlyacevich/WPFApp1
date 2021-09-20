@@ -31,5 +31,19 @@ namespace WPFApp1
 
         public AddNewObjektPageViewModel AddNewObjektPageViewModel => IoC.Resolve<AddNewObjektPageViewModel>();
 
+        public ContractViewModel ContractViewModel => IoC.Resolve<ContractViewModel>();
+
+        public AddNewConrtactViewModel AddNewConrtactViewModel => IoC.Resolve<AddNewConrtactViewModel>();
+
+        public TenderViewModel TenderViewModel => IoC.Resolve<TenderViewModel>();
+
+        public AddNewTenderViewModel AddNewTenderViewModel => IoC.Resolve<AddNewTenderViewModel>();
+
+        public AllTendersPageViewModel AllTendersPageViewModel => IoC.Resolve<AllTendersPageViewModel>();
+
+        public AddNewTTNPageViewModel AddNewTTNPageViewModel => IoC.Resolve<AddNewTTNPageViewModel>();
+
+        public TTNPageViewModel TTNPageViewModel => IoC.Resolve<TTNPageViewModel>();
+
     }
 }
