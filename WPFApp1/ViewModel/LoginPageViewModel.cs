@@ -1,16 +1,10 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Pages.Admin;
 using WPFApp1.Services;
 using WPFApp1.Pages;
 using WPFApp1.Model;
-using WPFApp1.CustomControls;
 
 namespace WPFApp1.ViewModel
 {

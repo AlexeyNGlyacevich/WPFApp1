@@ -42,7 +42,6 @@ namespace WPFApp1.ViewModel
             }
             else
             {
-
                 Main_Reestr Newobjekt = new Main_Reestr()
                 {
                     Doc_Number = registrnumber,
@@ -54,7 +53,7 @@ namespace WPFApp1.ViewModel
                 };
 
                 _dataservice.AddNewObjekt(Newobjekt);
-                MessageBox.Show("Новая запись добавлена в реестр");
+                _ = MessageBox.Show("Новая запись добавлена в реестр", "Новый Проект", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigation.Navigate(new MainDataReestrPage());
             }
 

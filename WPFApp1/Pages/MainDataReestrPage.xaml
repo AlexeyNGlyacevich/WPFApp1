@@ -155,7 +155,7 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
                                                            Foreground="#a3a3a4"
-                                                           Text="Наименование Проекта : "/>
+                                                           Text="Наименование Объекта : "/>
                                                 <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
                                            Text="{Binding Object_name}"/>
                                             </StackPanel>
@@ -165,7 +165,6 @@
                                                      Text="{Binding Respons_persons.First_Name}" />
                                                 </StackPanel>
                                             </Expander>
-                                           
                                         </StackPanel>
                                      
                                         <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" Content="Редактировать"/>

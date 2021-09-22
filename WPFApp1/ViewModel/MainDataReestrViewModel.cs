@@ -28,7 +28,7 @@ namespace WPFApp1.ViewModel
             _navigation = navigation;
             _dataService = dataService;
           
-            Main_Reestr = new ObservableCollection<Main_Reestr>(_dataService.GetDataToView());
+            Main_Reestr = new ObservableCollection<Main_Reestr>(_dataService.GetDataToView().OrderByDescending(x => x.ID));
 
         }
 

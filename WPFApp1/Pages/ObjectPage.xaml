@@ -234,8 +234,8 @@
                                     <StackPanel Orientation="Vertical">
 
                                         <TextBlock Text="Наименование Заказчика(покупателя, подрядчика): "
-                                               Margin="5 20 5 1 " 
-                                               TextAlignment="Center"  
+                                               Margin="5 10 5 1 " 
+                                               TextAlignment="Left"  
                                                Height="20" 
                                                Width="Auto"
                                                VerticalAlignment="Top" />

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPFApp1.ViewModel;
+﻿using WPFApp1.ViewModel;
 
 namespace WPFApp1
 {
