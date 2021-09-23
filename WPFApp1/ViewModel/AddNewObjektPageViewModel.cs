@@ -49,7 +49,8 @@ namespace WPFApp1.ViewModel
                     Object_name = objektName,
                     project_type = projektType,
                     resp_personID = resp_person,
-                    Creation_Date = DateTime.Now
+                    Creation_Date = DateTime.Now,
+                    CustomerID = 10   
                 };
 
                 _dataservice.AddNewObjekt(Newobjekt);

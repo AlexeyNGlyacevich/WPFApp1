@@ -345,5 +345,11 @@ namespace WPFApp1.Services
             var test = _datacontext.TTN.Any(x => x.Act_number == TTN_Number);
             return test;
         }
+
+        public List<Customers> GetAllCustomers()
+        {
+            var customerslist = _datacontext.Customers.ToList();
+            return customerslist;
+        }
     }
 }

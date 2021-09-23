@@ -432,7 +432,7 @@
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock Text="Изготовлекние"/>
+                        <TextBlock Text="Изготовление"/>
                     </TabItem.Header>
                     <Grid Background="WhiteSmoke">
                         <Grid.ColumnDefinitions>
@@ -598,58 +598,58 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <GroupBox Header="Отгрузка" Grid.Column="0"
-                                          Margin="5 5 5 10" Width="300">
+                        <GroupBox Header="Отгрузка" 
+                                  Grid.Column="0"       
+                                  Margin="5 5 5 10" 
+                                  Width="300">
+                            
                             <StackPanel >
-                                <TextBlock Text="Дата отгрузки по договору :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
+                                <TextBlock Text="Дата отгрузки по договору :"      
+                                           Margin="5 5 5 1 "     
+                                           TextAlignment="Left"      
+                                           Height="20"/>
                                 <DatePicker SelectedDate="{Binding Documentation.Date_of_shipment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
+                                            Margin="5 1 5 1"       
+                                            TextBlock.FontWeight="Bold"      
+                                            TextBlock.TextAlignment="Center"/>
                                 <TextBlock Text="№ Акта :"
                                                    Margin="5 5 5 1 "
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <TextBox x:Name="af" Text="{Binding Documentation.Act_number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Center"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-                                <TextBlock Text="Дата подписания Акта :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" />
+                                <TextBox Text="{Binding Documentation.Act_number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                           
+                                         Margin="5 1 5 5 "                           
+                                         Padding="1 1 1 1"                            
+                                         TextAlignment="Center"                             
+                                         Height="22"                            
+                                         Width="auto"                          
+                                         VerticalAlignment="Top"                             
+                                         FontWeight="Bold"                         
+                                         BorderThickness="1"/>
+                                
+                                <TextBlock Text="Дата подписания Акта :"        
+                                           Margin="5 5 5 1 "      
+                                           TextAlignment="Left"      
+                                           Height="20" />
+                                
                                 <DatePicker SelectedDate="{Binding Documentation.Act_Date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             Margin="5 1 5 1"
                                             TextBlock.FontWeight="Bold"
                                             TextBlock.TextAlignment="Center"/>
 
-                                <TextBlock Text="№ ТТН(ТН) :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                <TextBox x:Name="tasd" Text="{Binding Documentation.Contracts.TTN}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-
-
+                                <TextBlock Text="№ ТТН(ТН) :"      
+                                           Margin="5 5 5 1 " 
+                                           TextAlignment="Left"    
+                                           Height="20"/>
+                                <TextBox Text="{Binding Documentation.Contracts.TTN}"                        
+                                         Margin="5 1 5 5 "                          
+                                         Padding="1 1 1 1"                        
+                                         TextAlignment="Left"                             
+                                         Height="22"                         
+                                         Width="auto"                        
+                                         VerticalAlignment="Top"                          
+                                         FontWeight="Bold"                        
+                                         BorderThickness="1"/>
                             </StackPanel>
                         </GroupBox>
                     </Grid>
@@ -666,26 +666,24 @@
                         Width="170"
                         Content="Сохранить Изменения"
                         Margin="5"
-                        Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.ContractSaveChanged}" CommandParameter="{Binding}">
+                        Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.ContractSaveChanges}" CommandParameter="{Binding}">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="#FF01A3FF" />
                             <Setter Property="Foreground" Value="White" />
                             <Setter Property="FontSize" Value="15" />
                             <Setter Property="SnapsToDevicePixels" Value="True" />
-                            
-
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Border CornerRadius="4" Background="{TemplateBinding Background}">
                                             <Grid>
                                                 <ContentPresenter x:Name="MyContentPresenter" 
-                                              Content="{TemplateBinding Content}"                 
-                                              HorizontalAlignment="Center" 
-                                              TextBlock.FontSize="12"
-                                              VerticalAlignment="Center" 
-                                              Margin="0,0,0,0" />
+                                                                  Content="{TemplateBinding Content}"                 
+                                                                  HorizontalAlignment="Center" 
+                                                                  TextBlock.FontSize="12"
+                                                                  VerticalAlignment="Center" 
+                                                                  Margin="0,0,0,0" />
                                             </Grid>
                                         </Border>
 
@@ -702,7 +700,7 @@
                                                 <Setter Property="Background" Value="LightSkyBlue"/>
                                                 <Setter Property="TextBlock.Opacity" Value="0.7"/>
                                             </Trigger>
-                                           
+
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
@@ -710,11 +708,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-
-
             </StackPanel>
-
         </Grid>
-
     </Grid>
 </Page>

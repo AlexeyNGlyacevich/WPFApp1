@@ -66,6 +66,12 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <Button Height="30"
+                    Width="130"
+                    Margin="5"
+                    Content="Вернуть значения"
+                    Command="{Binding RestoreCurrentData}">
+            </Button>
         </StackPanel>
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal"
@@ -134,13 +140,12 @@
                                                                    VerticalAlignment="Stretch" />
 
                                                         <TextBox x:Name ="Document_number" 
-                                                                 Text="{Binding CurrentObjekt.Doc_Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                                 Text="{Binding Doc_Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                  Margin="13 1 1 1 "
                                                                  Padding="1 1 1 1"                 
                                                                  TextAlignment="Left"        
                                                                  Height="20"          
                                                                  Width="200"          
-                                                                 IsReadOnly="True"
                                                                  VerticalAlignment="Bottom"   
                                                                  FontWeight="Bold"/>
                                         </StackPanel>
@@ -159,7 +164,7 @@
                                                         HorizontalAlignment="Left"/>
                                                         
                                                        
-                                             <TextBox  Text="{Binding CurrentObjekt.project_type, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                             <TextBox  Text="{Binding Project_type, NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                        Margin="22 1 1 1 "
                                                        Padding="1 1 1 1" 
                                                        TextAlignment="Left"  
@@ -180,7 +185,7 @@
                                                                    Height="20"
                                                                    VerticalAlignment="Top" 
                                                                    HorizontalAlignment="Left" />
-                                                        <TextBox x:Name="stage" Text="{Binding CurrentObjekt.stage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                        <TextBox   Text="{Binding Stage, NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                      Margin="50 1 1 1 " 
                                                                      Padding="1 1 1 1" 
                                                                      TextAlignment="Left"  
@@ -202,7 +207,7 @@
                                                                     Margin="15 0 0 0"
                                                                     TextBlock.FontWeight="Bold"
                                                                     Width="200"
-                                                                    SelectedDate="{Binding CurrentObjekt.Creation_Date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                                    SelectedDate="{Binding CreationDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                                     </StackPanel>
 
 
@@ -215,7 +220,7 @@
                                                                    Height="18"
                                                                    VerticalAlignment="Top"
                                                                    HorizontalAlignment="Left"/>
-                                            <TextBox x:Name="ProjektName" Text="{Binding CurrentObjekt.Object_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                            <TextBox x:Name="ProjektName" Text="{Binding Object_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                      Margin="2 1 1 1 "
                                                                      Padding="1 1 1 1" 
                                                                      TextAlignment="Left" 
@@ -239,7 +244,18 @@
                                                Height="20" 
                                                Width="Auto"
                                                VerticalAlignment="Top" />
-                                        <TextBox Text="{Binding CurrentObjekt.Customers.Customer_Name}" 
+
+
+                                        <ComboBox ItemsSource="{Binding Customers}"
+                                                  Margin=" 5 1 5 3" 
+                                                  Height="22"
+                                                  Width="350" 
+                                                  HorizontalAlignment="Left"
+                                                  DisplayMemberPath="Customer_Name"
+                                                  SelectedValuePath="ID"
+                                                  SelectedValue="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                        
+                                        <TextBox Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                              Margin="5 1 5 5 "
                                              Padding="0 0 5 5" 
                                              TextAlignment="Left"

@@ -58,7 +58,6 @@ namespace WPFApp1.ViewModel
 
             Contract = new Contracts();
             Contract = _dataservice.GetCurrentConract(_dataservice.ContractID);
-            RaisePropertiesChanged(nameof(Contract));
 
             CurrentContractID = Contract.ID;
             CurrentIDKey = Contract.IDKey;
@@ -74,7 +73,6 @@ namespace WPFApp1.ViewModel
 
             Documentation = new Documentation();
             Documentation = _dataservice.GetDocumentationDataForCurrentContract(_dataservice.ContractID);
-            RaisePropertiesChanged(nameof(Documentation));
 
             CurrentDocumentationID = Documentation.ID;
             DocumentationContractID = Documentation.ContractID;
@@ -100,7 +98,7 @@ namespace WPFApp1.ViewModel
 
         }
 
-        public ICommand ContractSaveChanged => new DelegateCommand(() =>
+        public ICommand ContractSaveChanges => new DelegateCommand(() =>
         {
             try
             {
@@ -112,7 +110,10 @@ namespace WPFApp1.ViewModel
                 _ = MessageBox.Show("Ошибка", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-        });
+        }, () => CurrentContractNumber.Equals(Contract.Contract_Number) == false || CurrentContractSigning != Contract.Contract_Signing ||
+                 CurrentStartDate != Contract.start_date || CurrentFinishDate != Contract.finish_date ||
+                 CurrentSubjectOfContract != Contract.subject_of_contract || CurrentObjektName != Contract.Object_name ||
+                 CurrentNote != Contract.Note || CurrentContractAmount != Contract.Contract_amount);
     }
 
 

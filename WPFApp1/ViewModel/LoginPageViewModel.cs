@@ -42,7 +42,7 @@ namespace WPFApp1.ViewModel
             }
             else
             {
-                _ = MessageBox.Show("Неверный пароль или логин!", "Aторизация", MessageBoxButton.OK, MessageBoxImage.Error);
+                _ = MessageBox.Show("Неверный пароль или логин!", "Aвторизация", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }/*, () => !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(User_Login)*/);
 

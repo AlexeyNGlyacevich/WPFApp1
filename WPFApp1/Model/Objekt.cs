@@ -28,7 +28,7 @@ namespace WPFApp1.Model
             this.projectType = projectType;
             this.customer = customer;
             this.resp_person = resp_person;
-          
+
         }
 
         public Objekt()
