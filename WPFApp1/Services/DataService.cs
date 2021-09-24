@@ -311,7 +311,7 @@ namespace WPFApp1.Services
             _ = _datacontext.TTN.Remove(ttn);
             _ = _datacontext.SaveChanges();
         }
-        #endregion
+
 
         public void AddNewTTN(TTN ttn)
         {
@@ -345,7 +345,7 @@ namespace WPFApp1.Services
             var test = _datacontext.TTN.Any(x => x.Act_number == TTN_Number);
             return test;
         }
-
+        #endregion
         public List<Customers> GetAllCustomers()
         {
             var customerslist = _datacontext.Customers.ToList();

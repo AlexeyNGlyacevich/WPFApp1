@@ -71,12 +71,11 @@
                                                VerticalAlignment="Top" 
                                                HorizontalAlignment="Left"/>
                                     
-                                    <TextBox  Text="{Binding Tender.Tender_number}" 
+                                    <TextBox  Text="{Binding Tender_number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                               Margin="16 1 1 1 " 
-                                              TextAlignment="Center" 
+                                              TextAlignment="Left" 
                                               Height="20"
                                               Width="200" 
-                                              IsReadOnly="True"
                                               VerticalAlignment="Top" 
                                               HorizontalAlignment="Left" 
                                               FontWeight="Bold"/>
@@ -95,7 +94,7 @@
                                                 Margin="9 0 0 0"
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
-                                                SelectedDate="{Binding Tender.Date_purchase, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                SelectedDate="{Binding Date_purchase, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" 
@@ -109,7 +108,7 @@
                                                 Margin="42 0 0 0"
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
-                                                SelectedDate="{Binding Tender.trading_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                SelectedDate="{Binding Traiding_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Vertical" 
@@ -124,7 +123,7 @@
                                                 Margin="90 0 0 0"
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
-                                                SelectedDate="{Binding Tender.final__proposal_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"/>
+                                                SelectedDate="{Binding Final_proposal_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"/>
                                 </StackPanel>
 
 
@@ -145,7 +144,7 @@
                                            Width="Auto"
                                            VerticalAlignment="Top"/>
 
-                                <TextBox  Text="{Binding Tender.subject_of_a_contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <TextBox  Text="{Binding Subject_of_Contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           Margin="5 1 5 5 "            
                                           Padding="0 0 5 5"      
                                           TextAlignment="Left"              
@@ -180,7 +179,7 @@
                                            Width="Auto"
                                            VerticalAlignment="Top"/>
 
-                                <TextBox Text="{Binding Tender.Object_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"           
+                                <TextBox Text="{Binding Objekt_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"           
                                          Margin="5 1 5 5 "         
                                          Padding="0 0 5 5" 
                                          TextAlignment="Left"
@@ -214,7 +213,7 @@
                                            TextAlignment="Left"      
                                            Height="20"/>
                                 
-                                <TextBox Text="{Binding Tender.starting_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+                                <TextBox Text="{Binding Starting_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
                                          Height="22"
                                          Margin="5 1 10 1"         
                                          TextBlock.FontWeight="Bold"      
@@ -224,7 +223,7 @@
                                            Margin="5 10 5 1 " 
                                            TextAlignment="Left"            
                                            Height="20"/>
-                                <TextBox Text="{Binding Tender.price_date_submission, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}" 
+                                <TextBox Text="{Binding Price_date_submission, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}" 
                                          Height="22"
                                          Margin="5 1 10 1"       
                                          TextBlock.FontWeight="Bold"   
@@ -235,7 +234,7 @@
                                            TextAlignment="Left"        
                                            Height="20" 
                                                    />
-                                <TextBox Text="{Binding Tender.price_inclusive_reduction, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+                                <TextBox Text="{Binding Price_inclusive_reduction, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
                                          Height="22"
                                          Margin="5 1 10 1"           
                                          TextBlock.FontWeight="Bold"         
@@ -252,7 +251,7 @@
                                            Margin="5 5 5 1 "         
                                            TextAlignment="Left"     
                                            Height="20"/>
-                                <TextBox x:Name="results" Text="{Binding Tender.Result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                             
+                                <TextBox x:Name="results" Text="{Binding Result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                             
                                          Margin="5 1 5 5 "                            
                                          Padding="1 1 1 1"                             
                                          TextAlignment="Center"                             
@@ -267,7 +266,7 @@
                                            TextAlignment="Left"
                                            Height="20" />
                                 
-                                <TextBox  Text="{Binding Tender.final_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                       
+                                <TextBox  Text="{Binding Final_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                       
                                           Margin="5 1 5 5 "                      
                                           Padding="1 1 1 1" 
                                           TextAlignment="Center"  
@@ -282,7 +281,7 @@
                                            TextAlignment="Left"
                                            Height="20"/>
                                 
-                                <DatePicker SelectedDate="{Binding Tender.Acceptance_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding Acceptance_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             Margin="5 1 5 1"
                                             TextBlock.FontWeight="Bold"
                                             TextBlock.TextAlignment="Center"/>
@@ -292,7 +291,7 @@
                                            TextAlignment="Left"
                                            Height="20"/>
                                 
-                                <DatePicker SelectedDate="{Binding Tender.Term_of_the_contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding Term_of_contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             Margin="5 1 5 1"
                                             TextBlock.FontWeight="Bold"
                                             TextBlock.TextAlignment="Center"/>
@@ -317,7 +316,8 @@
         </Grid>
         <Grid Grid.Row="0"
               VerticalAlignment="Bottom">
-            <StackPanel HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left"
+                        Orientation="Horizontal">
 
                 <Button Content="Сохранить Изменения" 
                         Height="30"
@@ -331,6 +331,53 @@
                             <Setter Property="FontSize" Value="15" />
                             <Setter Property="SnapsToDevicePixels" Value="True" />
 
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                            <Grid>
+                                                <ContentPresenter x:Name="MyContentPresenter" 
+                                              Content="{TemplateBinding Content}"                 
+                                              HorizontalAlignment="Center" 
+                                              TextBlock.FontSize="12"
+                                              VerticalAlignment="Center" 
+                                              Margin="0,0,0,0" />
+                                            </Grid>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#E59400" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="OrangeRed" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="LightSkyBlue"/>
+                                                <Setter Property="TextBlock.Opacity" Value="0.7"/>
+                                            </Trigger>
+
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Height="30"
+                    Width="130"
+                    Margin="5"
+                    Content="Вернуть значения"
+                    Command="{Binding RestoreTenderdata}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF01A3FF" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="SnapsToDevicePixels" Value="True" />
 
                             <Setter Property="Template">
                                 <Setter.Value>

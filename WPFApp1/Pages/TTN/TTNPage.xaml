@@ -22,7 +22,7 @@
                     HorizontalAlignment="Left">
             <Button x:Name="btnSaveChanges"
                         Height="30"
-                        Width="170"
+                        Width="130"
                         Content="Сохранить Изменения"
                         Margin="5"
                         Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.ContractSaveChanged}" CommandParameter="{Binding}">
@@ -33,6 +33,53 @@
                         <Setter Property="FontSize" Value="15" />
                         <Setter Property="SnapsToDevicePixels" Value="True" />
 
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                        <Grid>
+                                            <ContentPresenter x:Name="MyContentPresenter" 
+                                              Content="{TemplateBinding Content}"                 
+                                              HorizontalAlignment="Center" 
+                                              TextBlock.FontSize="12"
+                                              VerticalAlignment="Center" 
+                                              Margin="0,0,0,0" />
+                                        </Grid>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#E59400" />
+                                            <Setter Property="Foreground" Value="White" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="OrangeRed" />
+                                            <Setter Property="Foreground" Value="White" />
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="LightSkyBlue"/>
+                                            <Setter Property="TextBlock.Opacity" Value="0.7"/>
+                                        </Trigger>
+
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Height="30"
+                    Width="130"
+                    Margin="5"
+                    Content="Вернуть значения"
+                    Command="{Binding RestoreCurrentTTNData}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF01A3FF" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="SnapsToDevicePixels" Value="True" />
 
                         <Setter Property="Template">
                             <Setter.Value>
@@ -95,21 +142,20 @@
                                    Height="20"
                                    VerticalAlignment="Top" 
                                    HorizontalAlignment="Left"/>
-                        <TextBox  Text="{Binding TTN.Act_number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                        
+                        <TextBox  Text="{Binding Act_Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                        
                                   Margin="5 1 5 1 " 
                                   TextAlignment="Center" 
                                   Height="20"
                                   Width="290" 
                                   VerticalAlignment="Top" 
-                                  HorizontalAlignment="Left" 
-                                  IsReadOnly="True"
+                                  HorizontalAlignment="Left"  
                                   FontWeight="Bold"/>
 
                         <TextBlock Text="Дата подписания ТТН(ТН) :"
                                    Margin="5 5 5 1 "
                                    TextAlignment="Left"
                                    Height="20"/>
-                        <DatePicker SelectedDate="{Binding TTN.Date_of_accept, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        <DatePicker SelectedDate="{Binding Date_of_Accept, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     Margin="5 1 5 1"         
                                     TextBlock.FontWeight="Bold"      
                                     TextBlock.TextAlignment="Center"/>
@@ -154,7 +200,7 @@
                                    Width="auto"                 
                                    VerticalAlignment="Top" />
 
-                        <TextBox Text="{Binding TTN.Customer, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                  
+                        <TextBox Text="{Binding Customer, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                  
                                  Margin="5 1 5 5 "                   
                                  Padding="0 0 5 5"                      
                                  TextAlignment="Left"                      
@@ -180,7 +226,8 @@
                                  Height="80"                  
                                  Width="320"                   
                                  VerticalAlignment="Top"                  
-                                 FontWeight="Bold"                   
+                                 FontWeight="Bold"  
+                                 IsReadOnly="True"
                                  TextWrapping="Wrap"/>
 
                     </StackPanel>
@@ -194,7 +241,7 @@
                                    TextAlignment="Left"              
                                    Height="20"/>
                         
-                        <DatePicker SelectedDate="{Binding TTN.Date_of_invoice_ESF, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        <DatePicker SelectedDate="{Binding Date_of_Invoice_ESF, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     Margin="5 1 5 1"              
                                     TextBlock.FontWeight="Bold"        
                                     TextBlock.TextAlignment="Center"/>
@@ -204,7 +251,7 @@
                                    TextAlignment="Left"         
                                    Height="20" />
                         
-                        <TextBox Text="{Binding TTN.Value_with_NDS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                
+                        <TextBox Text="{Binding Value_with_NDS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                
                                  Margin="5 1 5 5 "                                   
                                  Padding="1 1 1 1"                                    
                                  TextAlignment="Center"                                                                     
@@ -226,7 +273,7 @@
                                    TextAlignment="Left"           
                                    Height="20"/>
                         
-                        <TextBox Text="{Binding TTN.with_general_contractor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                    
+                        <TextBox Text="{Binding With_general_Contractor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                    
                                  Margin="5 1 5 5 "                                    
                                  Padding="1 1 1 1"                              
                                  TextAlignment="Center"                               
@@ -240,7 +287,7 @@
                                    Margin="5 5 5 1 "               
                                    TextAlignment="Left"                
                                    Height="20"/>
-                        <TextBox Text="{Binding TTN.with_subcontractors, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                    
+                        <TextBox Text="{Binding With_subcontractor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                    
                                  Margin="5 1 5 5 "                               
                                  Padding="1 1 1 1"                                  
                                  TextAlignment="Center"                                    
@@ -249,7 +296,6 @@
                                  VerticalAlignment="Top"  
                                  FontWeight="Bold"
                                  BorderThickness="1"/>
-
                     </StackPanel>
                 </GroupBox>
             </Grid>

@@ -147,7 +147,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DBContextDataWorcker.cs" />
-    <Compile Include="Model\Objekt.cs" />
     <Compile Include="Pages\Admin\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>

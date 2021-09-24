@@ -12,26 +12,6 @@ namespace WPFApp1.Model
 {
     public class DBContextDataWorcker : BindableBase
     {
-        public static List<Objekt> GetDataToView()
-        {
-            using (StDBEntities db = new StDBEntities())
-            {
-                List<Objekt> objekt = db.Main_Reestr.Include(b => b.Respons_persons.First_Name)
-                                                    .Include(x => x.Customers.Customer_Name)
-                                                    .Select(x => new Objekt
-                                                    {
-                                                        Id = x.ID,
-                                                        objectNumber = (int)x.Doc_Number,
-                                                        objectName = x.Object_name,
-                                                        projectType = x.project_type,
-                                                        stage = x.stage,
-                                                        customer = x.Customers.Customer_Name,
-                                                        resp_person = x.Respons_persons.First_Name
-
-                                                    }).ToList();
-                return objekt;
-            }
-        }
 
 
         public static List<Contracts> GetDataToContracts<T>()

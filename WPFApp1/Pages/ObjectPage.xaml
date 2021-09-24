@@ -112,7 +112,6 @@
                         </Setter>
                     </Style>
                 </Button.Style>
-
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="0"

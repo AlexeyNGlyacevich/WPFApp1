@@ -74,13 +74,12 @@
                                                VerticalAlignment="Top" 
                                                HorizontalAlignment="Left"/>
 
-                                    <TextBox  Text="{Binding Contract.Contract_Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                    <TextBox  Text="{Binding CurrentContractNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                               Margin="8 1 1 1 " 
                                               TextAlignment="Center" 
                                               Height="20"
                                               Width="200" 
-                                              VerticalAlignment="Top" 
-                                              IsReadOnly="True" 
+                                              VerticalAlignment="Top"  
                                               HorizontalAlignment="Left" 
                                               FontWeight="Bold"/>
                                 </StackPanel>
@@ -100,7 +99,7 @@
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
                                                 TextBlock.TextAlignment="Center"
-                                                SelectedDate="{Binding Contract.Contract_Signing, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                SelectedDate="{Binding CurrentContractSigning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" 
@@ -116,7 +115,7 @@
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
                                                 TextBlock.TextAlignment="Center"
-                                                SelectedDate="{Binding Contract.start_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                SelectedDate="{Binding CurrentStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" 
@@ -133,7 +132,7 @@
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
                                                 TextBlock.TextAlignment="Center"
-                                                SelectedDate="{Binding Contract.finish_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                SelectedDate="{Binding CurrentFinishDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical"
                                             Margin="5 10 1 1">
@@ -175,7 +174,7 @@
                                                        VerticalAlignment="Top" />
 
 
-                                <TextBox  Text="{Binding Contract.subject_of_contract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <TextBox  Text="{Binding CurrentSubjectOfContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       Margin="5 1 5 5 "            
                                       Padding="0 0 5 5"      
                                       TextAlignment="Left"              
@@ -211,7 +210,7 @@
                                                        VerticalAlignment="Top" />
 
 
-                                <TextBox Text="{Binding Contract.Object_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                <TextBox Text="{Binding CurrentObjektName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                      Margin="5 1 5 5 "
                                                      Padding="0 0 5 5" 
                                                      TextAlignment="Left"
@@ -230,7 +229,7 @@
                                                        Width="Auto"
                                                        VerticalAlignment="Top" />
 
-                                <TextBox Text="{Binding Contract.Note, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                <TextBox Text="{Binding CurrentNote, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                      Margin="5 1 5 5 "
                                                      Padding="0 0 5 5" 
                                                      TextAlignment="Left"
@@ -256,7 +255,7 @@
                                            TextAlignment="Left"
                                            Height="20" 
                                            />
-                                <TextBox Text="{Binding Contract.Contract_amount, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, Mode=TwoWay, StringFormat={}{0:F2}}"                        
+                                <TextBox Text="{Binding CurrentContractAmount, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, Mode=TwoWay, StringFormat={}{0:F2}}"                        
                                      Margin="5 1 5 5 " 
                                      Padding="1 1 1 1" 
                                      TextAlignment="Left"  
@@ -317,7 +316,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" />
 
-                                <DatePicker SelectedDate="{Binding Documentation.ProjectStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding CurrentProjectStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -329,7 +328,7 @@
                                                    Height="20" 
                                                     />
 
-                                <DatePicker SelectedDate="{Binding Documentation.date_of_transfer_to_settlement_group, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfTransferToSettlementGroup, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -341,7 +340,7 @@
                                                    Height="20" 
                                                    />
 
-                                <DatePicker SelectedDate="{Binding Documentation.date_of_transfer_to_the_customer_for_approval, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfTransferToTheCustomerApproval, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -353,7 +352,7 @@
                                                    Height="20" 
                                                    />
 
-                                <DatePicker SelectedDate="{Binding Documentation.date_of_agreement_by_the_customer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfAgreementByTheCustomer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -365,7 +364,7 @@
                                                    Height="20" 
                                                    />
 
-                                <DatePicker SelectedDate="{Binding Documentation.date_of_submission_for_inspection}"
+                                <DatePicker SelectedDate="{Binding DateOfSubmissionForInspection}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -377,7 +376,7 @@
                                                    Height="20" 
                                                    />
 
-                                <DatePicker SelectedDate="{Binding Documentation.date_of_receipt_of_inspection}"
+                                <DatePicker SelectedDate="{Binding DateOfReceiptOfInspection}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -419,7 +418,7 @@
                                                    TextAlignment="Left"  
                                                    Height="20" 
                                                    />
-                                <TextBox Text="{Binding Documentation.Document_Index }"
+                                <TextBox Text="{Binding CurrentDocumentIndex }"
                                          Margin="5 1 5 1"
                                          TextBlock.FontWeight="Bold"
                                          TextBlock.TextAlignment="Center"
@@ -448,7 +447,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <DatePicker SelectedDate="{Binding Documentation.start_date_of_picking_and_purchasing, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding StartDateOfPickingAndPurchasing, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         Margin="5 1 5 1"         
                                         TextBlock.FontWeight="Bold"      
                                         TextBlock.TextAlignment="Center"
@@ -458,7 +457,7 @@
                                        TextAlignment="Left"            
                                        Height="20" 
                                                    />
-                                <DatePicker  SelectedDate="{Binding Documentation.date_of_submission_of_documentation_to_MPO, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker  SelectedDate="{Binding DateOfSubmissionDocumentationToMPO, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                          Margin="5 1 5 1"       
                                          TextBlock.FontWeight="Bold"   
                                          TextBlock.TextAlignment="Center"
@@ -468,7 +467,7 @@
                                        TextAlignment="Left"        
                                        Height="20" 
                                                    />
-                                <DatePicker SelectedDate="{Binding Documentation.date_of_transfer_for_picking_from_MPO, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfTransferForPickingFromMPO, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         Margin="5 1 5 1"           
                                         TextBlock.FontWeight="Bold"         
                                         TextBlock.TextAlignment="Center"
@@ -485,7 +484,7 @@
                                        TextAlignment="Left"         
                                        Height="20" 
                                        />
-                                <DatePicker SelectedDate="{Binding Documentation.build_start_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding BuildStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 
                                         Margin="5 1 5 1"        
                                         TextBlock.FontWeight="Bold"          
@@ -509,7 +508,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <DatePicker SelectedDate="{Binding Documentation.Operational_control, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfOperationControl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -519,7 +518,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <TextBox x:Name="results" Text="{Binding Documentation.Operational_control_result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                <TextBox x:Name="results" Text="{Binding OperationControleResult, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                      Margin="5 1 5 5 " 
                                                                      Padding="1 1 1 1" 
                                                                      TextAlignment="Center"  
@@ -539,7 +538,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <DatePicker SelectedDate="{Binding Documentation.Acceptance_control, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfAcceptanceControl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
                                                     TextBlock.TextAlignment="Center"
@@ -549,7 +548,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <TextBox Text="{Binding Documentation.Acceptance_control_results, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                <TextBox Text="{Binding AcceptanceControlResult, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                      Margin="5 1 5 5 " 
                                                                      Padding="1 1 1 1" 
                                                                      TextAlignment="Center"  
@@ -563,7 +562,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <DatePicker SelectedDate="{Binding Documentation.PSI, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding Date_of_PSI, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         Margin="5 1 5 1"
                                         TextBlock.FontWeight="Bold"
                                         TextBlock.TextAlignment="Center"
@@ -574,7 +573,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <TextBox Text="{Binding Documentation.Acceptance_control_protocol, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                <TextBox Text="{Binding AcceptanceControlProtocol, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                      Margin="5 1 5 5 " 
                                                                      Padding="1 1 1 1" 
                                                                      TextAlignment="Center"  
@@ -608,7 +607,7 @@
                                            Margin="5 5 5 1 "     
                                            TextAlignment="Left"      
                                            Height="20"/>
-                                <DatePicker SelectedDate="{Binding Documentation.Date_of_shipment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding DateOfShipment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             Margin="5 1 5 1"       
                                             TextBlock.FontWeight="Bold"      
                                             TextBlock.TextAlignment="Center"/>
@@ -617,7 +616,7 @@
                                                    TextAlignment="Left"
                                                    Height="20" 
                                                    />
-                                <TextBox Text="{Binding Documentation.Act_number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                           
+                                <TextBox Text="{Binding ActNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                           
                                          Margin="5 1 5 5 "                           
                                          Padding="1 1 1 1"                            
                                          TextAlignment="Center"                             
@@ -632,7 +631,7 @@
                                            TextAlignment="Left"      
                                            Height="20" />
                                 
-                                <DatePicker SelectedDate="{Binding Documentation.Act_Date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <DatePicker SelectedDate="{Binding ActDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             Margin="5 1 5 1"
                                             TextBlock.FontWeight="Bold"
                                             TextBlock.TextAlignment="Center"/>
@@ -659,11 +658,12 @@
         </Grid>
         <Grid Grid.Row="0"
               VerticalAlignment="Bottom">
-            <StackPanel HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left"
+                        Orientation="Horizontal">
 
                 <Button x:Name="btnSaveChanges"
                         Height="30"
-                        Width="170"
+                        Width="130"
                         Content="Сохранить Изменения"
                         Margin="5"
                         Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.ContractSaveChanges}" CommandParameter="{Binding}">
@@ -684,6 +684,53 @@
                                                                   TextBlock.FontSize="12"
                                                                   VerticalAlignment="Center" 
                                                                   Margin="0,0,0,0" />
+                                            </Grid>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#E59400" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="OrangeRed" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="LightSkyBlue"/>
+                                                <Setter Property="TextBlock.Opacity" Value="0.7"/>
+                                            </Trigger>
+
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Height="30"
+                    Width="130"
+                    Margin="5"
+                    Content="Вернуть значения"
+                    Command="{Binding RestoreContractData}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF01A3FF" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                            <Grid>
+                                                <ContentPresenter x:Name="MyContentPresenter" 
+                                              Content="{TemplateBinding Content}"                 
+                                              HorizontalAlignment="Center" 
+                                              TextBlock.FontSize="12"
+                                              VerticalAlignment="Center" 
+                                              Margin="0,0,0,0" />
                                             </Grid>
                                         </Border>
 
