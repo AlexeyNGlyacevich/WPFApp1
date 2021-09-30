@@ -1,6 +1,8 @@
 ﻿using DevExpress.Mvvm;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
+using WPFApp1.Pages;
 using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
@@ -9,7 +11,16 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly DataService _dataservice;
-        public ObservableCollection<Tenders> Tenders { get; set; }
+        private ObservableCollection<Tenders> Tenders { get; set; }
+        public ObservableCollection<Tenders> AllTenders
+        {
+            get => Tenders;
+            set
+            {
+                Tenders = value;
+                RaisePropertiesChanged();
+            }
+        }
 
         public AllTendersPageViewModel(PageService navigation, DataService dataservice)
         {
@@ -18,5 +29,20 @@ namespace WPFApp1.ViewModel
             Tenders = new ObservableCollection<Tenders>(dataservice.GetAllTenders());
         }
 
+
+
+
+
+        public ICommand GoToContractsReestr => new DelegateCommand(() =>
+        {
+            _navigation.Navigate(new AllContractsPage());
+            _navigation.Refresh();
+        });
+
+        public ICommand GoToMainReestrPage => new DelegateCommand(() =>
+        {
+            _navigation.Navigate(new MainDataReestrPage());
+            _navigation.Refresh();
+        });
     }
 }

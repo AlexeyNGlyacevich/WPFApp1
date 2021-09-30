@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFApp1.Model.AppDBcontext;
 
 namespace WPFApp1.Pages
 {
@@ -23,6 +24,25 @@ namespace WPFApp1.Pages
         public AllContractsPage()
         {
             InitializeComponent();
+        }
+
+        private void ContractCollection_Filter(object sender, FilterEventArgs e)
+        {
+            if (!(e.Item is Contracts contract)) return;
+
+            var filteredText = ContractFilteredText.Text;
+            if (filteredText.Length == 0) return;
+
+            //if (!string.IsNullOrEmpty(contract.Object_name) && contract.Object_name.Contains(filteredText)) return;
+            //if (!string.IsNullOrEmpty(contract.Note) && contract.Note.Contains(filteredText)) return;
+            if (contract.Contract_Number != 0 && contract.Contract_Number.ToString().Contains(filteredText)) return;
+            e.Accepted = false;
+        }
+
+        private void ContractFilteredText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           var collection = (CollectionViewSource)GridRow2.FindResource("ContracsCollection");
+            collection.View.Refresh();
         }
     }
 }

@@ -12,7 +12,7 @@ using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
-    class AdminPageViewModel : BindableBase
+    public class AdminPageViewModel : BindableBase
     {
         private readonly PageService _navigation;
 

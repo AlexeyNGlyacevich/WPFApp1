@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WPFApp1.Model.AppDBcontext;
 
 namespace WPFApp1.Pages
 {
@@ -25,6 +15,23 @@ namespace WPFApp1.Pages
             InitializeComponent();
         }
 
-        
+        private void ProjektFilteredText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var collection = (CollectionViewSource)GridRow3.FindResource("ProjektCollection");
+            collection.View.Refresh();
+        }
+
+        private void ProjektCollection_Filter(object sender, FilterEventArgs e)
+        {
+            if (!(e.Item is Main_Reestr reestr)) return;
+
+            var filteredText = ProjektFilteredText.Text;
+            if (filteredText.Length == 0) return;
+
+            if (!string.IsNullOrEmpty(reestr.Object_name) && reestr.Object_name.IndexOf(filteredText, StringComparison.OrdinalIgnoreCase) >= 0) return;
+            if (!string.IsNullOrEmpty(reestr.project_type) && reestr.project_type.IndexOf(filteredText, StringComparison.OrdinalIgnoreCase) >= 0) return;
+            if (!string.IsNullOrEmpty(reestr.Customers.Customer_Name) && reestr.Customers.Customer_Name.IndexOf(filteredText, StringComparison.OrdinalIgnoreCase) >= 0) return;
+            e.Accepted = false;
+        }
     }
 }

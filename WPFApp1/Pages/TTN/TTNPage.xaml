@@ -200,7 +200,7 @@
                                    Width="auto"                 
                                    VerticalAlignment="Top" />
 
-                        <TextBox Text="{Binding Customer, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                  
+                        <TextBox Text="{Binding TTN.Contracts.Main_Reestr.Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                  
                                  Margin="5 1 5 5 "                   
                                  Padding="0 0 5 5"                      
                                  TextAlignment="Left"                      

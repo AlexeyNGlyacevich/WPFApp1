@@ -132,7 +132,7 @@
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
                                                 TextBlock.TextAlignment="Center"
-                                                SelectedDate="{Binding CurrentFinishDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                SelectedDate="{Binding CurrentFinishDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:M-d-yyyy HH:mm:ss}}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical"
                                             Margin="5 10 1 1">
@@ -191,7 +191,7 @@
                                                        Width="auto"
                                                        VerticalAlignment="Top" />
 
-                                <TextBox Text="{Binding Customer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <TextBox Text="{Binding Contract.Main_Reestr.Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                      Margin="5 1 5 5 " 
                                                      Padding="0 0 5 5"   
                                                      TextAlignment="Left"   

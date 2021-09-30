@@ -30,7 +30,88 @@
                             <Setter Property="Background" Value="OrangeRed" />
                             <Setter Property="Foreground" Value="White" />
                         </Trigger>
-                       
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Content" Value="OrangeRed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Customize button -->
+
+    <LinearGradientBrush x:Key="Buttongradient" StartPoint="0.500023,0.999996" EndPoint="0.500023,4.37507e-006">
+        <GradientStop Color="#5e5e6a" Offset="1" />
+        <GradientStop Color="#0b0b0b" Offset="0" />
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="ButtongradientActive" StartPoint="0.500023,0.999996" EndPoint="0.500023,4.37507e-006">
+        <GradientStop Color="#7c3e6a" Offset="1" />
+        <GradientStop Color="#0b0b0b" Offset="0" />
+    </LinearGradientBrush>
+
+
+    <Style x:Key="Header" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource ButtongradientActive}"/>
+        <Setter Property="Foreground" Value="Yellow" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="4" Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0.5">
+                        
+                            <Border.Effect>
+                            <DropShadowEffect ShadowDepth="1" BlurRadius="2"/>
+                        </Border.Effect>
+
+                        <Grid>
+                            <Path Width="9" 
+                                  Height="16.5" 
+                                  Stretch="Fill"
+                                  Fill="#000" 
+                                  HorizontalAlignment="Left" 
+                                  Margin="16.5,0,0,0"
+                                  Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z " 
+                                  Opacity="0.2">
+
+                            </Path>
+                            <Path x:Name="PathIcon" 
+                        
+                                  Width="8" 
+                                  Height="15"  
+                                  Stretch="Fill" 
+                                  Fill="#4C87B3" 
+                                  HorizontalAlignment="Left"
+                                  Margin="17,0,0,0" 
+                                  Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z ">
+                                <Path.Effect>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="5">
+                                    </DropShadowEffect>
+                                </Path.Effect>
+                            </Path>
+
+                            <Line  HorizontalAlignment="Left" Margin="40,0,0,0" Name="line4" Stroke="Black" VerticalAlignment="Top" Width="2" Y1="0" Y2="640" Opacity="0.5" />
+                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E59400" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                        </Trigger>
+
+                        <Trigger Property="Foreground" Value="Yellow">
+                            <Setter TargetName="PathIcon" Property="Fill" Value="Yellow"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="OrangeRed" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -1,35 +1,83 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WPFApp1.Services;
 using WPFApp1.Pages;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Model;
-using WPFApp1.Services.Message;
 using WPFApp1.Pages.EditorPages;
 
 namespace WPFApp1.ViewModel
 {
     public class MainDataReestrViewModel : BindableBase
     {
-
         private readonly PageService _navigation;
         private readonly DataService _dataService;
+        private ObservableCollection<Main_Reestr> _Reester;
+        public ObservableCollection<Main_Reestr> Main_Reestr
+        {
+            get => _Reester;
+            set
+            {
+                _Reester = value;
+                RaisePropertiesChanged();
+            }
+        }
+        private Main_Reestr _objekt;
+        public Main_Reestr Objekt
+        {
+            get => _objekt;
+            set
+            {
+                _objekt = value;
+                RaisePropertiesChanged();
+            }
+        }
+        public string CustomerName
+        {
+            get => _objekt.Customers.Customer_Name;
+            set
+            {
+                _objekt.Customers.Customer_Name = value;
+                RaisePropertiesChanged();
+            }
+        }
+        public string ObjektName
+        {
+            get => _objekt.Object_name;
+            set
+            {
+                _objekt.Object_name = value;
+                RaisePropertiesChanged();
+            }
+        }
+        public string ProjektType
+        {
+            get => _objekt.project_type;
+            set
+            {
+                _objekt.project_type = value;
+                RaisePropertiesChanged();
+            }
+        }
+        public int? ProjektNumber
+        {
+            get => _objekt.Doc_Number;
+            set
+            {
+                _objekt.Doc_Number = value;
+                RaisePropertiesChanged();
+            }
+        }
 
-        public ObservableCollection<Main_Reestr> Main_Reestr { get; set; } = new ObservableCollection<Main_Reestr>();
+
+
 
         public MainDataReestrViewModel(PageService navigation, DataService dataService)
         {
             _navigation = navigation;
             _dataService = dataService;
-          
             Main_Reestr = new ObservableCollection<Main_Reestr>(_dataService.GetDataToView().OrderByDescending(x => x.ID));
-
         }
 
         public ICommand EditObject => new DelegateCommand<Main_Reestr>((Main_Reestr objekt) =>
@@ -41,11 +89,20 @@ namespace WPFApp1.ViewModel
         public ICommand Jointocontracts => new DelegateCommand(() =>
         {
             _navigation.Navigate(new AllContractsPage());
+            _navigation.Refresh();
         });
+
+        public ICommand GoToTenderReestr => new DelegateCommand(() =>
+        {
+            _navigation.Navigate(new AllTendersPage());
+            _navigation.Refresh();
+        });
+
 
         public ICommand AddNewObjekt => new DelegateCommand(() => 
         {
             _navigation.Navigate(new AddNewObjektPage());
         });
+
     }
 }

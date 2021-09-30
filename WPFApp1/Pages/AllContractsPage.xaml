@@ -6,19 +6,19 @@
       xmlns:local="clr-namespace:WPFApp1.Pages"
       mc:Ignorable="d" 
       DataContext="{Binding Source={StaticResource VmLocator}, Path = AllContractsViewModel}"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="AllContractsPage">
 
     
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="35"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" Height="auto">
+            <Grid Grid.Row="0" Height="auto">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -28,53 +28,178 @@
                 </Grid.ColumnDefinitions>
 
 
-            <Button Grid.Column=" 0" Margin="1" Content="Реестр Проектов"
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="1" Margin="1" Content="Реестр Договоров"
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="2" Margin="1" Content="Реестр Тендеров"
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch"/>
-                <Button Grid.Column="3" Margin="1" Content="Реестр Актов"
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="0" 
+                    Margin="10 2 1 2"
+                    Content="Реестр Проектов"
+                    Foreground="White"
+                    Style="{StaticResource Header }"
+                    Command="{Binding GoToMainReestrPage}"/>
+            <Button Grid.Column="1" 
+                    Margin="1 2 1 2" 
+                    Content="Реестр Договоров"
+                    Style="{StaticResource Header }"/>
+            <Button Grid.Column="2" 
+                    Margin="1 2 1 2" 
+                    Content="Реестр Тендеров"
+                    Foreground="White"
+                    Style="{StaticResource Header }"
+                    Command="{Binding GoToTenderReestr}"/>
+               
+            <Button Grid.Column="3"    
+                    Margin="1 2 10 2"     
+                    Content="Реестр Актов"    
+                    Foreground="White"  
+                    Style="{StaticResource Header }" />
             </Grid>
+        <Grid Grid.Row="1">
 
-            <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Фильтры"
+                               Width="50"
+                               Height="20"
+                               Margin="5 2 2 2"/>
+                <TextBox Name="ContractFilteredText"
+                         TextChanged="ContractFilteredText_TextChanged"
+                             Margin="2 2 2 2"
+                             Height="20"
+                             Width="150"/>
+                </StackPanel>
+        
+        </Grid>
+        <Grid Grid.Row="2" x:Name="GridRow2">
+            <Grid.Resources>
+                <CollectionViewSource x:Key="ContracsCollection"
+                                      x:Name="ContracsCollection"
+                                      Source="{Binding AllContracts}"
+                                      Filter="ContractCollection_Filter"/>
+            </Grid.Resources>
 
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Contract }">
+                <ItemsControl ItemsSource="{Binding Source={StaticResource ContracsCollection}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="3" Padding="3" BorderBrush="Black" BorderThickness="1" CornerRadius="3">
+                            <Border Margin="8 3 8 3" 
+                                    Padding="1"
+                                    BorderBrush="Black" 
+                                    BorderThickness="1" 
+                                    CornerRadius="3">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" 
-                                           Text="{Binding ID}"/>
-
-                                    <StackPanel Grid.Column="1" Orientation="Vertical" >
-                                        <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="10"
-                                           Text="{Binding IDKey}"/>
-                                        <TextBlock Grid.Column="2" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="10"
-                                           Text="{Binding Contract_Number}"/>
-                                        <TextBlock Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="10"
-                                           Text="{Binding start_date}"/>
+                                    <StackPanel Orientation="Vertical"
+                                                Grid.Column="0"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="Номер Договора"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="#a3a3a4"/>
+                                        <TextBlock Text="{Binding Contract_Number}"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"/>
+                                        
                                     </StackPanel>
-                                    
-                                   
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center"
-                                           Text="{Binding start_date}"/>
-                                    <TextBlock Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Stretch"
-                                           Text="{Binding finish_date}" />
-                                    <Button x:Name="ret" Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" Content="Редактировать"/>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Дата Подписания:"
+                                                       Foreground="#a3a3a4"/>
+                                            <TextBlock  VerticalAlignment="Center" 
+                                                        TextAlignment="Center"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="3,0,0,0" 
+                                                        FontSize="11"
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding Contract_Signing , StringFormat={}{0:d-M-yyyy}}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Дата Начала:        "
+                                                       Foreground="#a3a3a4"/>
+                                            <TextBlock Grid.Column="2" 
+                                                       VerticalAlignment="Center" 
+                                                       TextAlignment="Center"
+                                                       HorizontalAlignment="Left"
+                                                       Margin="4,0,0,0"
+                                                       FontSize="11"
+                                                       FontWeight="SemiBold"
+                                                       Text="{Binding start_date, StringFormat={}{0:d-M-yyyy}}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Дата Окончания :"
+                                                       Foreground="#a3a3a4"/>
+                                            <TextBlock Grid.Column="3" 
+                                                       VerticalAlignment="Center"
+                                                       TextAlignment="Center" 
+                                                       HorizontalAlignment="Left"
+                                                       Margin="5,0,0,0" 
+                                                       FontSize="11"
+                                                       FontWeight="SemiBold"
+                                                       Text="{Binding finish_date, StringFormat={}{0:d-M-yyyy}}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                  
+                                    <StackPanel Grid.Column="2" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Предмет Договра: "
+                                                       Foreground="#a3a3a4"/>
+                                            <TextBlock  VerticalAlignment="Center" 
+                                                        TextAlignment="Center"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="38,0,0,0" 
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding subject_of_contract}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Заказчик: "
+                                                       Foreground="#a3a3a4"/>
+                                            <TextBlock  VerticalAlignment="Center" 
+                                                        TextAlignment="Center"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="85,0,0,0" 
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding Main_Reestr.Customers.Customer_Name}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Наименование Объекта: "
+                                                       Foreground="#a3a3a4"/>
+                                            <TextBlock  VerticalAlignment="Center" 
+                                                        TextAlignment="Center"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="3,0,0,0" 
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding Object_name}"/>
+                                        </StackPanel>
+                                        <!--<StackPanel Orientation="Horizontal" >
+                                            <Expander Header="Доп. Инфо по Договору"
+                                                  FontSize="10">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock  VerticalAlignment="Center" 
+                                                                TextAlignment="Center" 
+                                                                HorizontalAlignment="Left"
+                                                                Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}" />
+                                                </StackPanel>
+                                            </Expander>
+                                            <Expander Grid.Column="3"
+                                              VerticalAlignment="Bottom"
+                                              HorizontalAlignment="Left"
+                                              Header="Ответственные по Договору"
+                                              FontSize="10"
+                                              IsExpanded="False"
+                                              Margin="5 0 0 0">
+                                                <StackPanel Orientation="Vertical">
+
+                                                </StackPanel>
+                                            </Expander>
+                                        </StackPanel>-->
+                                    </StackPanel>
+                               
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditContract}" CommandParameter="{Binding}" Grid.Column="5" 
+                                            Content="Редактировать"
+                                            Height="40"
+                                            Width="auto"
+                                            VerticalAlignment="Top"/>
                                 </Grid>
                             </Border>
                         </DataTemplate>

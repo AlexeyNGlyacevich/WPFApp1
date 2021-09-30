@@ -11,13 +11,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Height="auto" >
+        <Grid Grid.Row="0" Height="auto" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -27,27 +27,40 @@
             </Grid.ColumnDefinitions>
 
 
-            <Button Grid.Column=" 0" Margin="1" Content="Реестр Проектов"
-                    VerticalAlignment="Stretch" 
+            <Button Grid.Column=" 0" 
+                    Margin="10 2 1 2" 
+                    Content="Реестр Проектов"
+                    VerticalAlignment="Center" 
                     HorizontalAlignment="Stretch"
-                    />
-            <Button Grid.Column="1" Margin="1" Content="Реестр Договоров"
-                    VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource Header }">
+            </Button>
+            <Button Grid.Column="1" 
+                    Margin="1 2 1 2" 
+                    Content="Реестр Договоров"
+                    Style="{StaticResource Header}"
+                    Foreground="White"
                     Command="{Binding Jointocontracts}"/>
-            <Button Grid.Column="2" Margin="1" Content="Реестр Тендеров"
+            <Button Grid.Column="2"
+                    Margin="1 2 1 2"
+                    Content="Реестр Тендеров"
+                    Style="{StaticResource Header}"
+                    Foreground="White"
+                    Command="{Binding GoToTenderReestr}"/>
+            
+            <Button Grid.Column="3" 
+                    Margin="1 2 10 2" 
+                    Content="Реестр Актов"
                     VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="3" Margin="1" Content="Реестр Актов"
-                    VerticalAlignment="Stretch" 
+                     Style="{StaticResource Header}"
+                    Foreground="White"
                     HorizontalAlignment="Stretch"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Button Content="Новый Проект" 
                         Height="30"
                         Width="130"
-                        Margin="5"
+                        Margin="10 1 5 1"
                         Command="{Binding AddNewObjekt }">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -92,22 +105,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button Content=""    
-                        Margin="3 3 1 3"
-                        Height="32"
-                        Width="35"
-                        Background="Transparent"
-                        Command="{Binding }">
-                    <Button.ContentTemplate>
-                        <DataTemplate>
-                            <Path x:Name="Path"
-                              Data="{Binding Source={StaticResource DownloadsFolder}}"
-                              Fill="Black"
-                              Stretch="Uniform"
-                              />
-                        </DataTemplate>
-                    </Button.ContentTemplate>
-                </Button>
+                
                 <Button Content="Добавить Запись"
                         Margin="3 3 1 3"
                         Command="{Binding}"
@@ -120,16 +118,49 @@
                         Command="{Binding}"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="3" Margin="5,20,5,5">
+        <Grid Grid.Row="2">
+            <Expander Header="Поиск:"
+                      Margin="10 5 10 1">
+                <Border BorderThickness="1"
+                    BorderBrush="Black"
+                    Margin="10 1 10 1"
+                    Height="30"
+                    Width="300"
+                    HorizontalAlignment="Left"
+                    Background="Gray"
+                    CornerRadius="3">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Фильтр:"
+                               Margin="5 1 1 1"
+                               VerticalAlignment="Center"/>
+                        <TextBox Name="ProjektFilteredText"
+                         TextChanged="ProjektFilteredText_TextChanged"
+                             Margin="2 2 2 2"
+                             Height="20"
+                             Width="240"/>
+                    </StackPanel>
+                </Border>
+            </Expander>
+        </Grid>
+        <Grid Grid.Row="3" 
+              Margin="5,20,5,5"
+              x:Name="GridRow3">
+            <Grid.Resources>
+                <CollectionViewSource x:Key="ProjektCollection"
+                                      x:Name="ProjektCollection"
+                                      Source="{Binding Main_Reestr}"
+                                      Filter="ProjektCollection_Filter"/>
+            </Grid.Resources>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding Main_Reestr }">
+                    <ItemsControl ItemsSource="{Binding Source={StaticResource ProjektCollection} }">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Margin="3" Padding="3" BorderBrush="Black" BorderThickness="1" CornerRadius="3">
-                                    <!--<Border.InputBindings>
-                                <MouseBinding Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" Gesture="LeftDoubleClick" />
-                            </Border.InputBindings>-->
+                                <Border Margin="3" 
+                                        Padding="1" 
+                                        BorderBrush="Black" 
+                                        BorderThickness="1" 
+                                        CornerRadius="3">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"/>
@@ -138,36 +169,70 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" VerticalAlignment="Center" 
-                                           Text="{Binding Doc_Number}"/>
-                                        <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"
-                                           Text="{Binding stage}"/>
-
-                                        <StackPanel Grid.Column="2" Orientation="Vertical" >
+                                        <TextBlock Grid.Column="0" 
+                                                   VerticalAlignment="Center" 
+                                                   Text="{Binding Doc_Number, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <StackPanel Grid.Column="1" 
+                                                    HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Vertical"  >
+                                            <TextBlock Text="Этап"
+                                                       Foreground="#a3a3a4"
+                                                       HorizontalAlignment="Center"/>
+                                            <TextBlock TextAlignment="Center"
+                                                       Text="{Binding stage, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2"
+                                                    Orientation="Vertical" >
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
+                                                <TextBlock VerticalAlignment="Center" 
+                                                           TextAlignment="Center" 
+                                                           HorizontalAlignment="Left"
                                                            Foreground="#a3a3a4"
-                                                           Text="Тип Проекта :                   "/>
-                                                <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
-                                                            Margin="5,0,0,0" 
-                                                           Text="{Binding project_type}"/>
+                                                           Text="Тип Проекта:"/>
+                                                <TextBlock  VerticalAlignment="Center" 
+                                                            TextAlignment="Center" 
+                                                            HorizontalAlignment="Left"
+                                                            Margin="68,0,0,0" 
+                                                            Text="{Binding project_type, UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
+                                                <TextBlock VerticalAlignment="Center"
+                                                           TextAlignment="Center" HorizontalAlignment="Left"
                                                            Foreground="#a3a3a4"
-                                                           Text="Наименование Объекта : "/>
-                                                <TextBlock  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left"
-                                           Text="{Binding Object_name}"/>
+                                                           Text="Наименование Объекта: "/>
+                                                <TextBlock  VerticalAlignment="Center" 
+                                                            TextAlignment="Center" 
+                                                            HorizontalAlignment="Left"
+                                                            Margin="2 0 0 0"
+                                                            Text="{Binding Object_name, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center"
+                                                           TextAlignment="Center" HorizontalAlignment="Left"
+                                                           Foreground="#a3a3a4"
+                                                           Text="Заказчик/Покупатель:"/>
+                                                <TextBlock  VerticalAlignment="Center" 
+                                                            TextAlignment="Center" 
+                                                            HorizontalAlignment="Left"
+                                                            Margin="19 0 0 0 "
+                                                            Text="{Binding Customers.Customer_Name , UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
                                             <Expander Header="Ответственные за проект">
                                                 <StackPanel Orientation="Vertical">
-                                                    <TextBlock  VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Left"
-                                                     Text="{Binding Respons_persons.First_Name}" />
+                                                    <TextBlock  VerticalAlignment="Center" 
+                                                                TextAlignment="Center" 
+                                                                HorizontalAlignment="Left"
+                                                                Text="{Binding Respons_persons.First_Name, UpdateSourceTrigger=PropertyChanged}" />
                                                 </StackPanel>
                                             </Expander>
                                         </StackPanel>
-                                     
-                                        <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" Content="Редактировать"/>
+
+                                        <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" 
+                                                Content="Редактировать"
+                                                Height="40"
+                                                Width="auto"
+                                                VerticalAlignment="Top"/>
 
                                     </Grid>
                                 </Border>
@@ -177,6 +242,5 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-
     </Grid>
 </Page>

@@ -664,7 +664,7 @@
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               BorderThickness="0"
                               SelectionMode="Single"
-                              ItemsSource="{Binding CurrentObjektTenders}"
+                              ItemsSource="{Binding CurrentObjektTenders, UpdateSourceTrigger=PropertyChanged}"
                               FontWeight="SemiBold">
 
                         <ListView.View>
