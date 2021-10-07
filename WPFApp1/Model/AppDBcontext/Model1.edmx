@@ -34,11 +34,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Customer_Name" Type="nvarchar" MaxLength="30" />
-          <Property Name="Customer_UNN" Type="nvarchar" MaxLength="30" />
-          <Property Name="Customer_Adress" Type="nvarchar" MaxLength="30" />
-          <Property Name="Customer_contact" Type="nvarchar" MaxLength="30" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_UNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Adress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_contact" Type="nvarchar" MaxLength="50" />
           <Property Name="Customer_type" Type="int" />
         </EntityType>
         <EntityType Name="Documentation">
@@ -359,10 +359,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Customer_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_UNN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_Adress" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_contact" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_UNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_type" Type="Int32" />
           <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Reestr_Customers" FromRole="Customers" ToRole="Main_Reestr" />
         </EntityType>

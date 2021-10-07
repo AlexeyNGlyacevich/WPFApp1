@@ -1,38 +1,33 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Pages;
-using WPFApp1.Pages.Contract;
+using WPFApp1.Pages.TTN;
 using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
-    public class AllContractsViewModel : BindableBase
+    public class AllTTNPageViewModel : BindableBase
     {
         private readonly PageService _navigation;
         private readonly DataService _dataservice;
-        private ObservableCollection<Contracts> Contracts = new ObservableCollection<Contracts>();
-        public ObservableCollection<Contracts> AllContracts
+        private ObservableCollection<TTN> TTNs= new ObservableCollection<TTN>();
+        public ObservableCollection<TTN> AllTTNs
         {
-            get => Contracts;
+            get => TTNs;
             set
             {
-                Contracts = value;
+                TTNs = value;
                 RaisePropertiesChanged();
             }
         }
 
-        public AllContractsViewModel(PageService navigation, DataService dataservice)
+        public AllTTNPageViewModel(PageService navigation, DataService dataservice)
         {
             _navigation = navigation;
             _dataservice = dataservice;
-            Contracts = new ObservableCollection<Contracts>(dataservice.GetAllContracts());
+            AllTTNs = new ObservableCollection<TTN>(_dataservice.GetAllTTN());
         }
 
         public ICommand GoToMainReestrPage => new DelegateCommand(() =>
@@ -48,19 +43,16 @@ namespace WPFApp1.ViewModel
             _navigation.Refresh();
         });
 
-        public ICommand GoToTTNReestr => new DelegateCommand(() =>
+        public ICommand GoToContractsReestr => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new AllTTNPage());
+            _navigation.Navigate(new AllContractsPage());
             _navigation.Refresh();
-
         });
 
-        public ICommand EditContract => new DelegateCommand<Contracts>((Contracts contract) =>
+        public ICommand EditCurrentTTN => new DelegateCommand<TTN>((TTN ttn) =>
         {
-            _dataservice.GetContractID(contract);
-            _navigation.Navigate(new ContractPage());
+            _dataservice.GetCurrentTTNID(ttn);
+            _navigation.Navigate(new TTNPage());
         });
-
-
     }
 }

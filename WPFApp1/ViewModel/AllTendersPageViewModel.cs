@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Pages;
+using WPFApp1.Pages.Tender;
 using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
@@ -11,7 +12,7 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly DataService _dataservice;
-        private ObservableCollection<Tenders> Tenders { get; set; }
+        private ObservableCollection<Tenders> Tenders;
         public ObservableCollection<Tenders> AllTenders
         {
             get => Tenders;
@@ -29,9 +30,18 @@ namespace WPFApp1.ViewModel
             Tenders = new ObservableCollection<Tenders>(dataservice.GetAllTenders());
         }
 
+        public ICommand GoToCurrentTender => new DelegateCommand<Tenders>((Tenders tender) =>
+        {
+            _dataservice.GetCurrentTenderID(tender);
+            _navigation.Navigate(new TenderPage());
+        });
 
+        public ICommand GoToTTNReestr => new DelegateCommand(() =>
+        {
+            _navigation.Navigate(new AllTTNPage());
+            _navigation.Refresh();
 
-
+        });
 
         public ICommand GoToContractsReestr => new DelegateCommand(() =>
         {

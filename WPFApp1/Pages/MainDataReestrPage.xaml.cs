@@ -33,5 +33,7 @@ namespace WPFApp1.Pages
             if (!string.IsNullOrEmpty(reestr.Customers.Customer_Name) && reestr.Customers.Customer_Name.IndexOf(filteredText, StringComparison.OrdinalIgnoreCase) >= 0) return;
             e.Accepted = false;
         }
+
+
     }
 }

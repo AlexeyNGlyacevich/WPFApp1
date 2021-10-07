@@ -36,6 +36,7 @@ namespace WPFApp1
             _ = services.AddTransient<AllTendersPageViewModel>();
             _ = services.AddTransient<AddNewTTNPageViewModel>();
             _ = services.AddTransient<TTNPageViewModel>();
+            _ = services.AddTransient<AllTTNPageViewModel>();
 
 
             _ = services.AddScoped<StDBEntities>();

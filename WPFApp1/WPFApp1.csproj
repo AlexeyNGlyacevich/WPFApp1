@@ -96,6 +96,9 @@
     <Compile Include="CustomControl\TextBoxWithPlaceHolder.xaml.cs">
       <DependentUpon>TextBoxWithPlaceHolder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\TextboxWithPlaceHolderForFilters.xaml.cs">
+      <DependentUpon>TextboxWithPlaceHolderForFilters.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\AppDBcontext\AppDBcontext.cs" />
     <Compile Include="Model\AppDBcontext\Approval_List.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -116,6 +119,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AppDBcontext\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -164,6 +172,9 @@
     </Compile>
     <Compile Include="Pages\AllTendersPage.xaml.cs">
       <DependentUpon>AllTendersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AllTTNPage.xaml.cs">
+      <DependentUpon>AllTTNPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Contract\ContractPage.xaml.cs">
       <DependentUpon>ContractPage.xaml</DependentUpon>
@@ -219,6 +230,7 @@
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\AllContractsViewModel.cs" />
     <Compile Include="ViewModel\AllTendersPageViewModel.cs" />
+    <Compile Include="ViewModel\AllTTNPageViewModel.cs" />
     <Compile Include="ViewModel\AllUsersEditorPageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel.cs" />
     <Compile Include="ViewModel\MainDataReestrViewModel.cs" />
@@ -233,6 +245,10 @@
     <Page Include="CustomControl\TextBoxWithPlaceHolder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextboxWithPlaceHolderForFilters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AllTendersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AllTTNPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

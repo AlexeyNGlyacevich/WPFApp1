@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFApp1.CustomControls
+namespace WPFApp1.CustomControl
 {
     /// <summary>
-    /// Interaction logic for TextBoxWithPlaceHolder.xaml
+    /// Логика взаимодействия для TextboxWithPlaceHolderForFilters.xaml
     /// </summary>
-    public partial class TextBoxWithPlaceHolder : UserControl
+    public partial class TextboxWithPlaceHolderForFilters : UserControl
     {
-        public TextBoxWithPlaceHolder()
+        public TextboxWithPlaceHolderForFilters()
         {
             InitializeComponent();
         }
@@ -33,7 +33,7 @@ namespace WPFApp1.CustomControls
 
         // Using a DependencyProperty as the backing store for PlaceHolder.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlaceHolderProperty =
-            DependencyProperty.Register("PlaceHolder", typeof(string), typeof(TextBoxWithPlaceHolder));
+            DependencyProperty.Register("PlaceHolder", typeof(string), typeof(TextboxWithPlaceHolderForFilters));
 
 
         public string Text
@@ -44,23 +44,7 @@ namespace WPFApp1.CustomControls
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(TextBoxWithPlaceHolder), new FrameworkPropertyMetadata(TextProperty) { BindsTwoWayByDefault = true});
-
-
-        public bool IsPassword
-        {
-            get => (bool)GetValue(IsPasswordProperty);
-            set => SetValue(IsPasswordProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for IsPassword.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsPasswordProperty =
-            DependencyProperty.Register("IsPassword", typeof(bool), typeof(TextBoxWithPlaceHolder));
-
-        private void Passbox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            Text = passbox.Password;
-        }
+            DependencyProperty.Register("Text", typeof(string), typeof(TextboxWithPlaceHolderForFilters), new FrameworkPropertyMetadata(TextProperty) { BindsTwoWayByDefault = true });
 
     }
 }

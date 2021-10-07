@@ -132,7 +132,15 @@ namespace WPFApp1.ViewModel
                 {
                     CurrentObjekt.Doc_Number = Doc_Number;
                     CurrentObjekt.Object_name = Object_Name;
-                    CurrentObjekt.CustomerID = CustomerID;
+                    if (CustomerID == null)
+                    {
+                        _ = MessageBox.Show("Веден не существующий Заказчик", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    else
+                    {
+                        CurrentObjekt.CustomerID = CustomerID;
+                    }
                     CurrentObjekt.project_type = Project_type;
                     CurrentObjekt.stage = Stage;
                     CurrentObjekt.Creation_Date = CreationDate;

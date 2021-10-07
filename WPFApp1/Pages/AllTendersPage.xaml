@@ -47,7 +47,8 @@
                     Margin="1 2 10 2"     
                     Content="Реестр Актов"    
                     Foreground="White"  
-                    Style="{StaticResource Header }" />
+                    Style="{StaticResource Header }" 
+                    Command="{Binding GoToTTNReestr}"/>
         </Grid>
         <Grid Grid.Row="1">
 
@@ -84,7 +85,7 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="350"/>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto"/>
@@ -92,49 +93,49 @@
                                     <StackPanel Orientation="Vertical"
                                                 Grid.Column="0"
                                                 VerticalAlignment="Center">
-                                        <TextBlock Text="Номер Договора"
+                                        <TextBlock Text="Номер Тендера"
                                                    HorizontalAlignment="Center"
                                                    Foreground="#a3a3a4"/>
-                                        <TextBlock Text="{Binding Contract_Number}"
+                                        <TextBlock Text="{Binding Tender_number}"
                                                    FontWeight="SemiBold"
                                                    HorizontalAlignment="Center"/>
 
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" Orientation="Vertical" >
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Дата Подписания:"
+                                            <TextBlock Text="Дата Размещения:"
                                                        Foreground="#a3a3a4"/>
                                             <TextBlock  VerticalAlignment="Center" 
                                                         TextAlignment="Center"
                                                         HorizontalAlignment="Left"
-                                                        Margin="3,0,0,0" 
+                                                        Margin="146,0,0,0" 
                                                         FontSize="11"
                                                         FontWeight="SemiBold"
-                                                        Text="{Binding Contract_Signing , StringFormat={}{0:d-M-yyyy}}"/>
+                                                        Text="{Binding Date_purchase , StringFormat={}{0:d-M-yyyy}}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Дата Начала:        "
+                                            <TextBlock Text="Окончательный срок подачи предложения:"
                                                        Foreground="#a3a3a4"/>
                                             <TextBlock Grid.Column="2" 
                                                        VerticalAlignment="Center" 
                                                        TextAlignment="Center"
                                                        HorizontalAlignment="Left"
-                                                       Margin="4,0,0,0"
+                                                       Margin="5,0,0,0"
                                                        FontSize="11"
                                                        FontWeight="SemiBold"
-                                                       Text="{Binding start_date, StringFormat={}{0:d-M-yyyy}}"/>
+                                                       Text="{Binding final__proposal_date, StringFormat={}{0:d-M-yyyy}}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Дата Окончания :"
+                                            <TextBlock Text="Дата Торгов:"
                                                        Foreground="#a3a3a4"/>
                                             <TextBlock Grid.Column="3" 
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center" 
                                                        HorizontalAlignment="Left"
-                                                       Margin="5,0,0,0" 
+                                                       Margin="177,0,0,0" 
                                                        FontSize="11"
                                                        FontWeight="SemiBold"
-                                                       Text="{Binding finish_date, StringFormat={}{0:d-M-yyyy}}"/>
+                                                       Text="{Binding trading_date, StringFormat={}{0:d-M-yyyy}}"/>
                                         </StackPanel>
                                     </StackPanel>
 
@@ -147,7 +148,7 @@
                                                         HorizontalAlignment="Left"
                                                         Margin="38,0,0,0" 
                                                         FontWeight="SemiBold"
-                                                        Text="{Binding subject_of_contract}"/>
+                                                        Text="{Binding subject_of_a_contract}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Заказчик: "
@@ -193,11 +194,21 @@
                                         </StackPanel>-->
                                     </StackPanel>
 
-                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditContract}" CommandParameter="{Binding}" Grid.Column="5" 
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.GoToCurrentTender}" CommandParameter="{Binding}" Grid.Column="5" 
                                             Content="Редактировать"
                                             Height="40"
                                             Width="auto"
-                                            VerticalAlignment="Top"/>
+                                            TextOptions.TextFormattingMode="Display"
+                                            RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                            VerticalAlignment="Top"
+                                            >
+                                        <Button.Effect>
+                                            <DropShadowEffect ShadowDepth="5"
+                                                              Direction="260"  
+                                                              Color="DarkGray">
+                                            </DropShadowEffect>
+                                        </Button.Effect>
+                                    </Button>
                                 </Grid>
                             </Border>
                         </DataTemplate>

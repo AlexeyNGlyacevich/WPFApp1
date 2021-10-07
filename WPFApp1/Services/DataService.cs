@@ -41,6 +41,12 @@ namespace WPFApp1.Services
             CurrentObjektID = objekt.ID;
         }
 
+        public bool CheckCustomerID(string name)
+        {
+            var test = _datacontext.Customers.Any(x => x.Customer_Name.Equals(name));
+            return test;
+                
+        }
 
         public Main_Reestr GetCurrentObjektInfo(int guid)
         {
@@ -312,6 +318,11 @@ namespace WPFApp1.Services
             _ = _datacontext.SaveChanges();
         }
 
+        public List<TTN> GetAllTTN()
+        {
+            var ttn_list = _datacontext.TTN.ToList();
+            return ttn_list;
+        }
 
         public void AddNewTTN(TTN ttn)
         {

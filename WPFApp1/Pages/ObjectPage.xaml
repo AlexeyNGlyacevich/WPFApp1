@@ -148,7 +148,14 @@
                 <TabItem.Header>
                     <TextBlock Text="Проект" Width="180"/>
                 </TabItem.Header>
-                <Grid Background="WhiteSmoke">
+                <Grid Background="WhiteSmoke" x:Name="mGrid">
+
+                    <Grid.Resources>
+                        <CollectionViewSource x:Key="CustomerCollection"
+                                      x:Name="CustomerCollection"
+                                      Source="{Binding Customers}"
+                                      Filter="CustomerCollection_Filter"/>
+                    </Grid.Resources>
                     <TabControl Height="auto" VerticalContentAlignment="Top" Margin="5">
                         <TabItem Name="ObjectData">
                             <TabItem.Header>
@@ -287,15 +294,21 @@
                                                VerticalAlignment="Top" />
 
 
-                                        <ComboBox ItemsSource="{Binding Customers}"
+                                        <ComboBox ItemsSource="{Binding Source={StaticResource CustomerCollection}}" x:Name="Cust"
                                                   Margin=" 5 1 5 3" 
                                                   Height="22"
                                                   Width="350" 
                                                   HorizontalAlignment="Left"
                                                   DisplayMemberPath="Customer_Name"
                                                   SelectedValuePath="ID"
-                                                  SelectedValue="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                        
+                                                  IsTextSearchEnabled="False"
+                                                  IsEditable="True"
+                                                  TextBoxBase.TextChanged="Cust_TextChanged"
+                                                  StaysOpenOnEdit="True"
+                                                  SelectedValue="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                     
+                                        </ComboBox>
+
                                         <TextBox Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                              Margin="5 1 5 5 "
                                              Padding="0 0 5 5" 
@@ -316,334 +329,6 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
-
-                        <!--<TabItem>
-                            <TabItem.Header>
-                                <TextBlock Text="Документация / Проект"/>
-                            </TabItem.Header>
-
-                            <Grid Background="WhiteSmoke">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="350"/>
-                                </Grid.ColumnDefinitions>
-                                <GroupBox Header="Данные" Grid.Column="0" Margin="5 5 5 10">
-                                    <StackPanel >
-                                        <TextBlock Text="Дата выдачи исходны данных/начало проектирования"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата выдачи в группу расчета смет" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата передачи документации заказчику на Согласование" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата Согласования заказчиком" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата передачи документации в ЭКСПЕРТИЗУ" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата получения заключения из ЭКСПЕРТИЗЫ" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Column="1"
-                                          Header="Ответственные" 
-                                          Width="350"
-                                          Margin="5 5 1 10">
-                                    <StackPanel>
-                                        <Expander Header="Г И П " IsExpanded="True" Margin="5 5 5 5">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock  VerticalAlignment="Center"
-                                                            TextAlignment="Left" 
-                                                            HorizontalAlignment="Stretch"
-                                                            />
-                                            </StackPanel>
-                                        </Expander>
-                                        <Expander Header="ИТР и другие " IsExpanded="True" Margin="5 5 5 5">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock  VerticalAlignment="Center"
-                                                            TextAlignment="Left" 
-                                                            HorizontalAlignment="Stretch"
-                                                            />
-                                            </StackPanel>
-                                        </Expander>
-
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Данные по документации" 
-                                          Margin="5 5 5 10"
-                                          Grid.Column="2">
-                                    <StackPanel>
-                                        <TextBlock Text="Шифр Документации" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <TextBox Margin="5 1 5 1"
-                                                 TextBlock.FontWeight="Bold"
-                                                 TextBlock.TextAlignment="Center"
-                                                 Height="20"
-                                                 />
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </TabItem>
-                        <TabItem>
-                            <TabItem.Header>
-                                <TextBlock Text="Изготовлекние"/>
-                            </TabItem.Header>
-                            <Grid Background="WhiteSmoke">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <GroupBox Header="Изготовление" Grid.Column="0" Margin="5 5 5 10">
-                                    <StackPanel >
-                                        <TextBlock Text="Дата передачи на комплектацию и закупку :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата передачи документации в МПО" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Дата передачи на комплектацию и закупку от МПО" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Сборка/Монтаж" Grid.Column="1"
-                                          Margin="5 5 5 10" Width="300">
-                                    <StackPanel >
-                                        <TextBlock Text="Дата начала сборки :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <Expander Header="Сборщик/Монтажиник " IsExpanded="True" Margin="5 5 5 5">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock  VerticalAlignment="Center"
-                                                            TextAlignment="Left" 
-                                                            HorizontalAlignment="Stretch"
-                                                            />
-                                            </StackPanel>
-                                        </Expander>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Опереционный контроль" Grid.Column="2"
-                                          Margin="5 5 5 10" Width="300">
-                                    <StackPanel >
-                                        <TextBlock Text="Дата проведения :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Результаты/Выводы :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <TextBox x:Name="results" Text="{Binding stage}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Приемочный контроль" Grid.Column="3"
-                                          Margin="5 5 5 10" Width="300">
-                                    <StackPanel >
-                                        <TextBlock Text="Дата проведения :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="Результаты/Выводы :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <TextBox x:Name="as" Text="{Binding stage}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-                                        <TextBlock Text="Дата ПСИ :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-
-                                        <TextBlock Text="Номер протокола :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <TextBox x:Name="aвваs" Text="{Binding stage}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-
-
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </TabItem>
-                        <TabItem>
-                            <TabItem.Header>
-                                <TextBlock Text="Отгрузка"/>
-                            </TabItem.Header>
-                            <Grid Background="WhiteSmoke">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <GroupBox Header="Отгрузка" Grid.Column="0"
-                                          Margin="5 5 5 10" Width="300">
-                                    <StackPanel >
-                                        <TextBlock Text="Дата отгрузки по договору :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-                                        <TextBlock Text="№ Акта :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <TextBox x:Name="af" Text="{Binding stage}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-                                        <TextBlock Text="Дата подписания Акта :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <DatePicker Margin="5 1 5 1"
-                                                    TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-
-                                        <TextBlock Text="№ ТТН(ТН) :"
-                                                   Margin="5 5 5 1 "
-                                                   TextAlignment="Left"
-                                                   Height="20" 
-                                                   />
-                                        <TextBox x:Name="tasd" Text="{Binding stage}" 
-                                                                     Margin="5 1 5 5 " 
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left"  
-                                                                     Height="22"
-                                                                     Width="auto" 
-                                                                     VerticalAlignment="Top"  
-                                                                     FontWeight="Bold"
-                                                                     BorderThickness="1"/>
-
-
-                                    </StackPanel>
-                                </GroupBox>
-
-                            </Grid>
-                        </TabItem>-->
 
                     </TabControl>
                 </Grid>

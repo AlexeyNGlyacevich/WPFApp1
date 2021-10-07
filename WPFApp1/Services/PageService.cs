@@ -38,8 +38,8 @@ namespace WPFApp1.Services
        {
             _ = _history.Pop();
             var page = _history.Peek();
-            OnePageChanged?.Invoke(_history.Peek()); 
-       }
+            OnePageChanged?.Invoke(_history.Peek());
+        }
         internal void Refresh()
         {
             _ = _history.Pop();

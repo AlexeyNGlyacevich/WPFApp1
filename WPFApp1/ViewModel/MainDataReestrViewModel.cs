@@ -89,15 +89,20 @@ namespace WPFApp1.ViewModel
         public ICommand Jointocontracts => new DelegateCommand(() =>
         {
             _navigation.Navigate(new AllContractsPage());
-            _navigation.Refresh();
+
         });
 
         public ICommand GoToTenderReestr => new DelegateCommand(() =>
         {
             _navigation.Navigate(new AllTendersPage());
-            _navigation.Refresh();
+
         });
 
+        public ICommand GoToTTNReestr => new DelegateCommand(() =>
+        {
+            _navigation.Navigate(new AllTTNPage());
+
+        });
 
         public ICommand AddNewObjekt => new DelegateCommand(() => 
         {
