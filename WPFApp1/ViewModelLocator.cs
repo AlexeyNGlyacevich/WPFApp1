@@ -42,5 +42,7 @@ namespace WPFApp1
 
         public AllTTNPageViewModel AllTTNPageViewModel => IoC.Resolve<AllTTNPageViewModel>();
 
+        public ResponsPersonsPageViewModel ResponsPersonsPageViewModel => IoC.Resolve<ResponsPersonsPageViewModel>();
+
     }
 }

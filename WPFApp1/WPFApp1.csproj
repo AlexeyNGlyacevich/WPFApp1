@@ -99,11 +99,13 @@
     <Compile Include="CustomControl\TextboxWithPlaceHolderForFilters.xaml.cs">
       <DependentUpon>TextboxWithPlaceHolderForFilters.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\AppDBcontext.cs" />
     <Compile Include="Model\AppDBcontext\Approval_List.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Contracts.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AppDBcontext\ContractsPersons.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Customers.cs">
@@ -130,19 +132,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\Orders.cs">
+    <Compile Include="Model\AppDBcontext\PersonsReesters.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\Reestr_of_Contracts.cs">
+    <Compile Include="Model\AppDBcontext\PersonStats.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Respons_persons.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\sysdiagrams.cs">
+    <Compile Include="Model\AppDBcontext\Tenders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\Tenders.cs">
+    <Compile Include="Model\AppDBcontext\TendersPersons.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\TTN.cs">
@@ -155,11 +157,16 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DBContextDataWorcker.cs" />
+    <Compile Include="Model\Repositories\Intefaces\IResponsPersonsRepository.cs" />
+    <Compile Include="Model\Repositories\ResponsPersonsRepository.cs" />
     <Compile Include="Pages\Admin\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\AllUsersEditorPage.xaml.cs">
       <DependentUpon>AllUsersEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\EditResponsPersonsPage.xaml.cs">
+      <DependentUpon>EditResponsPersonsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\UpdateUserPage.xaml.cs">
       <DependentUpon>UpdateUserPage.xaml</DependentUpon>
@@ -236,6 +243,7 @@
     <Compile Include="ViewModel\MainDataReestrViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ObjectPageViewModel.cs" />
+    <Compile Include="ViewModel\ResponsPersonsPageViewModel.cs" />
     <Compile Include="ViewModel\SelectRolePageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\TenderViewModel.cs" />
@@ -268,6 +276,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Admin\AllUsersEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\EditResponsPersonsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -395,19 +407,19 @@
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\AppDBcontext\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\AppDBcontext\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.1\build\Fody.targets')" />

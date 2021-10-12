@@ -17,8 +17,9 @@ namespace WPFApp1.Model.AppDBcontext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Main_Reestr()
         {
-            this.Tenders = new HashSet<Tenders>();
             this.Contracts = new HashSet<Contracts>();
+            this.PersonsReesters = new HashSet<PersonsReesters>();
+            this.Tenders = new HashSet<Tenders>();
         }
     
         public int ID { get; set; }
@@ -33,11 +34,12 @@ namespace WPFApp1.Model.AppDBcontext
         public string stage { get; set; }
         public Nullable<int> resp_personID { get; set; }
     
-        public virtual Customers Customers { get; set; }
-        public virtual Respons_persons Respons_persons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tenders> Tenders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contracts> Contracts { get; set; }
+        public virtual Customers Customers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonsReesters> PersonsReesters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tenders> Tenders { get; set; }
     }
 }

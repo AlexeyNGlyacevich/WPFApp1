@@ -44,7 +44,7 @@ namespace WPFApp1.CustomControls
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(TextBoxWithPlaceHolder), new FrameworkPropertyMetadata(TextProperty) { BindsTwoWayByDefault = true});
+            DependencyProperty.Register("Text", typeof(string), typeof(TextBoxWithPlaceHolder), new FrameworkPropertyMetadata(TextProperty) { BindsTwoWayByDefault = true });
 
 
         public bool IsPassword

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFApp1.Services.Message
 {
-   public interface IMessage
+    public interface IMessage
     {
     }
 }

@@ -34,7 +34,7 @@ namespace WPFApp1.ViewModel
             }
         }
         private DateTime? _final_proposal_date;
-        public DateTime ?Final_proposal_date
+        public DateTime? Final_proposal_date
         {
             get => _final_proposal_date;
             set
@@ -81,7 +81,7 @@ namespace WPFApp1.ViewModel
             {
                 _starting_price = value;
                 RaisePropertiesChanged();
-                   
+
             }
         }
         private decimal? _price_date_submission;

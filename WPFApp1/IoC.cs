@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPFApp1.Model.AppDBcontext;
+using WPFApp1.Model.Repositories;
+using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.Services;
 using WPFApp1.ViewModel;
 
@@ -37,14 +39,16 @@ namespace WPFApp1
             _ = services.AddTransient<AddNewTTNPageViewModel>();
             _ = services.AddTransient<TTNPageViewModel>();
             _ = services.AddTransient<AllTTNPageViewModel>();
+            _ = services.AddTransient<ResponsPersonsPageViewModel>();
 
 
-            _ = services.AddScoped<StDBEntities>();
+            _ = services.AddScoped<ProjectStDBEntities>();
             _ = services.AddSingleton<PageService>();
             _ = services.AddScoped<DataService>();
             _ = services.AddSingleton<MessageBus>();
             _ = services.AddSingleton<EventSubscriber>();
             _ = services.AddSingleton<EventBus>();
+            _ = services.AddScoped<IResponsPersonsRepository, ResponsPersonsRepository>();
 
             _provider = services.BuildServiceProvider();
         }

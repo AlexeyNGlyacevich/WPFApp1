@@ -31,11 +31,11 @@ namespace WPFApp1.Services
         {
             OnePageChanged?.Invoke(page);
             _history.Push(page);
-            
+
         }
 
         internal void GoToBack()
-       {
+        {
             _ = _history.Pop();
             var page = _history.Peek();
             OnePageChanged?.Invoke(_history.Peek());

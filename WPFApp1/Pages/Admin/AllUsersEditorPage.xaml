@@ -10,13 +10,18 @@
       Title="AllUsersEditorPage">
 
     <Grid>
-        <Border BorderThickness="0" BorderBrush="Black" Width="800" Height="400">
+        <Border BorderThickness="0"
+                BorderBrush="Black"
+                Width="800" 
+                Height="400"
+                >
             
                 <DataGrid AutoGenerateColumns="False" 
                           Style="{StaticResource DataGridStyle1}"
                           FontSize="12"
                           FontWeight="SemiBold"
                           IsReadOnly="True" 
+                          VerticalAlignment="Top"
                           ItemsSource="{Binding Users}">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Имя пользователя" Binding="{Binding Path= FirstName}"/>

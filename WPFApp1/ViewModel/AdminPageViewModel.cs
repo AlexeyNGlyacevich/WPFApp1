@@ -31,7 +31,10 @@ namespace WPFApp1.ViewModel
             _navigation.Navigate(new AllUsersEditorPage());
         });
 
-
+        public ICommand EditResponsPersons => new DelegateCommand(() =>
+        {
+            _navigation.Navigate(new EditResponsPersonsPage());
+        });
 
 
     }

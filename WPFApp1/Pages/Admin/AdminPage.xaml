@@ -19,19 +19,27 @@
         <StackPanel Grid.Row="1" Orientation="Vertical" Height="200" Width="400">
 
             <Button  Content="Добавить Соединение с Сервером" 
-                Margin="0,10,0,5" 
-                HorizontalAlignment="Center"
-                Width="250"/>
+                     Margin="0,10,0,5" 
+                     HorizontalAlignment="Center"
+                     Width="250"/>
             <Button Content="Добавить нового пользователя" 
-                Margin="0,20,0,5" 
-                HorizontalAlignment="Center"
-                Width="250"
+                    Margin="0,20,0,5" 
+                    HorizontalAlignment="Center"
+                    Width="250"
                     Command="{Binding AddUser}"/>
             <Button  Content="Редактировать данные пользователя" 
-                Margin="0,10,0,5" 
-                HorizontalAlignment="Center"
-                Width="250"
+                     Margin="0,10,0,5" 
+                     HorizontalAlignment="Center"
+                     Width="250"
                      Command="{Binding EditUsers}"/>
+            <Button Content="Справочник ответственных лиц"
+                    Margin="1 10 1 5"
+                    Width="250"
+                    Command="{Binding EditResponsPersons}"/>
+            <Button Content="Справочник Заказчиков"
+                    Margin="1 10 1 5"
+                    Width="250"
+                    Command="{}"/>
         </StackPanel>
 
         

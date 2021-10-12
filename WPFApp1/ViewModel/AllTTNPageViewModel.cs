@@ -12,7 +12,7 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly DataService _dataservice;
-        private ObservableCollection<TTN> TTNs= new ObservableCollection<TTN>();
+        private ObservableCollection<TTN> TTNs = new ObservableCollection<TTN>();
         public ObservableCollection<TTN> AllTTNs
         {
             get => TTNs;

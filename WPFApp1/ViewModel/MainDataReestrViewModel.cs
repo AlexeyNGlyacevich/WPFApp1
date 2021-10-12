@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Pages.EditorPages;
+using WPFApp1.Model.Repositories;
+using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel
 {
@@ -13,6 +15,7 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly DataService _dataService;
+        private readonly ResponsPersonsRepository _responsPersons;
         private ObservableCollection<Main_Reestr> _Reester;
         public ObservableCollection<Main_Reestr> Main_Reestr
         {
@@ -20,6 +23,16 @@ namespace WPFApp1.ViewModel
             set
             {
                 _Reester = value;
+                RaisePropertiesChanged();
+            }
+        }
+        private ObservableCollection<Respons_persons> _resp_persons;
+        public ObservableCollection<Respons_persons> ResponsPersons
+        {
+            get => _resp_persons;
+            set
+            {
+                _resp_persons = value;
                 RaisePropertiesChanged();
             }
         }
@@ -73,11 +86,13 @@ namespace WPFApp1.ViewModel
 
 
 
-        public MainDataReestrViewModel(PageService navigation, DataService dataService)
+        public MainDataReestrViewModel(PageService navigation, DataService dataService, ResponsPersonsRepository responsPersonsRepository)
         {
             _navigation = navigation;
             _dataService = dataService;
+            _responsPersons = responsPersonsRepository;
             Main_Reestr = new ObservableCollection<Main_Reestr>(_dataService.GetDataToView().OrderByDescending(x => x.ID));
+            ResponsPersons = new ObservableCollection<Respons_persons>();
         }
 
         public ICommand EditObject => new DelegateCommand<Main_Reestr>((Main_Reestr objekt) =>
@@ -104,7 +119,7 @@ namespace WPFApp1.ViewModel
 
         });
 
-        public ICommand AddNewObjekt => new DelegateCommand(() => 
+        public ICommand AddNewObjekt => new DelegateCommand(() =>
         {
             _navigation.Navigate(new AddNewObjektPage());
         });

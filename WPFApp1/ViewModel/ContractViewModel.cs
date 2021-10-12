@@ -509,7 +509,7 @@ namespace WPFApp1.ViewModel
                  DateOfSubmissionDocumentationToMPO != Documentation.date_of_submission_of_documentation_to_MPO || DateOfTransferForPickingFromMPO != Documentation.date_of_transfer_for_picking_from_MPO ||
                  BuildStartDate != Documentation.build_start_date || DateOfOperationControl != Documentation.Operational_control || OperationControleResult != Documentation.Operational_control_result ||
                  DateOfAcceptanceControl != Documentation.Acceptance_control || AcceptanceControlResult != Documentation.Acceptance_control_results || AcceptanceControlProtocol != Documentation.Acceptance_control_protocol ||
-                 DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number|| Date_of_PSI != Documentation.PSI);
+                 DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number || Date_of_PSI != Documentation.PSI);
     }
 
 

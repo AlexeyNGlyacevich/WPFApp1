@@ -41,7 +41,7 @@ namespace WPFApp1.Pages
 
         private void ContractFilteredText_TextChanged(object sender, TextChangedEventArgs e)
         {
-           var collection = (CollectionViewSource)GridRow2.FindResource("ContracsCollection");
+            var collection = (CollectionViewSource)GridRow2.FindResource("ContracsCollection");
             collection.View.Refresh();
         }
     }

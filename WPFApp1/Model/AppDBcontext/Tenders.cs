@@ -14,6 +14,12 @@ namespace WPFApp1.Model.AppDBcontext
     
     public partial class Tenders
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tenders()
+        {
+            this.TendersPersons = new HashSet<TendersPersons>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> IDKey { get; set; }
         public Nullable<System.DateTime> Date_purchase { get; set; }
@@ -32,5 +38,7 @@ namespace WPFApp1.Model.AppDBcontext
         public Nullable<decimal> final_price { get; set; }
     
         public virtual Main_Reestr Main_Reestr { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TendersPersons> TendersPersons { get; set; }
     }
 }

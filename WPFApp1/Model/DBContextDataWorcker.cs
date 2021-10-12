@@ -16,7 +16,7 @@ namespace WPFApp1.Model
 
         public static List<Contracts> GetDataToContracts<T>()
         {
-            using (StDBEntities db = new StDBEntities())
+            using (ProjectStDBEntities db = new ProjectStDBEntities())
             {
                 var temp = db.Contracts.Include(x => x.Main_Reestr.ID).Include(x => x.Approval_List.Current_Values)
                                        .Include(x => x.Approval_List1.Current_Values)
@@ -29,7 +29,7 @@ namespace WPFApp1.Model
 
         public static bool ToLogin(string login, string pass, string usertype)
         {
-            using (StDBEntities db = new StDBEntities())
+            using (ProjectStDBEntities db = new ProjectStDBEntities())
             {
                 bool answer = db.Users_DB.Include(x => x.User_Types.User_Type)
                                          .Any(x => x.UserLogin.Equals(login) &&
@@ -42,7 +42,7 @@ namespace WPFApp1.Model
 
         public static string GetUserType(string login, string pass)
         {
-            using (StDBEntities db = new StDBEntities())
+            using (ProjectStDBEntities db = new ProjectStDBEntities())
             {
                 string temp = db.Users_DB.Include(x => x.User_Types.User_Type)
                                          .Where(x => x.UserLogin == login && x.UserPass == pass)

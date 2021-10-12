@@ -20,18 +20,18 @@ namespace WPFApp1.Services
         public int ContractID { get; set; }
         public int UserId { get; set; }
         public int CurrentObjektID { get; set; }
-        private readonly StDBEntities _datacontext;
+        private readonly ProjectStDBEntities _datacontext;
 
 
-        public DataService(StDBEntities datacontext)
+        public DataService(ProjectStDBEntities datacontext)
         {
             _datacontext = datacontext;
         }
 
         #region Проекты
-        public List<Main_Reestr> GetObject()
+        public IQueryable<Main_Reestr> GetObject()
         {
-            var ter = _datacontext.Main_Reestr.ToList();
+            var ter = _datacontext.Main_Reestr.AsQueryable();
             return ter;
         }
 
@@ -45,7 +45,7 @@ namespace WPFApp1.Services
         {
             var test = _datacontext.Customers.Any(x => x.Customer_Name.Equals(name));
             return test;
-                
+
         }
 
         public Main_Reestr GetCurrentObjektInfo(int guid)
@@ -54,9 +54,9 @@ namespace WPFApp1.Services
             return objekt;
         }
 
-        public List<Main_Reestr> GetDataToView()
+        public IQueryable<Main_Reestr> GetDataToView()
         {
-            var objekt = _datacontext.Main_Reestr.ToList();
+            var objekt = _datacontext.Main_Reestr.AsQueryable();
             return objekt;
         }
         public void AddNewObjekt(Main_Reestr objekt)
@@ -65,25 +65,25 @@ namespace WPFApp1.Services
             _ = _datacontext.SaveChanges();
         }
 
-        public List<Contracts> GetContractsForCurrentObjekt(int id)
+        public IQueryable<Contracts> GetContractsForCurrentObjekt(int id)
         {
-            var current = _datacontext.Contracts.Where(x => x.IDKey == id).ToList();
+            var current = _datacontext.Contracts.Where(x => x.IDKey == id).AsQueryable();
             return current;
         }
 
 
-        public List<Tenders> GetTendersForCurrentObject(int id)
+        public IQueryable<Tenders> GetTendersForCurrentObject(int id)
         {
-            var current = _datacontext.Tenders.Include(x => x.Main_Reestr).Where(x => x.IDKey == id).ToList();
+            var current = _datacontext.Tenders.Include(x => x.Main_Reestr).Where(x => x.IDKey == id).AsQueryable();
             return current;
         }
 
 
-        public List<TTN> GetTTNsForCurrentObjekt(int id)
+        public IQueryable<TTN> GetTTNsForCurrentObjekt(int id)
         {
             var ttnlist = _datacontext.TTN.Include(x => x.Contracts.Main_Reestr)
                                           .Where(x => x.Contracts.Main_Reestr.ID == id)
-                                          .ToList();
+                                          .AsQueryable();
             return ttnlist;
         }
 
@@ -113,15 +113,15 @@ namespace WPFApp1.Services
         #endregion
 
         #region Договора
-        public List<Contracts> GetAllContracts()
+        public IQueryable<Contracts> GetAllContracts()
         {
-            var contracts = _datacontext.Contracts.ToList();
+            var contracts = _datacontext.Contracts.AsQueryable();
             return contracts;
         }
 
-        public List<Contracts> GetContracts(int guid)
+        public IQueryable<Contracts> GetContracts(int guid)
         {
-            var contracts = _datacontext.Contracts.Where(x => x.IDKey == guid).ToList();
+            var contracts = _datacontext.Contracts.Where(x => x.IDKey == guid).AsQueryable();
             return contracts;
         }
 
@@ -188,15 +188,15 @@ namespace WPFApp1.Services
 
         #region Добавление Удаление Редактирование Пользователей
 
-        public List<User_Types> GetAllTypes()
+        public IQueryable<User_Types> GetAllTypes()
         {
-            var typelist = _datacontext.User_Types.ToList();
+            var typelist = _datacontext.User_Types.AsQueryable();
             return typelist;
         }
 
-        public List<Users_DB> GetAllUsers()
+        public IQueryable<Users_DB> GetAllUsers()
         {
-            var list = _datacontext.Users_DB.ToList();
+            var list = _datacontext.Users_DB.AsQueryable();
             return list;
         }
 
@@ -244,9 +244,9 @@ namespace WPFApp1.Services
         }
         #endregion
 
-        public List<Respons_persons> GetAllRespPersons()
+        public IQueryable<Respons_persons> GetAllRespPersons()
         {
-            var typelist = _datacontext.Respons_persons.ToList();
+            var typelist = _datacontext.Respons_persons.AsQueryable();
             return typelist;
         }
 
@@ -296,9 +296,9 @@ namespace WPFApp1.Services
             }
         }
 
-        public List<Tenders> GetAllTenders()
+        public IQueryable<Tenders> GetAllTenders()
         {
-            var tenders = _datacontext.Tenders.ToList();
+            var tenders = _datacontext.Tenders.AsQueryable();
             return tenders;
         }
 
@@ -318,9 +318,9 @@ namespace WPFApp1.Services
             _ = _datacontext.SaveChanges();
         }
 
-        public List<TTN> GetAllTTN()
+        public IQueryable<TTN> GetAllTTN()
         {
-            var ttn_list = _datacontext.TTN.ToList();
+            var ttn_list = _datacontext.TTN.AsQueryable();
             return ttn_list;
         }
 
@@ -357,9 +357,9 @@ namespace WPFApp1.Services
             return test;
         }
         #endregion
-        public List<Customers> GetAllCustomers()
+        public IQueryable<Customers> GetAllCustomers()
         {
-            var customerslist = _datacontext.Customers.ToList();
+            var customerslist = _datacontext.Customers.AsQueryable();
             return customerslist;
         }
     }

@@ -35,7 +35,7 @@ namespace WPFApp1.Pages
 
             //if (!string.IsNullOrEmpty(contract.Object_name) && contract.Object_name.Contains(filteredText)) return;
             //if (!string.IsNullOrEmpty(contract.Note) && contract.Note.Contains(filteredText)) return;
-            if ( !string.IsNullOrEmpty(tender.Tender_number) && tender.Tender_number.Contains(filteredText)) return;
+            if (!string.IsNullOrEmpty(tender.Tender_number) && tender.Tender_number.Contains(filteredText)) return;
             e.Accepted = false;
         }
 

@@ -13,7 +13,7 @@ namespace WPFApp1.ViewModel
         private readonly PageService _navigation;
 
         public string Password { get; set; }
-        public string User_Login {get; set; }
+        public string User_Login { get; set; }
         public string User_type { get; set; }
 
         public LoginPageViewModel(PageService navigation)

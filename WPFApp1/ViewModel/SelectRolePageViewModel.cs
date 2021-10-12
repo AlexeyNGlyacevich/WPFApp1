@@ -24,7 +24,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand LoginDirector => new DelegateCommand(() =>
         {
-           _navigation.Navigate(new LoginPage());
+            _navigation.Navigate(new LoginPage());
         });
 
         public ICommand LoginEngineer => new DelegateCommand(() =>

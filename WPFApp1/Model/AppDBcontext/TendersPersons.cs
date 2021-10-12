@@ -12,16 +12,13 @@ namespace WPFApp1.Model.AppDBcontext
     using System;
     using System.Collections.Generic;
     
-    public partial class Reestr_of_Contracts
+    public partial class TendersPersons
     {
+        public Nullable<int> TenderID { get; set; }
+        public Nullable<int> PersonID { get; set; }
         public int ID { get; set; }
-        public Nullable<int> Object_encryption { get; set; }
-        public string Stage { get; set; }
-        public string Object_Name { get; set; }
-        public string Current_jobe { get; set; }
-        public Nullable<int> Customer_ID { get; set; }
-        public string Managers { get; set; }
-        public string Project_Manager { get; set; }
-        public string Source { get; set; }
+    
+        public virtual Respons_persons Respons_persons { get; set; }
+        public virtual Tenders Tenders { get; set; }
     }
 }

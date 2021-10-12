@@ -238,7 +238,7 @@
                                                     <TextBlock  VerticalAlignment="Center" 
                                                                 TextAlignment="Center" 
                                                                 HorizontalAlignment="Left"
-                                                                Text="{Binding Respons_persons.First_Name, UpdateSourceTrigger=PropertyChanged}" />
+                                                                Text="{Binding ResponsPersons.First_Name, UpdateSourceTrigger=PropertyChanged}" />
                                                 </StackPanel>
                                             </Expander>
                                         </StackPanel>

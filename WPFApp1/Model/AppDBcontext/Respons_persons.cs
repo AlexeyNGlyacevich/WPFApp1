@@ -17,16 +17,25 @@ namespace WPFApp1.Model.AppDBcontext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Respons_persons()
         {
-            this.Main_Reestr = new HashSet<Main_Reestr>();
+            this.ContractsPersons = new HashSet<ContractsPersons>();
+            this.PersonsReesters = new HashSet<PersonsReesters>();
+            this.TendersPersons = new HashSet<TendersPersons>();
         }
     
         public int ID { get; set; }
-        public string Person_stats { get; set; }
+        public Nullable<int> Person_stats { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
         public string Sub_Name { get; set; }
+        public Nullable<bool> IsSelected { get; set; }
+        public Nullable<bool> Activity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Main_Reestr> Main_Reestr { get; set; }
+        public virtual ICollection<ContractsPersons> ContractsPersons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonsReesters> PersonsReesters { get; set; }
+        public virtual PersonStats PersonStats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TendersPersons> TendersPersons { get; set; }
     }
 }
