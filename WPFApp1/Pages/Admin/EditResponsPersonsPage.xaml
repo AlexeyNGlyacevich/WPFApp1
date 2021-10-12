@@ -6,14 +6,14 @@
       xmlns:local="clr-namespace:WPFApp1.Pages.Admin"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource VmLocator}, Path= ResponsPersonsPageViewModel}"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1200"
       Title="EditResponsPersonsPage">
 
     <Grid>
         <Border BorderThickness="0" 
                 BorderBrush="Black"
-                Width="800" 
-                Height="400">
+                Width="1200" 
+                Height="600">
 
             <DataGrid AutoGenerateColumns="False" 
                       Style="{StaticResource DataGridStyle1}"

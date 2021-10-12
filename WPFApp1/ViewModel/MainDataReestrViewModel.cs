@@ -15,7 +15,7 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly DataService _dataService;
-        private readonly ResponsPersonsRepository _responsPersons;
+        private readonly IResponsPersonsRepository _responsPersons;
         private ObservableCollection<Main_Reestr> _Reester;
         public ObservableCollection<Main_Reestr> Main_Reestr
         {
@@ -86,13 +86,13 @@ namespace WPFApp1.ViewModel
 
 
 
-        public MainDataReestrViewModel(PageService navigation, DataService dataService, ResponsPersonsRepository responsPersonsRepository)
+        public MainDataReestrViewModel(PageService navigation, DataService dataService, IResponsPersonsRepository responsPersonsRepository)
         {
             _navigation = navigation;
             _dataService = dataService;
             _responsPersons = responsPersonsRepository;
             Main_Reestr = new ObservableCollection<Main_Reestr>(_dataService.GetDataToView().OrderByDescending(x => x.ID));
-            ResponsPersons = new ObservableCollection<Respons_persons>();
+            //ResponsPersons = new ObservableCollection<Respons_persons>();
         }
 
         public ICommand EditObject => new DelegateCommand<Main_Reestr>((Main_Reestr objekt) =>
