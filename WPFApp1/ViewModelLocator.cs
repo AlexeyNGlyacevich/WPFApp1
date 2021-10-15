@@ -44,5 +44,7 @@ namespace WPFApp1
 
         public ResponsPersonsPageViewModel ResponsPersonsPageViewModel => IoC.Resolve<ResponsPersonsPageViewModel>();
 
+        public CustomersCatalogPageViewModel CustomersCatalogPageViewModel => IoC.Resolve<CustomersCatalogPageViewModel>();
+
     }
 }

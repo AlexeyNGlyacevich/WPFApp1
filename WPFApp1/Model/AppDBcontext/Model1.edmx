@@ -32,22 +32,25 @@
         </EntityType>
         <EntityType Name="ContractsPersons">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ContractID" />
+            <PropertyRef Name="PersonID" />
           </Key>
-          <Property Name="ContractID" Type="int" />
-          <Property Name="PersonID" Type="int" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Customer_UNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Name" Type="nvarchar(max)" />
+          <Property Name="Customer_UNP" Type="nvarchar" MaxLength="100" />
           <Property Name="Customer_Adress" Type="nvarchar" MaxLength="50" />
           <Property Name="Customer_contact" Type="nvarchar" MaxLength="50" />
-          <Property Name="Customer_type" Type="int" />
+          <Property Name="Customer_code" Type="int" />
+          <Property Name="Type" Type="int" />
+          <Property Name="R_S" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Documentation">
           <Key>
@@ -94,11 +97,11 @@
         </EntityType>
         <EntityType Name="PersonsReesters">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="reester_personID" />
+            <PropertyRef Name="PersonID" />
           </Key>
-          <Property Name="reester_personID" Type="int" />
-          <Property Name="personID" Type="int" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reester_personID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonStats">
           <Key>
@@ -142,11 +145,11 @@
         </EntityType>
         <EntityType Name="TendersPersons">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="TenderID" />
+            <PropertyRef Name="PersonID" />
           </Key>
-          <Property Name="TenderID" Type="int" />
-          <Property Name="PersonID" Type="int" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenderID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TTN">
           <Key>
@@ -221,7 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ContractsPersons_Contracts">
-          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="1" />
           <End Role="ContractsPersons" Type="Self.ContractsPersons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Contracts">
@@ -233,7 +236,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ContractsPersons_Respons_persons">
-          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="0..1" />
+          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="1" />
           <End Role="ContractsPersons" Type="Self.ContractsPersons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Respons_persons">
@@ -257,7 +260,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonsReesters_Main_Reestr">
-          <End Role="Main_Reestr" Type="Self.Main_Reestr" Multiplicity="0..1" />
+          <End Role="Main_Reestr" Type="Self.Main_Reestr" Multiplicity="1" />
           <End Role="PersonsReesters" Type="Self.PersonsReesters" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Main_Reestr">
@@ -269,14 +272,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonsReesters_Respons_persons">
-          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="0..1" />
+          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="1" />
           <End Role="PersonsReesters" Type="Self.PersonsReesters" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Respons_persons">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PersonsReesters">
-              <PropertyRef Name="personID" />
+              <PropertyRef Name="PersonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -317,7 +320,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TendersPersons_Respons_persons">
-          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="0..1" />
+          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="1" />
           <End Role="TendersPersons" Type="Self.TendersPersons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Respons_persons">
@@ -329,7 +332,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TendersPersons_Tenders">
-          <End Role="Tenders" Type="Self.Tenders" Multiplicity="0..1" />
+          <End Role="Tenders" Type="Self.Tenders" Multiplicity="1" />
           <End Role="TendersPersons" Type="Self.TendersPersons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tenders">
@@ -473,31 +476,9 @@
           <NavigationProperty Name="Approval_List" Relationship="Self.FK_Contracts_Approval_List" FromRole="Contracts" ToRole="Approval_List" />
           <NavigationProperty Name="Approval_List1" Relationship="Self.FK_Contracts_Approval_List1" FromRole="Contracts" ToRole="Approval_List" />
           <NavigationProperty Name="Main_Reestr" Relationship="Self.FK_Contracts_Reestr" FromRole="Contracts" ToRole="Main_Reestr" />
-          <NavigationProperty Name="ContractsPersons" Relationship="Self.FK_ContractsPersons_Contracts" FromRole="Contracts" ToRole="ContractsPersons" />
           <NavigationProperty Name="Documentation" Relationship="Self.FK_Documentation_Contracts" FromRole="Contracts" ToRole="Documentation" />
           <NavigationProperty Name="TTN" Relationship="Self.FK_TTN_Contracts" FromRole="Contracts" ToRole="TTN" />
-        </EntityType>
-        <EntityType Name="ContractsPersons">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ContractID" Type="Int32" />
-          <Property Name="PersonID" Type="Int32" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Contracts" Relationship="Self.FK_ContractsPersons_Contracts" FromRole="ContractsPersons" ToRole="Contracts" />
-          <NavigationProperty Name="Respons_persons" Relationship="Self.FK_ContractsPersons_Respons_persons" FromRole="ContractsPersons" ToRole="Respons_persons" />
-        </EntityType>
-        <EntityType Name="Customers">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_UNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_type" Type="Int32" />
-          <NavigationProperty Name="Main_Reestr" Relationship="Self.FK_Reestr_Customers" FromRole="Customers" ToRole="Main_Reestr" />
+          <NavigationProperty Name="Respons_persons" Relationship="ProjectStDBModel.ContractsPersons" FromRole="Contracts" ToRole="Respons_persons" />
         </EntityType>
         <EntityType Name="Documentation">
           <Key>
@@ -543,19 +524,9 @@
           <Property Name="stage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="resp_personID" Type="Int32" />
           <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_Reestr" FromRole="Main_Reestr" ToRole="Contracts" />
-          <NavigationProperty Name="Customers" Relationship="Self.FK_Reestr_Customers" FromRole="Main_Reestr" ToRole="Customers" />
-          <NavigationProperty Name="PersonsReesters" Relationship="Self.FK_PersonsReesters_Main_Reestr" FromRole="Main_Reestr" ToRole="PersonsReesters" />
           <NavigationProperty Name="Tenders" Relationship="Self.FK_Tenders_Main_Reestr" FromRole="Main_Reestr" ToRole="Tenders" />
-        </EntityType>
-        <EntityType Name="PersonsReesters">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="reester_personID" Type="Int32" />
-          <Property Name="personID" Type="Int32" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Main_Reestr" Relationship="Self.FK_PersonsReesters_Main_Reestr" FromRole="PersonsReesters" ToRole="Main_Reestr" />
-          <NavigationProperty Name="Respons_persons" Relationship="Self.FK_PersonsReesters_Respons_persons" FromRole="PersonsReesters" ToRole="Respons_persons" />
+          <NavigationProperty Name="Respons_persons" Relationship="ProjectStDBModel.PersonsReesters" FromRole="Main_Reestr" ToRole="Respons_persons" />
+          <NavigationProperty Name="Customers" Relationship="ProjectStDBModel.FK_Reestr_Customers" FromRole="Main_Reestr" ToRole="Customers" />
         </EntityType>
         <EntityType Name="PersonStats">
           <Key>
@@ -576,10 +547,10 @@
           <Property Name="Sub_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsSelected" Type="Boolean" />
           <Property Name="Activity" Type="Boolean" />
-          <NavigationProperty Name="ContractsPersons" Relationship="Self.FK_ContractsPersons_Respons_persons" FromRole="Respons_persons" ToRole="ContractsPersons" />
-          <NavigationProperty Name="PersonsReesters" Relationship="Self.FK_PersonsReesters_Respons_persons" FromRole="Respons_persons" ToRole="PersonsReesters" />
           <NavigationProperty Name="PersonStats" Relationship="Self.FK_Respons_persons_PersonStats" FromRole="Respons_persons" ToRole="PersonStats" />
-          <NavigationProperty Name="TendersPersons" Relationship="Self.FK_TendersPersons_Respons_persons" FromRole="Respons_persons" ToRole="TendersPersons" />
+          <NavigationProperty Name="Contracts" Relationship="ProjectStDBModel.ContractsPersons" FromRole="Respons_persons" ToRole="Contracts" />
+          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.PersonsReesters" FromRole="Respons_persons" ToRole="Main_Reestr" />
+          <NavigationProperty Name="Tenders" Relationship="ProjectStDBModel.TendersPersons" FromRole="Respons_persons" ToRole="Tenders" />
         </EntityType>
         <EntityType Name="Tenders">
           <Key>
@@ -602,17 +573,7 @@
           <Property Name="Tender_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="final_price" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Main_Reestr" Relationship="Self.FK_Tenders_Main_Reestr" FromRole="Tenders" ToRole="Main_Reestr" />
-          <NavigationProperty Name="TendersPersons" Relationship="Self.FK_TendersPersons_Tenders" FromRole="Tenders" ToRole="TendersPersons" />
-        </EntityType>
-        <EntityType Name="TendersPersons">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="TenderID" Type="Int32" />
-          <Property Name="PersonID" Type="Int32" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Respons_persons" Relationship="Self.FK_TendersPersons_Respons_persons" FromRole="TendersPersons" ToRole="Respons_persons" />
-          <NavigationProperty Name="Tenders" Relationship="Self.FK_TendersPersons_Tenders" FromRole="TendersPersons" ToRole="Tenders" />
+          <NavigationProperty Name="Respons_persons" Relationship="ProjectStDBModel.TendersPersons" FromRole="Tenders" ToRole="Respons_persons" />
         </EntityType>
         <EntityType Name="TTN">
           <Key>
@@ -689,18 +650,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ContractsPersons_Contracts">
-          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
-          <End Role="ContractsPersons" Type="Self.ContractsPersons" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contracts">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ContractsPersons">
-              <PropertyRef Name="ContractID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Documentation_Contracts">
           <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
           <End Role="Documentation" Type="Self.Documentation" Multiplicity="*" />
@@ -725,42 +674,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ContractsPersons_Respons_persons">
-          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="0..1" />
-          <End Role="ContractsPersons" Type="Self.ContractsPersons" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Respons_persons">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ContractsPersons">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reestr_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
-          <End Role="Main_Reestr" Type="Self.Main_Reestr" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Main_Reestr">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PersonsReesters_Main_Reestr">
-          <End Role="Main_Reestr" Type="Self.Main_Reestr" Multiplicity="0..1" />
-          <End Role="PersonsReesters" Type="Self.PersonsReesters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Main_Reestr">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PersonsReesters">
-              <PropertyRef Name="reester_personID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Tenders_Main_Reestr">
           <End Role="Main_Reestr" Type="Self.Main_Reestr" Multiplicity="0..1" />
           <End Role="Tenders" Type="Self.Tenders" Multiplicity="*" />
@@ -773,18 +686,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PersonsReesters_Respons_persons">
-          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="0..1" />
-          <End Role="PersonsReesters" Type="Self.PersonsReesters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Respons_persons">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PersonsReesters">
-              <PropertyRef Name="personID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Respons_persons_PersonStats">
           <End Role="PersonStats" Type="Self.PersonStats" Multiplicity="0..1" />
           <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="*" />
@@ -794,30 +695,6 @@
             </Principal>
             <Dependent Role="Respons_persons">
               <PropertyRef Name="Person_stats" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TendersPersons_Respons_persons">
-          <End Role="Respons_persons" Type="Self.Respons_persons" Multiplicity="0..1" />
-          <End Role="TendersPersons" Type="Self.TendersPersons" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Respons_persons">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TendersPersons">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TendersPersons_Tenders">
-          <End Role="Tenders" Type="Self.Tenders" Multiplicity="0..1" />
-          <End Role="TendersPersons" Type="Self.TendersPersons" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenders">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TendersPersons">
-              <PropertyRef Name="TenderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -836,15 +713,11 @@
         <EntityContainer Name="ProjectStDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Approval_List" EntityType="Self.Approval_List" />
           <EntitySet Name="Contracts" EntityType="Self.Contracts" />
-          <EntitySet Name="ContractsPersons" EntityType="Self.ContractsPersons" />
-          <EntitySet Name="Customers" EntityType="Self.Customers" />
           <EntitySet Name="Documentation" EntityType="Self.Documentation" />
           <EntitySet Name="Main_Reestr" EntityType="Self.Main_Reestr" />
-          <EntitySet Name="PersonsReesters" EntityType="Self.PersonsReesters" />
           <EntitySet Name="PersonStats" EntityType="Self.PersonStats" />
           <EntitySet Name="Respons_persons" EntityType="Self.Respons_persons" />
           <EntitySet Name="Tenders" EntityType="Self.Tenders" />
-          <EntitySet Name="TendersPersons" EntityType="Self.TendersPersons" />
           <EntitySet Name="TTN" EntityType="Self.TTN" />
           <EntitySet Name="User_Types" EntityType="Self.User_Types" />
           <EntitySet Name="Users_DB" EntityType="Self.Users_DB" />
@@ -860,10 +733,6 @@
             <End Role="Main_Reestr" EntitySet="Main_Reestr" />
             <End Role="Contracts" EntitySet="Contracts" />
           </AssociationSet>
-          <AssociationSet Name="FK_ContractsPersons_Contracts" Association="Self.FK_ContractsPersons_Contracts">
-            <End Role="Contracts" EntitySet="Contracts" />
-            <End Role="ContractsPersons" EntitySet="ContractsPersons" />
-          </AssociationSet>
           <AssociationSet Name="FK_Documentation_Contracts" Association="Self.FK_Documentation_Contracts">
             <End Role="Contracts" EntitySet="Contracts" />
             <End Role="Documentation" EntitySet="Documentation" />
@@ -872,43 +741,75 @@
             <End Role="Contracts" EntitySet="Contracts" />
             <End Role="TTN" EntitySet="TTN" />
           </AssociationSet>
-          <AssociationSet Name="FK_ContractsPersons_Respons_persons" Association="Self.FK_ContractsPersons_Respons_persons">
-            <End Role="Respons_persons" EntitySet="Respons_persons" />
-            <End Role="ContractsPersons" EntitySet="ContractsPersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reestr_Customers" Association="Self.FK_Reestr_Customers">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PersonsReesters_Main_Reestr" Association="Self.FK_PersonsReesters_Main_Reestr">
-            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
-            <End Role="PersonsReesters" EntitySet="PersonsReesters" />
-          </AssociationSet>
           <AssociationSet Name="FK_Tenders_Main_Reestr" Association="Self.FK_Tenders_Main_Reestr">
             <End Role="Main_Reestr" EntitySet="Main_Reestr" />
             <End Role="Tenders" EntitySet="Tenders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PersonsReesters_Respons_persons" Association="Self.FK_PersonsReesters_Respons_persons">
-            <End Role="Respons_persons" EntitySet="Respons_persons" />
-            <End Role="PersonsReesters" EntitySet="PersonsReesters" />
           </AssociationSet>
           <AssociationSet Name="FK_Respons_persons_PersonStats" Association="Self.FK_Respons_persons_PersonStats">
             <End Role="PersonStats" EntitySet="PersonStats" />
             <End Role="Respons_persons" EntitySet="Respons_persons" />
           </AssociationSet>
-          <AssociationSet Name="FK_TendersPersons_Respons_persons" Association="Self.FK_TendersPersons_Respons_persons">
-            <End Role="Respons_persons" EntitySet="Respons_persons" />
-            <End Role="TendersPersons" EntitySet="TendersPersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TendersPersons_Tenders" Association="Self.FK_TendersPersons_Tenders">
-            <End Role="Tenders" EntitySet="Tenders" />
-            <End Role="TendersPersons" EntitySet="TendersPersons" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_DB_User_Types" Association="Self.FK_Users_DB_User_Types">
             <End Role="User_Types" EntitySet="User_Types" />
             <End Role="Users_DB" EntitySet="Users_DB" />
           </AssociationSet>
+          <AssociationSet Name="ContractsPersons" Association="ProjectStDBModel.ContractsPersons">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Respons_persons" EntitySet="Respons_persons" />
+          </AssociationSet>
+          <AssociationSet Name="PersonsReesters" Association="ProjectStDBModel.PersonsReesters">
+            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
+            <End Role="Respons_persons" EntitySet="Respons_persons" />
+          </AssociationSet>
+          <AssociationSet Name="TendersPersons" Association="ProjectStDBModel.TendersPersons">
+            <End Role="Respons_persons" EntitySet="Respons_persons" />
+            <End Role="Tenders" EntitySet="Tenders" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="ProjectStDBModel.Customers" />
+          <AssociationSet Name="FK_Reestr_Customers" Association="ProjectStDBModel.FK_Reestr_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Main_Reestr" EntitySet="Main_Reestr" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="ContractsPersons">
+          <End Type="ProjectStDBModel.Contracts" Role="Contracts" Multiplicity="*" />
+          <End Type="ProjectStDBModel.Respons_persons" Role="Respons_persons" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonsReesters">
+          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="*" />
+          <End Type="ProjectStDBModel.Respons_persons" Role="Respons_persons" Multiplicity="*" />
+        </Association>
+        <Association Name="TendersPersons">
+          <End Type="ProjectStDBModel.Respons_persons" Role="Respons_persons" Multiplicity="*" />
+          <End Type="ProjectStDBModel.Tenders" Role="Tenders" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_UNP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_code" Type="Int32" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="R_S" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Main_Reestr" Relationship="ProjectStDBModel.FK_Reestr_Customers" FromRole="Customers" ToRole="Main_Reestr" />
+        </EntityType>
+        <Association Name="FK_Reestr_Customers">
+          <End Type="ProjectStDBModel.Customers" Role="Customers" Multiplicity="0..1" />
+          <End Type="ProjectStDBModel.Main_Reestr" Role="Main_Reestr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Main_Reestr">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -939,27 +840,6 @@
                 <ScalarProperty Name="approval_list_id" ColumnName="approval_list_id" />
                 <ScalarProperty Name="orders_Id" ColumnName="orders_Id" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ContractsPersons">
-            <EntityTypeMapping TypeName="ProjectStDBModel.ContractsPersons">
-              <MappingFragment StoreEntitySet="ContractsPersons">
-                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="ProjectStDBModel.Customers">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-                <ScalarProperty Name="Customer_UNN" ColumnName="Customer_UNN" />
-                <ScalarProperty Name="Customer_Adress" ColumnName="Customer_Adress" />
-                <ScalarProperty Name="Customer_contact" ColumnName="Customer_contact" />
-                <ScalarProperty Name="Customer_type" ColumnName="Customer_type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1008,15 +888,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PersonsReesters">
-            <EntityTypeMapping TypeName="ProjectStDBModel.PersonsReesters">
-              <MappingFragment StoreEntitySet="PersonsReesters">
-                <ScalarProperty Name="reester_personID" ColumnName="reester_personID" />
-                <ScalarProperty Name="personID" ColumnName="personID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PersonStats">
             <EntityTypeMapping TypeName="ProjectStDBModel.PersonStats">
               <MappingFragment StoreEntitySet="PersonStats">
@@ -1060,15 +931,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TendersPersons">
-            <EntityTypeMapping TypeName="ProjectStDBModel.TendersPersons">
-              <MappingFragment StoreEntitySet="TendersPersons">
-                <ScalarProperty Name="TenderID" ColumnName="TenderID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TTN">
             <EntityTypeMapping TypeName="ProjectStDBModel.TTN">
               <MappingFragment StoreEntitySet="TTN">
@@ -1103,6 +965,45 @@
                 <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
                 <ScalarProperty Name="UserPass" ColumnName="UserPass" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ContractsPersons" TypeName="ProjectStDBModel.ContractsPersons" StoreEntitySet="ContractsPersons">
+            <EndProperty Name="Respons_persons">
+              <ScalarProperty Name="ID" ColumnName="PersonID" />
+            </EndProperty>
+            <EndProperty Name="Contracts">
+              <ScalarProperty Name="ID" ColumnName="ContractID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PersonsReesters" TypeName="ProjectStDBModel.PersonsReesters" StoreEntitySet="PersonsReesters">
+            <EndProperty Name="Respons_persons">
+              <ScalarProperty Name="ID" ColumnName="PersonID" />
+            </EndProperty>
+            <EndProperty Name="Main_Reestr">
+              <ScalarProperty Name="ID" ColumnName="reester_personID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TendersPersons" TypeName="ProjectStDBModel.TendersPersons" StoreEntitySet="TendersPersons">
+            <EndProperty Name="Tenders">
+              <ScalarProperty Name="ID" ColumnName="TenderID" />
+            </EndProperty>
+            <EndProperty Name="Respons_persons">
+              <ScalarProperty Name="ID" ColumnName="PersonID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ProjectStDBModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="R_S" ColumnName="R_S" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Customer_code" ColumnName="Customer_code" />
+                <ScalarProperty Name="Customer_contact" ColumnName="Customer_contact" />
+                <ScalarProperty Name="Customer_Adress" ColumnName="Customer_Adress" />
+                <ScalarProperty Name="Customer_UNP" ColumnName="Customer_UNP" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

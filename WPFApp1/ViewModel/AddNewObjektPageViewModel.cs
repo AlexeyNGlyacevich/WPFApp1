@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
+using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.Pages;
 using WPFApp1.Services;
 
@@ -15,27 +16,29 @@ namespace WPFApp1.ViewModel
 {
     public class AddNewObjektPageViewModel : BindableBase
     {
-        public int registrnumber { get; set; }
-        public string cstage { get; set; }
-        public string objektName { get; set; }
-        public string projektType { get; set; }
-        public int resp_person { get; set; }
+        public int Registrnumber { get; set; }
+        public string Stage { get; set; }
+        public string ObjektName { get; set; }
+        public string ProjektType { get; set; }
+        public int Resp_person { get; set; }
 
         private readonly PageService _navigation;
-        private readonly DataService _dataservice;
-        public ObservableCollection<Respons_persons> RespPersons { get; set; } = new ObservableCollection<Respons_persons>();
+        private readonly IProjektRepository _projektRepository;
+        private readonly IResponsPersonsRepository _responsPersonsRepository;
+        public ObservableCollection<Respons_persons> RespPersons { get; set; }
 
-        public AddNewObjektPageViewModel(PageService navigation, DataService dataservice)
+        public AddNewObjektPageViewModel(PageService navigation, IProjektRepository projektRepository, IResponsPersonsRepository responsPersonsRepository)
         {
             _navigation = navigation;
-            _dataservice = dataservice;
-            RespPersons = new ObservableCollection<Respons_persons>(_dataservice.GetAllRespPersons());
+            _projektRepository = projektRepository;
+            _responsPersonsRepository = responsPersonsRepository;
+            RespPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersons());
         }
 
 
         public ICommand AddNewObjekt => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckObjektRegistrationNumber(registrnumber))
+            if (_projektRepository.CheckObjektRegistrationNumber(Registrnumber))
             {
                 _ = MessageBox.Show("Проект с указанным номером уже существует!", "Новый Проект", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -44,21 +47,21 @@ namespace WPFApp1.ViewModel
             {
                 Main_Reestr Newobjekt = new Main_Reestr()
                 {
-                    Doc_Number = registrnumber,
-                    stage = cstage,
-                    Object_name = objektName,
-                    project_type = projektType,
-                    resp_personID = resp_person,
+                    Doc_Number = Registrnumber,
+                    stage = Stage,
+                    Object_name = ObjektName,
+                    project_type = ProjektType,
+                    resp_personID = Resp_person,
                     Creation_Date = DateTime.Now,
                     CustomerID = 10
                 };
 
-                _dataservice.AddNewObjekt(Newobjekt);
+                _projektRepository.AddNewProjekt(Newobjekt);
                 _ = MessageBox.Show("Новая запись добавлена в реестр", "Новый Проект", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigation.Navigate(new MainDataReestrPage());
             }
 
-        }, () => !string.IsNullOrEmpty(objektName) && !string.IsNullOrEmpty(projektType) && !string.IsNullOrEmpty(cstage) && registrnumber != 0 && resp_person != 0);
+        }, () => !string.IsNullOrEmpty(ObjektName) && !string.IsNullOrEmpty(ProjektType) && !string.IsNullOrEmpty(Stage) && Registrnumber != 0 && Resp_person != 0);
 
     }
 }

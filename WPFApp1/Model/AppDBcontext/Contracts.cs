@@ -17,9 +17,9 @@ namespace WPFApp1.Model.AppDBcontext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Contracts()
         {
-            this.ContractsPersons = new HashSet<ContractsPersons>();
             this.Documentation = new HashSet<Documentation>();
             this.TTN = new HashSet<TTN>();
+            this.Respons_persons = new HashSet<Respons_persons>();
         }
     
         public int ID { get; set; }
@@ -40,10 +40,10 @@ namespace WPFApp1.Model.AppDBcontext
         public virtual Approval_List Approval_List1 { get; set; }
         public virtual Main_Reestr Main_Reestr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContractsPersons> ContractsPersons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Documentation> Documentation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TTN> TTN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Respons_persons> Respons_persons { get; set; }
     }
 }

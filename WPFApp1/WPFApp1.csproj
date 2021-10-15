@@ -99,13 +99,16 @@
     <Compile Include="CustomControl\TextboxWithPlaceHolderForFilters.xaml.cs">
       <DependentUpon>TextboxWithPlaceHolderForFilters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\AddNewContractWindowDialog.xaml.cs">
+      <DependentUpon>AddNewContractWindowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\RespPersonsWindowDialog.xaml.cs">
+      <DependentUpon>RespPersonsWindowDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\AppDBcontext\Approval_List.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Contracts.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\AppDBcontext\ContractsPersons.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Customers.cs">
@@ -132,9 +135,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppDBcontext\PersonsReesters.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\AppDBcontext\PersonStats.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -142,9 +142,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Tenders.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\AppDBcontext\TendersPersons.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\TTN.cs">
@@ -157,13 +154,24 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DBContextDataWorcker.cs" />
+    <Compile Include="Model\Repositories\ContractRepository.cs" />
+    <Compile Include="Model\Repositories\CustomersRepository.cs" />
+    <Compile Include="Model\Repositories\Intefaces\IContractRepository.cs" />
+    <Compile Include="Model\Repositories\Intefaces\ICustomersRepository.cs" />
+    <Compile Include="Model\Repositories\Intefaces\IProjektRepository.cs" />
     <Compile Include="Model\Repositories\Intefaces\IResponsPersonsRepository.cs" />
+    <Compile Include="Model\Repositories\Intefaces\IUsersRepository.cs" />
+    <Compile Include="Model\Repositories\ProjektRepository.cs" />
     <Compile Include="Model\Repositories\ResponsPersonsRepository.cs" />
+    <Compile Include="Model\Repositories\UsersRepository.cs" />
     <Compile Include="Pages\Admin\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\AllUsersEditorPage.xaml.cs">
       <DependentUpon>AllUsersEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\CustomerCatalogPage.xaml.cs">
+      <DependentUpon>CustomerCatalogPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\EditResponsPersonsPage.xaml.cs">
       <DependentUpon>EditResponsPersonsPage.xaml</DependentUpon>
@@ -240,6 +248,7 @@
     <Compile Include="ViewModel\AllTTNPageViewModel.cs" />
     <Compile Include="ViewModel\AllUsersEditorPageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel.cs" />
+    <Compile Include="ViewModel\CustomersCatalogPageViewModel.cs" />
     <Compile Include="ViewModel\MainDataReestrViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ObjectPageViewModel.cs" />
@@ -255,6 +264,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControl\TextboxWithPlaceHolderForFilters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddNewContractWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\RespPersonsWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +293,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Admin\AllUsersEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\CustomerCatalogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

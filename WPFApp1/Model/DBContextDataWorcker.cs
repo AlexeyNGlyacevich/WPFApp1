@@ -14,16 +14,6 @@ namespace WPFApp1.Model
     {
 
 
-        public static List<Contracts> GetDataToContracts<T>()
-        {
-            using (ProjectStDBEntities db = new ProjectStDBEntities())
-            {
-                var temp = db.Contracts.Include(x => x.Main_Reestr.ID).Include(x => x.Approval_List.Current_Values)
-                                       .Include(x => x.Approval_List1.Current_Values)
-                                       .ToList();
-                return temp;
-            }
-        }
 
 
 

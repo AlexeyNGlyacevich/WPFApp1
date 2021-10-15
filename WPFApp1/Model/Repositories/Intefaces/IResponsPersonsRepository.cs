@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using WPFApp1.Model.AppDBcontext;
 
 namespace WPFApp1.Model.Repositories.Intefaces
@@ -15,7 +11,13 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         IQueryable<Respons_persons> GetAdminstrativePersons();
 
+        IQueryable<Respons_persons> GetAdminstrativePersonsByCurrentProjekt(int projektID);
+
         IQueryable<Respons_persons> GetEngenersPersons();
+
+        IQueryable<Respons_persons> GetEngenersByCurrentcontract(int contractID);
+
+        IQueryable<Respons_persons> GetWorckersByCurrentcontract(int contractID);
 
         IQueryable<Respons_persons> GetWorckers();
 

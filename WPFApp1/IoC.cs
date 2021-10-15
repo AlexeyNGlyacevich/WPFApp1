@@ -35,15 +35,20 @@ namespace WPFApp1
             _ = services.AddTransient<TTNPageViewModel>();
             _ = services.AddTransient<AllTTNPageViewModel>();
             _ = services.AddTransient<ResponsPersonsPageViewModel>();
+            _ = services.AddTransient<CustomersCatalogPageViewModel>();
 
 
             _ = services.AddScoped<ProjectStDBEntities>();
             _ = services.AddSingleton<PageService>();
             _ = services.AddScoped<DataService>();
-            _ = services.AddSingleton<MessageBus>();
-            _ = services.AddSingleton<EventSubscriber>();
-            _ = services.AddSingleton<EventBus>();
+            _ = services.AddScoped<MessageBus>();
+            _ = services.AddScoped<EventSubscriber>();
+            _ = services.AddScoped<EventBus>();
             _ = services.AddScoped<IResponsPersonsRepository, ResponsPersonsRepository>();
+            _ = services.AddScoped<IProjektRepository, ProjektRepository>();
+            _ = services.AddScoped<ICustomersRepository, CustomersRepository>();
+            _ = services.AddScoped<IContractRepository, ContractRepository>();
+            _ = services.AddScoped<IUsersRepository, UsersRepository>();
 
             _provider = services.BuildServiceProvider();
         }

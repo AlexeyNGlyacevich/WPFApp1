@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPFApp1.Pages"
       mc:Ignorable="d" 
        DataContext="{Binding Source={StaticResource VmLocator}, Path = ObjectPageViewModel}"
-      d:DesignHeight="680" d:DesignWidth="1300" Background="WhiteSmoke"
+      d:DesignHeight="680" d:DesignWidth="1200" Background="WhiteSmoke"
       Title="ObjectPage">
 
     <Grid >
@@ -165,7 +165,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="400"/>
                                 </Grid.ColumnDefinitions>
 
 
@@ -181,82 +181,82 @@
                                         <StackPanel Orientation="Horizontal"
                                                     Margin="5 10 1 1">
 
-                                                        <TextBlock Text="Шифр Проекта :" 
+                                            <TextBlock Text="Шифр Проекта :" 
                                                                    Margin="5 5 1 1 "  
                                                                    TextAlignment="Center"  
                                                                    Height="20"
                                                                    VerticalAlignment="Stretch" />
 
-                                                        <TextBox x:Name ="Document_number" 
+                                            <TextBox x:Name ="Document_number" 
                                                                  Text="{Binding Doc_Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                  Margin="13 1 1 1 "
                                                                  Padding="1 1 1 1"                 
                                                                  TextAlignment="Left"        
                                                                  Height="20"          
-                                                                 Width="200"          
+                                                                 Width="245"          
                                                                  VerticalAlignment="Bottom"   
                                                                  FontWeight="Bold"/>
                                         </StackPanel>
 
-                                        
-                                         <StackPanel Orientation="Horizontal"          
+
+                                        <StackPanel Orientation="Horizontal"          
                                                      Margin="5 10 1 1">
-                                                        
-                                                       
-                                             <TextBlock Text="Тип Проекта :"
+
+
+                                            <TextBlock Text="Тип Проекта :"
                                                         Margin="5 1 1 1 "
                                                         Padding="0 0 5 5"
                                                         TextAlignment="Center"
                                                         Height="20"
                                                         VerticalAlignment="Top"
                                                         HorizontalAlignment="Left"/>
-                                                        
-                                                       
-                                             <TextBox  Text="{Binding Project_type, NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+
+
+                                            <TextBox  Text="{Binding Project_type, NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                        Margin="22 1 1 1 "
                                                        Padding="1 1 1 1" 
                                                        TextAlignment="Left"  
                                                        Height="20" 
-                                                       Width="200"
+                                                       Width="245"
                                                        VerticalAlignment="Top" 
                                                        HorizontalAlignment="Left"  
                                                        FontWeight="Bold"/>
-                                         </StackPanel>
+                                        </StackPanel>
 
-                                                    <StackPanel Orientation="Horizontal"
+                                        <StackPanel Orientation="Horizontal"
                                                                 Margin="5 10 1 1">
-                                                        
-                                                        <TextBlock Text="Стадия : "
+
+                                            <TextBlock Text="Стадия : "
                                                                    Margin="5 1 1 1 "
                                                                    Padding="0 0 5 5" 
                                                                    TextAlignment="Center"
                                                                    Height="20"
                                                                    VerticalAlignment="Top" 
                                                                    HorizontalAlignment="Left" />
-                                                        <TextBox   Text="{Binding Stage, NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                            <TextBox   Text="{Binding Stage, NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                                      Margin="50 1 1 1 " 
                                                                      Padding="1 1 1 1" 
                                                                      TextAlignment="Left"  
                                                                      Height="20"
-                                                                     Width="200" 
+                                                                     Width="245" 
                                                                      VerticalAlignment="Top"  
                                                                      FontWeight="Bold"
                                                                      BorderThickness="1"/>
-                                                    </StackPanel>
+                                        </StackPanel>
 
-                                                    <StackPanel Orientation="Horizontal" Margin="5 10 1 1">
-                                                        <TextBlock Text="Дата Создания :" 
+                                        <StackPanel Orientation="Horizontal" Margin="5 10 1 1">
+                                            <TextBlock Text="Дата Создания :" 
                                                                    Margin="5 1 1 1 " 
                                                                    TextAlignment="Center"
                                                                    Height="20" 
                                                                    VerticalAlignment="Top"/>
-                                                        
-                                                        <DatePicker Name="DateOfCreation" 
+
+                                            <DatePicker Name="DateOfCreation" 
                                                                     Margin="15 0 0 0"
                                                                     TextBlock.FontWeight="Bold"
-                                                                    Width="200"
+                                                                    Width="245"
                                                                     SelectedDate="{Binding CreationDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                                    </StackPanel>
+                                        </StackPanel>
 
 
                                         <StackPanel Orientation="Vertical" 
@@ -268,21 +268,25 @@
                                                                    Height="18"
                                                                    VerticalAlignment="Top"
                                                                    HorizontalAlignment="Left"/>
-                                            <TextBox x:Name="ProjektName" Text="{Binding Object_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                                                     Margin="2 1 1 1 "
-                                                                     Padding="1 1 1 1" 
-                                                                     TextAlignment="Left" 
-                                                                     Height="80" 
-                                                                     Width="350" 
-                                                                     VerticalAlignment="Top" 
-                                                                     HorizontalAlignment="Left"
-                                                                     FontWeight="Bold"
+                                            <TextBox x:Name="ProjektName" 
+                                                     Text="{Binding Object_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"              
+                                                     Margin="2 1 1 1 "               
+                                                     Padding="4 2 4 2" 
+                                                     TextAlignment="Left" 
+                                                     Height="150" 
+                                                     Width="351" 
+                                                     TextWrapping="Wrap"
+                                                     VerticalAlignment="Top" 
+                                                     HorizontalAlignment="Left"
+                                                     FontWeight="Medium"
+                                                     FontSize="14"
                                                                      />
                                         </StackPanel>
                                     </StackPanel>
-                                        
+
                                 </GroupBox>
-                                <GroupBox Header="Данные Заказчика/Покупателя/Подрядчика" Grid.Column="1"
+                                <GroupBox Header="Данные Заказчика/Покупателя/Подрядчика"
+                                          Grid.Column="1"
                                           Margin="10 5 5 10">
                                     <StackPanel Orientation="Vertical">
 
@@ -306,30 +310,115 @@
                                                   TextBoxBase.TextChanged="Cust_TextChanged"
                                                   StaysOpenOnEdit="True"
                                                   SelectedValue="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                                     
+
                                         </ComboBox>
 
-                                        <TextBox Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                             Margin="5 1 5 5 "
-                                             Padding="0 0 5 5" 
-                                             TextAlignment="Left"
-                                             Height="80"
-                                             Width="350"
-                                             VerticalAlignment="Top"
-                                             FontWeight="Bold"/>
 
-                                        <TextBlock Text="Данные Заказчика :"
-                                               Margin="5 5 5 1 " 
-                                               Foreground="#a3a3a4"
-                                               TextAlignment="Left"  
-                                               Height="20" 
-                                               Width="Auto"
-                                               VerticalAlignment="Top" />
+
+                                        <GroupBox Header="Данные Заказчика"
+                                                  Height="265"
+                                                  Margin="1 1 1 1">
+                                            <ListBox >
+
+                                                <DockPanel>
+                                                    <TextBlock Text="Код : "
+                                                               DockPanel.Dock="Left"
+                                                               FontWeight="SemiBold"
+                                                               FontSize="14"/>
+                                                    <TextBlock Margin="80 0 0 0"
+                                                               FontSize="14"
+                                                               Text="{Binding ThisCustomer.Customer_code, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <TextBlock Text="УНП : "
+                                                               DockPanel.Dock="Left"
+                                                               FontWeight="SemiBold"
+                                                               FontSize="14"/>
+                                                    <TextBlock Margin="76 0 0 0"
+                                                               FontSize="14"
+                                                               Text="{Binding ThisCustomer.Customer_UNP,    UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <TextBlock Text="Расчетный счет :"
+                                                               DockPanel.Dock="Left"
+                                                               FontWeight="SemiBold"
+                                                               FontSize="14"/>
+                                                    <TextBlock Margin="6 0 0 0"
+                                                               FontSize="14"
+                                                               Text="{Binding ThisCustomer.R_S,    UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <TextBlock Text="Адрес :"
+                                                               DockPanel.Dock="Left"
+                                                               FontWeight="SemiBold"
+                                                               FontSize="14"/>
+                                                    <TextBlock Margin="68 0 0 0"
+                                                               TextWrapping="Wrap"
+                                                               FontSize="14"
+                                                               Text="{Binding ThisCustomer.Customer_Adress,    UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <TextBlock Text="Контакты : "
+                                                               DockPanel.Dock="Left"
+                                                               FontWeight="SemiBold"
+                                                               FontSize="14"/>
+                                                    <TextBlock Margin="43 0 0 0"
+                                                               FontSize="14"
+                                                               TextWrapping="Wrap"
+                                                               Text="{Binding ThisCustomer.Customer_contact,    UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <TextBlock Text="Тип : "
+                                                               DockPanel.Dock="Left"
+                                                               FontWeight="SemiBold"
+                                                               FontSize="14"/>
+                                                    <TextBlock Margin="82 0 0 0"
+                                                               FontSize="14"
+                                                               Text="{Binding ThisCustomer.Type,    UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DockPanel>
+                                            </ListBox>
+                                        </GroupBox>
                                     </StackPanel>
                                 </GroupBox>
+                                <GroupBox Grid.Column="2"
+                                          Header="Назначить Ответственных за Проект" Margin="10,5,31,10">
+                                    <DockPanel HorizontalAlignment="Stretch" 
+                                               Margin="0 0 0 10">
+                                        <ListBox ItemsSource="{Binding RespPersons}"
+                                                 DockPanel.Dock="Left"
+                                                 Width="150">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding First_Name}"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <StackPanel Width="40"
+                                                    Orientation="Vertical"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center">
+                                            <Button Height="30"
+                                                    Width="30"
+                                                    Margin="5">
+                                            </Button>
+                                            <Button Height="30"
+                                                    Width="30"
+                                                     Margin="5">
+                                            </Button>
+                                        </StackPanel>
+                                        <ListBox ItemsSource="{Binding AllAdmPersons}"
+                                                 Width="150">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding First_Name}"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </DockPanel>
+                                </GroupBox>
                             </Grid>
+                    
                         </TabItem>
-
                     </TabControl>
                 </Grid>
 

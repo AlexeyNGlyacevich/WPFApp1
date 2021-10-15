@@ -235,10 +235,31 @@
                                             </StackPanel>
                                             <Expander Header="Ответственные за проект">
                                                 <StackPanel Orientation="Vertical">
-                                                    <TextBlock  VerticalAlignment="Center" 
-                                                                TextAlignment="Center" 
-                                                                HorizontalAlignment="Left"
-                                                                Text="{Binding ResponsPersons.First_Name, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <ItemsControl ItemsSource="{Binding Respons_persons}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Border>
+                                                                        
+                                                                    </Border>
+                                                                    <TextBlock  VerticalAlignment="Center" 
+                                                                                TextAlignment="Center" 
+                                                                                HorizontalAlignment="Left"
+                                                                                Text="{Binding First_Name, UpdateSourceTrigger=PropertyChanged}" />
+                                                                    <TextBlock  VerticalAlignment="Center" 
+                                                                                TextAlignment="Center" 
+                                                                                HorizontalAlignment="Left"
+                                                                                Margin="5 0 0 0"
+                                                                                Text="{Binding Last_Name, UpdateSourceTrigger=PropertyChanged}" />
+                                                                    <TextBlock  VerticalAlignment="Center" 
+                                                                                TextAlignment="Center" 
+                                                                                HorizontalAlignment="Left"
+                                                                                Margin="5 0 0 0"
+                                                                                Text="{Binding Sub_Name, UpdateSourceTrigger=PropertyChanged}" />
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
                                                 </StackPanel>
                                             </Expander>
                                         </StackPanel>

@@ -2,26 +2,35 @@
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Pages;
+using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
     public class AddNewConrtactViewModel : BindableBase
     {
-        public int ContractNumber { get; set; }
+        private int contractNumber;
+        public int ContractNumber
+        {
+            get => contractNumber;
+            set
+            {
+                contractNumber = value;
+                RaisePropertiesChanged();
+            }
+        }
         public int ObjektID { get; set; }
         public int? ObjektNumber { get; set; }
         public Main_Reestr CurrentObjekt { get; set; }
 
-        private readonly PageService _navigation;
         private readonly DataService _dataservice;
+        private readonly IProjektRepository _projektRepository;
 
-        public AddNewConrtactViewModel(DataService dataservice, PageService navigation)
+        public AddNewConrtactViewModel(DataService dataservice, IProjektRepository projektRepository)
         {
-            _navigation = navigation;
             _dataservice = dataservice;
-            CurrentObjekt = _dataservice.GetCurrentObjektInfo(_dataservice.CurrentObjektID);
+            _projektRepository = projektRepository;
+            CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
             ObjektNumber = CurrentObjekt.Doc_Number;
         }
 
@@ -44,14 +53,11 @@ namespace WPFApp1.ViewModel
                 {
                     ContractID = contract.ID
                 };
-
                 _dataservice.AddNewDocumentation(documentation);
-                _ = MessageBox.Show("Новый Договор Успешно Добавлен", "Добавление Договоров", MessageBoxButton.OK, MessageBoxImage.Information);
-                _navigation.Refresh();
-                _navigation.Refresh();
-                _navigation.Navigate(new ObjectPage());
+                _ = MessageBox.Show("Договор Зарегистрирован", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Error);
+               
             }
-
+            
         }, () => ContractNumber != 0 && ContractNumber > 9);
 
 

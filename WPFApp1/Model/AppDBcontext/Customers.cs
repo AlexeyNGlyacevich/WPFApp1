@@ -22,10 +22,13 @@ namespace WPFApp1.Model.AppDBcontext
     
         public int ID { get; set; }
         public string Customer_Name { get; set; }
-        public string Customer_UNN { get; set; }
+        public string Customer_UNP { get; set; }
         public string Customer_Adress { get; set; }
         public string Customer_contact { get; set; }
-        public Nullable<int> Customer_type { get; set; }
+        public Nullable<int> Customer_code { get; set; }
+        public Nullable<int> Type { get; set; }
+        public string R_S { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Main_Reestr> Main_Reestr { get; set; }

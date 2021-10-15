@@ -54,19 +54,6 @@
                   
                 </TextBox>
 
-
-
-
-                <!--<TextBlock Text="Ответственныйе"  
-                       Margin=" 5 5 5 1" Height="18" Width="200" 
-                       TextAlignment="Center"/>
-                <ComboBox x:Name="otvts" 
-                       Margin=" 5 1 5 3" Height="22" Width="250" 
-                       ItemsSource="{Binding RespPersons}"
-                       DisplayMemberPath="First_Name" 
-                       SelectedValuePath="ID"
-                       SelectedValue="{Binding resp_person, UpdateSourceTrigger=PropertyChanged}"/>-->
-
                 <Button x:Name="btn1Save"
                     Content="Добавить Запись"  
                         Margin="5 50 1 1 "

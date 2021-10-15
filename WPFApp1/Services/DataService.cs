@@ -53,6 +53,7 @@ namespace WPFApp1.Services
             var objekt = _datacontext.Main_Reestr.AsQueryable();
             return objekt;
         }
+
         public void AddNewObjekt(Main_Reestr objekt)
         {
             _ = _datacontext.Main_Reestr.Add(objekt);
@@ -238,11 +239,6 @@ namespace WPFApp1.Services
         }
         #endregion
 
-        public IQueryable<Respons_persons> GetAllRespPersons()
-        {
-            var typelist = _datacontext.Respons_persons.AsQueryable();
-            return typelist;
-        }
 
         #region Тендеры
 

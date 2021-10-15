@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
+using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.Pages.Admin;
 using WPFApp1.Services;
 using WPFApp1.Services.Event;
@@ -25,29 +26,29 @@ namespace WPFApp1.ViewModel
         public string Pass { get; set; }
 
         private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly IUsersRepository _usersRepository;
 
         public ObservableCollection<User_Types> UserTypes { get; set; } = new ObservableCollection<User_Types>();
-        public Users_DB editUser { get; set; }
+        public Users_DB EditUser { get; set; }
 
-        public UpdateUserPageViewModel(PageService navigation, DataService dataservice)
+        public UpdateUserPageViewModel(PageService navigation, IUsersRepository usersRepository)
         {
             _navigation = navigation;
-            _dataservice = dataservice;
+            _usersRepository = usersRepository;
 
-            UserTypes = new ObservableCollection<User_Types>(_dataservice.GetAllTypes());
-            editUser = new Users_DB();
+            UserTypes = new ObservableCollection<User_Types>(_usersRepository.GetAllTypes());
+            EditUser = new Users_DB();
 
 
-            editUser = _dataservice.GetCurrentUser(_dataservice.UserId);
+            EditUser = _usersRepository.GetCurrentUser(_usersRepository.UserID);
 
-            CurrentID = editUser.ID;
-            Login = editUser.UserLogin;
-            Firstname = editUser.FirstName;
-            Lastname = editUser.LastName;
-            EMail = editUser.Email;
-            Role = (int)editUser.TypeID;
-            Pass = editUser.UserPass;
+            CurrentID = EditUser.ID;
+            Login = EditUser.UserLogin;
+            Firstname = EditUser.FirstName;
+            Lastname = EditUser.LastName;
+            EMail = EditUser.Email;
+            Role = (int)EditUser.TypeID;
+            Pass = EditUser.UserPass;
 
         }
 
@@ -56,7 +57,7 @@ namespace WPFApp1.ViewModel
         {
             Users_DB Newuser = new Users_DB { ID = CurrentID, UserLogin = Login, FirstName = Firstname, LastName = Lastname, Email = EMail, TypeID = Role, UserPass = Pass };
 
-            _dataservice.Update(Newuser);
+            _usersRepository.UpdateUser(Newuser);
             _ = MessageBox.Show("Изменения Сохранены");
             _navigation.GoToBack();
 

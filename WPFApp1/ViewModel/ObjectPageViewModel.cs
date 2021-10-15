@@ -3,7 +3,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using WPFApp1.DialogWindows;
 using WPFApp1.Model.AppDBcontext;
+using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.Pages;
 using WPFApp1.Pages.Contract;
 using WPFApp1.Pages.Tender;
@@ -16,12 +18,26 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly DataService _dataservice;
-
+        private readonly IResponsPersonsRepository _responsPersonsRepository;
+        private readonly IProjektRepository _projektRepository;
+        private readonly ICustomersRepository _customersRepository;
         public Main_Reestr CurrentObjekt { get; set; }
         public ObservableCollection<Contracts> CurrentObjektContracts { get; set; }
         public ObservableCollection<Tenders> CurrentObjektTenders { get; set; }
         public ObservableCollection<TTN> CurrentObjektTns { get; set; }
         public ObservableCollection<Customers> Customers { get; set; }
+        public ObservableCollection<Respons_persons> RespPersons { get; set; }
+        public ObservableCollection<Respons_persons> AllAdmPersons { get; set; }
+        private Customers _customer;
+        public Customers ThisCustomer
+        {
+            get => _customer;
+            set
+            {
+                _customer = value;
+                RaisePropertiesChanged();
+            }
+        }
 
         private int? _doc_Number;
         public int? Doc_Number
@@ -40,9 +56,6 @@ namespace WPFApp1.ViewModel
             get => CurrentObjekt.Customers.Customer_Name;
             set => RaisePropertiesChanged();
         }
-        //public int CustomerID { get; set; }
-        //public string Contract_Number { get; set; }
-        //public DateTime Contract_Date { get; set; }
         private string _object_name;
         public string Object_Name
         {
@@ -61,12 +74,9 @@ namespace WPFApp1.ViewModel
             {
                 _customerID = value;
                 RaisePropertiesChanged();
+                ThisCustomer = _customersRepository.GetThisCustomer((int)CustomerID);
             }
         }
-        //public DateTime date_of_invoice { get; set; }
-        //public int general_contractor { get; set; }
-        //public int sub_contractor { get; set; }
-        //public string Link { get; set; }
         private string _projekt_Type;
         public string Project_type
         {
@@ -97,19 +107,23 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
-        //public int resp_personID { get; set; }
 
 
-        public ObjectPageViewModel(PageService navigation, DataService dataservice)
+        public ObjectPageViewModel(PageService navigation, IProjektRepository projektRepository, ICustomersRepository customersRepository, DataService dataService, IResponsPersonsRepository responsPersonsRepository)
         {
             _navigation = navigation;
-            _dataservice = dataservice;
+            _dataservice = dataService;
+            _projektRepository = projektRepository;
+            _customersRepository = customersRepository;
+            _responsPersonsRepository = responsPersonsRepository;
 
-            CurrentObjekt = _dataservice.GetCurrentObjektInfo(_dataservice.CurrentObjektID);
-            CurrentObjektContracts = new ObservableCollection<Contracts>(_dataservice.GetContractsForCurrentObjekt(_dataservice.CurrentObjektID));
-            CurrentObjektTenders = new ObservableCollection<Tenders>(_dataservice.GetTendersForCurrentObject(_dataservice.CurrentObjektID));
-            CurrentObjektTns = new ObservableCollection<TTN>(_dataservice.GetTTNsForCurrentObjekt(_dataservice.CurrentObjektID));
-            Customers = new ObservableCollection<Customers>(_dataservice.GetAllCustomers());
+            CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
+            CurrentObjektContracts = new ObservableCollection<Contracts>(_projektRepository.GetContractsForCurrentProjekt(_projektRepository.ProjektID));
+            CurrentObjektTenders = new ObservableCollection<Tenders>(_projektRepository.GetTendersForCurrentProject(_projektRepository.ProjektID));
+            CurrentObjektTns = new ObservableCollection<TTN>(_projektRepository.GetTTNsForCurrentProjekt(_projektRepository.ProjektID));
+            Customers = new ObservableCollection<Customers>(_customersRepository.GetAllActiveCustommers());
+            RespPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersonsByCurrentProjekt(CurrentObjekt.ID));
+            AllAdmPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersons());
 
             Doc_Number = CurrentObjekt.Doc_Number;
             Object_Name = CurrentObjekt.Object_name;
@@ -121,7 +135,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand ObjektSaveChanges => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckObjektRegistrationNumber((int)Doc_Number) && CurrentObjekt.Doc_Number != Doc_Number)
+            if (_projektRepository.CheckObjektRegistrationNumber((int)Doc_Number) && CurrentObjekt.Doc_Number != Doc_Number)
             {
                 _ = MessageBox.Show("Проект с указанным номером уже существует!", "Сохраненить Изменения", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -145,7 +159,7 @@ namespace WPFApp1.ViewModel
                     CurrentObjekt.stage = Stage;
                     CurrentObjekt.Creation_Date = CreationDate;
 
-                    _dataservice.UpdateObjekt(CurrentObjekt);
+                    _projektRepository.UpdateProjekt(CurrentObjekt);
                     _ = MessageBox.Show("Изменения Успешно Сохранены", "Cохранение Изменений", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch
@@ -177,10 +191,18 @@ namespace WPFApp1.ViewModel
             _navigation.Navigate(new ContractPage());
         });
 
+        //public ICommand CreateNewContract => new DelegateCommand(() =>
+        //{
+        //    _dataservice.ObjektID = CurrentObjekt.ID;
+        //    _navigation.Navigate(new AddNewContractPage());
+        //});
+
         public ICommand CreateNewContract => new DelegateCommand(() =>
         {
-            _dataservice.ObjektID = CurrentObjekt.ID;
-            _navigation.Navigate(new AddNewContractPage());
+            _projektRepository.GetCurrentProjectID(CurrentObjekt);
+            AddNewContractWindowDialog contractdialog = new AddNewContractWindowDialog();
+            contractdialog.ShowDialog();
+
         });
 
         public ICommand DeleteContract => new DelegateCommand<Contracts>((Contracts contract) =>
@@ -285,6 +307,7 @@ namespace WPFApp1.ViewModel
                     break;
             }
         });
+
 
     }
 }

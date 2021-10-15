@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
+using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.Pages.Admin;
 using WPFApp1.Services;
 using WPFApp1.Services.Event;
@@ -19,21 +20,21 @@ namespace WPFApp1.ViewModel
         public int ide;
 
         private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly IUsersRepository _usersRepository;
         public ObservableCollection<Users_DB> Users { get; set; }
 
 
-        public AllUsersEditorPageViewModel(PageService navigation, DataService dataservice)
+        public AllUsersEditorPageViewModel(PageService navigation, IUsersRepository usersRepository)
         {
             _navigation = navigation;
-            _dataservice = dataservice;
+            _usersRepository = usersRepository;
 
-            Users = new ObservableCollection<Users_DB>(_dataservice.GetAllUsers());
+            Users = new ObservableCollection<Users_DB>(_usersRepository.GetAllUsers());
         }
 
         public ICommand EditUser => new DelegateCommand<Users_DB>((Users_DB user) =>
         {
-            _dataservice.GetCurrentUserId(user.ID);
+            _usersRepository.SetUserID(user);
             _navigation.Navigate(new UpdateUserPage());
 
         });
@@ -45,7 +46,7 @@ namespace WPFApp1.ViewModel
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    _dataservice.RemoveUser(user);
+                    _ = _usersRepository.RemoveUser(user);
                     _ = MessageBox.Show("Пользователь Удален.", "Удаление пользователя", MessageBoxButton.OK, MessageBoxImage.Information);
                     _navigation.GoToBack();
                     break;
