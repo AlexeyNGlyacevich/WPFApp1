@@ -2,11 +2,10 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Model.Repositories.Intefaces;
-using WPFApp1.Pages;
-using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
@@ -18,14 +17,12 @@ namespace WPFApp1.ViewModel
         public string ProjektType { get; set; }
         public int Resp_person { get; set; }
 
-        private readonly PageService _navigation;
         private readonly IProjektRepository _projektRepository;
         private readonly IResponsPersonsRepository _responsPersonsRepository;
         public ObservableCollection<Respons_persons> RespPersons { get; set; }
 
-        public AddNewObjektPageViewModel(PageService navigation, IProjektRepository projektRepository, IResponsPersonsRepository responsPersonsRepository)
+        public AddNewObjektPageViewModel(IProjektRepository projektRepository, IResponsPersonsRepository responsPersonsRepository)
         {
-            _navigation = navigation;
             _projektRepository = projektRepository;
             _responsPersonsRepository = responsPersonsRepository;
             RespPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersons());
@@ -46,17 +43,23 @@ namespace WPFApp1.ViewModel
                     stage = Stage,
                     Object_name = ObjektName,
                     project_type = ProjektType,
-                    resp_personID = Resp_person,
                     Creation_Date = DateTime.Now,
                     CustomerID = 10
                 };
-
                 _projektRepository.AddNewProjekt(Newobjekt);
-                _ = MessageBox.Show("Новая запись добавлена в реестр", "Новый Проект", MessageBoxButton.OK, MessageBoxImage.Information);
-                _navigation.Navigate(new MainDataReestrPage());
+                _responsPersonsRepository.SetAdminstrativePersonsByCurrentProjekt(Newobjekt.ID, RespPersons);
+                var windows = Application.Current.Windows;
+                foreach (Window window in windows)
+                {
+                    if (window.Name.Equals("Projekt"))
+                    {
+                        window.DialogResult = true;
+                        _ = _ = MessageBox.Show("Новый Проект добавлена в реестр", "Новый Проект", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                }
             }
-
-        }, () => !string.IsNullOrEmpty(ObjektName) && !string.IsNullOrEmpty(ProjektType) && !string.IsNullOrEmpty(Stage) && Registrnumber != 0 && Resp_person != 0);
+        }, () => !string.IsNullOrEmpty(ObjektName) && !string.IsNullOrEmpty(ProjektType) && !string.IsNullOrEmpty(Stage) && Registrnumber != 0);
 
     }
 }

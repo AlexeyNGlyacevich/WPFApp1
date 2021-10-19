@@ -1,0 +1,154 @@
+﻿<Window x:Class="WPFApp1.DialogWindows.AddNewProjektWindowDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp1.DialogWindows"
+        mc:Ignorable="d"
+        Title="Новый Проект" 
+        x:Name="Projekt"
+        DataContext="{Binding Source={StaticResource VmLocator}, Path = AddNewObjektPageViewModel}"
+        Height="440"
+        Width="410"
+        ResizeMode="NoResize"
+        Background="WhiteSmoke"
+        WindowStartupLocation="CenterScreen">
+    
+    
+    <StackPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <TextBlock DockPanel.Dock="Left"
+                       Text="Регистрационный номер:"  
+                       Margin="5 10 5 1" 
+                       Padding="5 1 1 1"
+                       Height="20" 
+                       Width="180" 
+                       FontWeight="Medium"
+                       FontSize="14"
+                       TextAlignment="Left"/>
+
+            <TextBox  DockPanel.Dock="Right"
+                      x:Name="RegNumber" 
+                      Margin=" 5 10 5 1"
+                      Height="20" 
+                      Width="190" 
+                      PreviewTextInput="TextBox_PreviewTextInput"
+                      TextAlignment="Center"
+                      Text="{Binding Registrnumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+        </DockPanel>
+        <DockPanel >
+            <TextBlock Text="Стадия :"  
+                       DockPanel.Dock="Left"
+                       Margin=" 5 5 5 1"
+                       Padding="5 1 1 1"
+                       Height= "20" 
+                       Width="160" 
+                       FontWeight="Medium"
+                       FontSize="14"
+                       TextAlignment="Left"/>
+            <TextBox  x:Name="stage" 
+                      Margin=" 25 5 5 1" 
+                      Height="20" 
+                      Width="190" 
+                      TextAlignment="Center"
+                      Text="{Binding Stage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left"
+                       Text="Тип Проекта :"  
+                       Margin=" 5 5 5 1"
+                       Padding="5 1 1 1"
+                       Height="20"
+                       Width="160" 
+                       FontWeight="Medium"
+                       FontSize="14"
+                       TextAlignment="Left"/>
+            <TextBox x:Name="projektType" 
+                     Margin=" 25 5 5 1" 
+                     Height="20" 
+                     Width="190" 
+                     TextAlignment="Center" 
+                     Text="{Binding ProjektType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left"
+                   Margin="5 10 5 1">
+            <TextBlock Text="Наименование Объекта:" 
+                       DockPanel.Dock="Top"
+                       HorizontalAlignment="Left"
+                       Margin=" 1 5 5 1" 
+                       Padding="5 1 1 1"
+                       Height="20" 
+                       Width="170" 
+                       FontWeight="Medium"
+                       FontSize="14"
+                       TextAlignment="Left" />
+            <TextBox x:Name="objNum" 
+                     Margin=" 3 1 1 2"
+                     Padding="2 2 2 1"
+                     Height="80" 
+                     Width="377"
+                     TextWrapping="Wrap" 
+                     TextAlignment="Left"
+                     Text="{Binding ObjektName, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top"
+                       HorizontalAlignment="Left"
+                       Text="Ответственные за Проект :"  
+                       Margin=" 5 5 5 1"
+                       Padding="5 1 1 1"
+                       Height="20"
+                       Width="200" 
+                       FontWeight="Medium"
+                       FontSize="14"
+                       TextAlignment="Left"/>
+         
+            <DataGrid AutoGenerateColumns="False" 
+                      Style="{StaticResource DataGridStyle1}"
+                      FontSize="12"
+                      FontWeight="SemiBold"
+                      VerticalAlignment="Stretch"
+                  Margin="3 1 3 3"
+                      Height="135"
+                      ItemsSource="{Binding RespPersons}">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Фамилия"
+                                        Width="100"
+                                        IsReadOnly="True"
+                                        Binding="{Binding Path =First_Name}"/>
+                    <DataGridTextColumn Header="Имя" 
+                                        Width="100"
+                                        IsReadOnly="True"
+                                        Binding="{Binding Path=Last_Name}"/>
+                    <DataGridTextColumn Header="Отчество"
+                                        Width="100"
+                                        IsReadOnly="True"
+                                        Binding="{Binding Path= Sub_Name}"/>
+                    <DataGridCheckBoxColumn Header="Да/Нет"
+                                            x:Name="Status"
+                                            Width="70"
+                                            IsThreeState="False"
+                                            Binding="{Binding IsSelected}">
+                    </DataGridCheckBoxColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Margin="5 1 70 1" 
+                    Height="30"
+                    Width="100"
+                    Content="Сохранить"
+                    IsDefault="True"
+                    Command="{Binding AddNewObjekt}"/>
+            <Button DockPanel.Dock="Right"
+                    Width="60"
+                    Height="30"
+                    Margin="5 1 10 1"
+                    Content="Отмена"
+                    IsCancel="True"
+                    Command="{Binding}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using WPFApp1.Model.AppDBcontext;
 
 namespace WPFApp1.Model.Repositories.Intefaces
@@ -20,6 +21,8 @@ namespace WPFApp1.Model.Repositories.Intefaces
         IQueryable<Respons_persons> GetWorckersByCurrentcontract(int contractID);
 
         IQueryable<Respons_persons> GetWorckers();
+
+        void SetAdminstrativePersonsByCurrentProjekt(int ProjektID, ObservableCollection<Respons_persons> collection);
 
 
     }

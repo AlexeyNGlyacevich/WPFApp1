@@ -7,6 +7,7 @@ using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Pages.EditorPages;
 using WPFApp1.Model.Repositories.Intefaces;
+using WPFApp1.DialogWindows;
 
 namespace WPFApp1.ViewModel
 {
@@ -14,26 +15,8 @@ namespace WPFApp1.ViewModel
     {
         private readonly PageService _navigation;
         private readonly IProjektRepository _projektRepository;
-        private ObservableCollection<Main_Reestr> _Reester;
-        public ObservableCollection<Main_Reestr> Main_Reestr
-        {
-            get => _Reester;
-            set
-            {
-                _Reester = value;
-                RaisePropertiesChanged();
-            }
-        }
-        private ObservableCollection<Respons_persons> _resp_persons;
-        public ObservableCollection<Respons_persons> ResponsPersons
-        {
-            get => _resp_persons;
-            set
-            {
-                _resp_persons = value;
-                RaisePropertiesChanged();
-            }
-        }
+        public ObservableCollection<Main_Reestr> Main_Reestr { get; set; }
+        public ObservableCollection<Respons_persons> ResponsPersons { get; set; }
         private Main_Reestr _objekt;
         public Main_Reestr Objekt
         {
@@ -118,7 +101,12 @@ namespace WPFApp1.ViewModel
 
         public ICommand AddNewObjekt => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new AddNewObjektPage());
+            AddNewProjektWindowDialog newProjekt = new AddNewProjektWindowDialog();
+            _ = newProjekt.ShowDialog();
+            if (newProjekt.DialogResult == true)
+            {
+                Main_Reestr = new ObservableCollection<Main_Reestr>(_projektRepository.GetProjektsToView().OrderByDescending(x => x.ID));
+            }
         });
 
     }

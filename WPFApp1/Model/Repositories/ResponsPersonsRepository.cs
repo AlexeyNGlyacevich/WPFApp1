@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Model.Repositories.Intefaces;
@@ -17,7 +18,7 @@ namespace WPFApp1.Model.Repositories
         public IQueryable<Respons_persons> GetAdminstrativePersons()
         {
             var persons = _appDbContext.Respons_persons.Where(x => x.Activity.Value.Equals(true));
-            var admistrators = persons.Where(x => x.PersonStats.Role.Equals("ГИП") || x.PersonStats.Role.Equals("Администратор"));    
+            var admistrators = persons.Where(x => x.PersonStats.Role.Equals("ГИП") || x.PersonStats.Role.Equals("Администратор"));
             return admistrators;
         }
 
@@ -62,6 +63,30 @@ namespace WPFApp1.Model.Repositories
                                                 .SelectMany(y => y.Respons_persons)
                                                 .Where(z => z.PersonStats.Role == "Специалист" && z.Activity == true);
             return persons;
+        }
+
+        public void SetAdminstrativePersonsByCurrentProjekt(int ProjektID, ObservableCollection<Respons_persons> collection)
+        {
+            var projekt = _appDbContext.Main_Reestr.FirstOrDefault(x => x.ID == ProjektID);
+            if (projekt != null)
+            {
+                foreach (Respons_persons person in collection)
+                {
+                    if (person.IsSelected == true)
+                    {
+                        projekt.Respons_persons.Add(person);
+                    }
+                }
+                var users = _appDbContext.Respons_persons.Where(x => x.IsSelected != false);
+                foreach(Respons_persons item in users)
+                {
+                    if(item.First_Name != null)
+                    {
+                        item.IsSelected = false;
+                    }
+                }
+            }
+            _appDbContext.SaveChanges();
         }
     }
 }

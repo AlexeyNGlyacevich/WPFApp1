@@ -310,7 +310,6 @@
                                                   TextBoxBase.TextChanged="Cust_TextChanged"
                                                   StaysOpenOnEdit="True"
                                                   SelectedValue="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-
                                         </ComboBox>
 
 

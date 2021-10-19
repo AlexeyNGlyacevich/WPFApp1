@@ -102,6 +102,9 @@
     <Compile Include="DialogWindows\AddNewContractWindowDialog.xaml.cs">
       <DependentUpon>AddNewContractWindowDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\AddNewProjektWindowDialog.xaml.cs">
+      <DependentUpon>AddNewProjektWindowDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\AddNewTenderWindowDialog.xaml.cs">
       <DependentUpon>AddNewTenderWindowDialog.xaml</DependentUpon>
     </Compile>
@@ -268,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\AddNewContractWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddNewProjektWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
