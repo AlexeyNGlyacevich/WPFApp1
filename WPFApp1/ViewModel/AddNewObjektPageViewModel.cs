@@ -1,10 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
@@ -34,7 +30,6 @@ namespace WPFApp1.ViewModel
             _responsPersonsRepository = responsPersonsRepository;
             RespPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersons());
         }
-
 
         public ICommand AddNewObjekt => new DelegateCommand(() =>
         {

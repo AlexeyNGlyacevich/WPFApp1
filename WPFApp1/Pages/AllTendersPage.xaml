@@ -69,7 +69,7 @@
             <Grid.Resources>
                 <CollectionViewSource x:Key="TendersCollection"
                                       x:Name="TendersCollection"
-                                      Source="{Binding AllTenders}"
+                                      Source="{Binding Tenders}"
                                       Filter="TendersCollection_Filter"/>
             </Grid.Resources>
 

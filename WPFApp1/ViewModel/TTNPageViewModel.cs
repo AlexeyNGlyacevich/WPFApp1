@@ -3,14 +3,14 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Services;
+using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel
 {
     public class TTNPageViewModel : BindableBase
     {
-        private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly ITTNRepository _tTNRepository;
+
         public TTN TTN { get; set; } = new TTN();
 
         private int? _contractID;
@@ -105,11 +105,10 @@ namespace WPFApp1.ViewModel
         }
 
 
-        public TTNPageViewModel(PageService navigation, DataService dataservice)
+        public TTNPageViewModel(ITTNRepository tTNRepository)
         {
-            _dataservice = dataservice;
-            _navigation = navigation;
-            TTN = _dataservice.GetCurrentTTN(_dataservice.TTNID);
+            _tTNRepository = tTNRepository;
+            TTN = _tTNRepository.GetCurrentTTN(_tTNRepository.GetTTN_ID());
 
             ContractID = TTN.ContractID;
             Act_Number = TTN.Act_number;
@@ -124,7 +123,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand ContractSaveChanged => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckTTNRegistrationNumber((int)Act_Number) && TTN.Act_number != Act_Number)
+            if (_tTNRepository.CheckTTNRegistrationNumber((int)Act_Number) && TTN.Act_number != Act_Number)
             {
                 _ = MessageBox.Show("Накладная с указанным номером уже существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -143,7 +142,7 @@ namespace WPFApp1.ViewModel
                     TTN.with_general_contractor = With_general_Contractor;
                     TTN.with_subcontractors = With_subcontractor;
 
-                    _dataservice.UpdateTTN(TTN);
+                    _tTNRepository.UpdateTTN(TTN);
                     _ = MessageBox.Show("Изменения Успешно Сохранены", "Cохранение Изменений", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch

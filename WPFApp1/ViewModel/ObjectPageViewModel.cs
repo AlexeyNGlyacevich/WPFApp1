@@ -6,7 +6,6 @@ using System.Windows.Input;
 using WPFApp1.DialogWindows;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Model.Repositories.Intefaces;
-using WPFApp1.Pages;
 using WPFApp1.Pages.Contract;
 using WPFApp1.Pages.Tender;
 using WPFApp1.Pages.TTN;
@@ -17,10 +16,13 @@ namespace WPFApp1.ViewModel
     internal class ObjectPageViewModel : BindableBase
     {
         private readonly PageService _navigation;
-        private readonly DataService _dataservice;
         private readonly IResponsPersonsRepository _responsPersonsRepository;
         private readonly IProjektRepository _projektRepository;
         private readonly ICustomersRepository _customersRepository;
+        private readonly IContractRepository _contractRepository;
+        private readonly ITTNRepository _tTNRepository;
+        private readonly ITenderRepository _tenderRepository;
+
         public Main_Reestr CurrentObjekt { get; set; }
         public ObservableCollection<Contracts> CurrentObjektContracts { get; set; }
         public ObservableCollection<Tenders> CurrentObjektTenders { get; set; }
@@ -38,7 +40,6 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
-
         private int? _doc_Number;
         public int? Doc_Number
         {
@@ -49,8 +50,6 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
-
-
         public string CustomerName
         {
             get => CurrentObjekt.Customers.Customer_Name;
@@ -109,12 +108,15 @@ namespace WPFApp1.ViewModel
         }
 
 
-        public ObjectPageViewModel(PageService navigation, IProjektRepository projektRepository, ICustomersRepository customersRepository, DataService dataService, IResponsPersonsRepository responsPersonsRepository)
+        public ObjectPageViewModel(PageService navigation, IProjektRepository projektRepository, ICustomersRepository customersRepository,
+            IResponsPersonsRepository responsPersonsRepository, IContractRepository contractRepository, ITenderRepository tenderRepository, ITTNRepository tTNRepository)
         {
             _navigation = navigation;
-            _dataservice = dataService;
             _projektRepository = projektRepository;
             _customersRepository = customersRepository;
+            _contractRepository = contractRepository;
+            _tenderRepository = tenderRepository;
+            _tTNRepository = tTNRepository;
             _responsPersonsRepository = responsPersonsRepository;
 
             CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
@@ -187,22 +189,19 @@ namespace WPFApp1.ViewModel
 
         public ICommand GetCurrentContract => new DelegateCommand<Contracts>((Contracts contract) =>
         {
-            _dataservice.GetContractID(contract);
+            _contractRepository.SetContractID(contract);
             _navigation.Navigate(new ContractPage());
         });
 
-        //public ICommand CreateNewContract => new DelegateCommand(() =>
-        //{
-        //    _dataservice.ObjektID = CurrentObjekt.ID;
-        //    _navigation.Navigate(new AddNewContractPage());
-        //});
-
         public ICommand CreateNewContract => new DelegateCommand(() =>
         {
-            _projektRepository.GetCurrentProjectID(CurrentObjekt);
+            _projektRepository.SetCurrentProjectID(CurrentObjekt);
             AddNewContractWindowDialog contractdialog = new AddNewContractWindowDialog();
-            contractdialog.ShowDialog();
-
+            _ = contractdialog.ShowDialog();
+            if (contractdialog.DialogResult == true)
+            {
+                CurrentObjektContracts = new ObservableCollection<Contracts>(_projektRepository.GetContractsForCurrentProjekt(_projektRepository.ProjektID));
+            }
         });
 
         public ICommand DeleteContract => new DelegateCommand<Contracts>((Contracts contract) =>
@@ -211,10 +210,9 @@ namespace WPFApp1.ViewModel
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    _dataservice.RemoveCurrentContract(contract.ID);
+                    _ = _contractRepository.RemoveCurrentContract(contract.ID);
                     _ = MessageBox.Show("Договор Успешно удален.", "Удаление договора.", MessageBoxButton.OK, MessageBoxImage.Information);
-                    _navigation.Refresh();
-                    _navigation.Navigate(new ObjectPage());
+                    CurrentObjektContracts = new ObservableCollection<Contracts>(_projektRepository.GetContractsForCurrentProjekt(_projektRepository.ProjektID));
 
                     break;
                 case MessageBoxResult.No:
@@ -233,8 +231,13 @@ namespace WPFApp1.ViewModel
 
         public ICommand CreateNewTender => new DelegateCommand(() =>
         {
-            _dataservice.ObjektID = CurrentObjekt.ID;
-            _navigation.Navigate(new AddNewTenderPage());
+            _projektRepository.ProjektID = CurrentObjekt.ID;
+            AddNewTenderWindowDialog newtender = new AddNewTenderWindowDialog();
+            _ = newtender.ShowDialog();
+            if (newtender.DialogResult == true)
+            {
+                CurrentObjektTenders = new ObservableCollection<Tenders>(_projektRepository.GetTendersForCurrentProject(_projektRepository.ProjektID));
+            }
         });
 
         public ICommand DeleteTender => new DelegateCommand<Tenders>((Tenders tender) =>
@@ -243,10 +246,9 @@ namespace WPFApp1.ViewModel
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    _dataservice.RemoveCurrentTender(tender.ID);
+                    _tenderRepository.RemoveCurrentTender(tender.ID);
                     _ = MessageBox.Show("Тендер Успешно удален.", "Удаление Тендера.", MessageBoxButton.OK, MessageBoxImage.Information);
-                    _navigation.Refresh();
-                    _navigation.Navigate(new ObjectPage());
+                    CurrentObjektTenders = new ObservableCollection<Tenders>(_projektRepository.GetTendersForCurrentProject(_projektRepository.ProjektID));
 
                     break;
                 case MessageBoxResult.No:
@@ -265,20 +267,25 @@ namespace WPFApp1.ViewModel
 
         public ICommand EditCurrentTender => new DelegateCommand<Tenders>((Tenders tender) =>
         {
-            _dataservice.GetCurrentTenderID(tender);
+            _tenderRepository.SetCurrentTenderID(tender);
             _navigation.Navigate(new TenderPage());
         });
 
 
         public ICommand CreateNewTTN => new DelegateCommand(() =>
         {
-            _dataservice.ObjektID = CurrentObjekt.ID;
-            _navigation.Navigate(new AddNewTTNPage());
+            _projektRepository.SetCurrentProjectID(CurrentObjekt);
+            AddNewTTNWindowDialog newTTN = new AddNewTTNWindowDialog();
+            _ = newTTN.ShowDialog();
+            if (newTTN.DialogResult == true)
+            {
+                CurrentObjektTns = new ObservableCollection<TTN>(_projektRepository.GetTTNsForCurrentProjekt(_projektRepository.ProjektID));
+            }
         });
 
         public ICommand EditCurrentTTN => new DelegateCommand<TTN>((TTN ttn) =>
         {
-            _dataservice.GetCurrentTTNID(ttn);
+            _tTNRepository.SetTTN_ID(ttn);
             _navigation.Navigate(new TTNPage());
         });
 
@@ -288,10 +295,9 @@ namespace WPFApp1.ViewModel
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    _dataservice.RemoveCurrentTTN(ttn.id);
+                    _tTNRepository.RemoveCurrentTTN(ttn.id);
                     _ = MessageBox.Show("Накладная Успешно удалена.", "Удаление Накладной.", MessageBoxButton.OK, MessageBoxImage.Information);
-                    _navigation.Refresh();
-                    _navigation.Navigate(new ObjectPage());
+                    CurrentObjektTns = new ObservableCollection<TTN>(_projektRepository.GetTTNsForCurrentProjekt(_projektRepository.ProjektID));
 
                     break;
                 case MessageBoxResult.No:

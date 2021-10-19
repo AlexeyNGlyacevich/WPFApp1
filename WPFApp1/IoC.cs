@@ -18,7 +18,7 @@ namespace WPFApp1
             _ = services.AddSingleton<MainViewModel>();
             _ = services.AddSingleton<SelectRolePageViewModel>();
             _ = services.AddTransient<LoginPageViewModel>();
-            _ = services.AddSingleton<AdminPageViewModel>();
+            _ = services.AddScoped<AdminPageViewModel>();
             _ = services.AddTransient<MainDataReestrViewModel>();
             _ = services.AddTransient<ObjectPageViewModel>();
             _ = services.AddTransient<AllContractsViewModel>();
@@ -49,6 +49,8 @@ namespace WPFApp1
             _ = services.AddScoped<ICustomersRepository, CustomersRepository>();
             _ = services.AddScoped<IContractRepository, ContractRepository>();
             _ = services.AddScoped<IUsersRepository, UsersRepository>();
+            _ = services.AddScoped<ITenderRepository, TenderRepository>();
+            _ = services.AddScoped<ITTNRepository, TTNRepository>();
 
             _provider = services.BuildServiceProvider();
         }

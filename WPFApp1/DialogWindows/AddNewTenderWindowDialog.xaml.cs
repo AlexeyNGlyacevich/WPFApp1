@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFApp1.Pages.TTN
+namespace WPFApp1.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для AssNewTTNPage.xaml
+    /// Логика взаимодействия для AddNewTenderWindowDialog.xaml
     /// </summary>
-    public partial class AddNewTTNPage : Page
+    public partial class AddNewTenderWindowDialog : Window
     {
-        public AddNewTTNPage()
+        public AddNewTenderWindowDialog()
         {
             InitializeComponent();
         }

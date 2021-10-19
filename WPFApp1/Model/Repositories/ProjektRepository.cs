@@ -61,7 +61,7 @@ namespace WPFApp1.Model.Repositories
             }
         }
 
-        public void GetCurrentProjectID(Main_Reestr projekt)
+        public void SetCurrentProjectID(Main_Reestr projekt)
         {
             ProjektID = projekt.ID;
         }

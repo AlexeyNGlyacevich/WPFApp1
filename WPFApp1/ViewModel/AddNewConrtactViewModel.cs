@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Model.Repositories.Intefaces;
-using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
@@ -13,6 +12,7 @@ namespace WPFApp1.ViewModel
         public int ContractNumber
         {
             get => contractNumber;
+
             set
             {
                 contractNumber = value;
@@ -23,22 +23,27 @@ namespace WPFApp1.ViewModel
         public int? ObjektNumber { get; set; }
         public Main_Reestr CurrentObjekt { get; set; }
 
-        private readonly DataService _dataservice;
         private readonly IProjektRepository _projektRepository;
+        private readonly IContractRepository _contractRepository;
 
-        public AddNewConrtactViewModel(DataService dataservice, IProjektRepository projektRepository)
+        public AddNewConrtactViewModel(IProjektRepository projektRepository, IContractRepository contractRepository)
         {
-            _dataservice = dataservice;
             _projektRepository = projektRepository;
+            _contractRepository = contractRepository;
             CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
             ObjektNumber = CurrentObjekt.Doc_Number;
         }
 
         public ICommand AddNewContract => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckContractRegistrationNumber(ContractNumber))
+            if (_contractRepository.CheckContractRegistrationNumber(ContractNumber))
             {
                 _ = MessageBox.Show("Договор с указанным номером уже зарегистрирован!", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (_contractRepository.ChecContractRegistrationNumberByCorrect(ContractNumber) == false)
+            {
+                _ = MessageBox.Show("Неверно Указан номер!", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
@@ -48,20 +53,25 @@ namespace WPFApp1.ViewModel
                     IDKey = CurrentObjekt.ID,
                     Contract_Number = ContractNumber
                 };
-                _dataservice.AddNewContract(contract);
+                _ = _contractRepository.AddNewContract(contract);
                 Documentation documentation = new Documentation
                 {
                     ContractID = contract.ID
                 };
-                _dataservice.AddNewDocumentation(documentation);
-                _ = MessageBox.Show("Договор Зарегистрирован", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Error);
-               
+                _ = _contractRepository.AddNewDocumentation(documentation);
+                var windows = Application.Current.Windows;
+                foreach (Window window in windows)
+                {
+                    if (window.Title.Equals("Добавление Договора"))
+                    {
+                        window.DialogResult = true;
+                        _ = MessageBox.Show("Договор Зарегистрирован", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                }
             }
-            
         }, () => ContractNumber != 0 && ContractNumber > 9);
 
-
     }
-
 }
 

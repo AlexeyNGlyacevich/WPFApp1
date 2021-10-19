@@ -114,5 +114,15 @@ namespace WPFApp1.Model.Repositories
                 return;
             }
         }
+
+        // Написать метод проверяющий на пустую строку
+        public bool ChecContractRegistrationNumberByCorrect(int number)
+        {
+           if(number.ToString().Length > 1)
+           {
+                return true;
+           }
+            return false;
+        }
     }
 }

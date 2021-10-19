@@ -505,7 +505,7 @@
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               BorderThickness="0"
                               SelectionMode="Single"
-                              ItemsSource="{Binding CurrentObjektContracts}"
+                              ItemsSource="{Binding CurrentObjektContracts, UpdateSourceTrigger=PropertyChanged, Mode=Default}"
                               FontWeight="SemiBold">
 
                         <ListView.View>
@@ -584,7 +584,7 @@
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               BorderThickness="0"
                               SelectionMode="Single"
-                              ItemsSource="{Binding CurrentObjektTns}"
+                              ItemsSource="{Binding CurrentObjektTns, UpdateSourceTrigger=PropertyChanged}"
                               FontWeight="SemiBold">
 
                         <ListView.View>

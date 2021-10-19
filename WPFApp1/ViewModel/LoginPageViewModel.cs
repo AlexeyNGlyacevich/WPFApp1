@@ -4,7 +4,6 @@ using System.Windows.Input;
 using WPFApp1.Pages.Admin;
 using WPFApp1.Services;
 using WPFApp1.Pages;
-using WPFApp1.Model;
 using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel

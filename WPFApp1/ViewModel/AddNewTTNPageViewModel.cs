@@ -1,15 +1,9 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Pages;
-using WPFApp1.Services;
+using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel
 {
@@ -20,20 +14,23 @@ namespace WPFApp1.ViewModel
         public Main_Reestr CurrentObjekt { get; set; }
         public ObservableCollection<Contracts> Contracts { get; set; }
 
-        private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly IProjektRepository _projektRepository;
+        private readonly ITTNRepository _tTNRepository;
+        private readonly IContractRepository _contractRepository;
 
-        public AddNewTTNPageViewModel(DataService dataservice, PageService navigation)
+
+        public AddNewTTNPageViewModel(IProjektRepository projektRepository, ITTNRepository tTNRepository, IContractRepository contractRepository)
         {
-            _navigation = navigation;
-            _dataservice = dataservice;
-            CurrentObjekt = _dataservice.GetCurrentObjektInfo(_dataservice.CurrentObjektID);
-            Contracts = new ObservableCollection<Contracts>(_dataservice.GetContractsForCurrentObjekt(CurrentObjekt.ID));
+            _projektRepository = projektRepository;
+            _tTNRepository = tTNRepository;
+            _contractRepository = contractRepository;
+            CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
+            Contracts = new ObservableCollection<Contracts>(_contractRepository.GetProjektContracts(CurrentObjekt.ID));
         }
 
         public ICommand AddNewTTN => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckTTNRegistrationNumber(TTNNumber))
+            if (_tTNRepository.CheckTTNRegistrationNumber(TTNNumber))
             {
                 _ = MessageBox.Show("Накладная с указанным номером уже зарегистрирована!", "Добавление Накладной", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -45,14 +42,19 @@ namespace WPFApp1.ViewModel
                     ContractID = ContractKey,
                     Act_number = TTNNumber
                 };
-                _dataservice.AddNewTTN(ttn);
-
+                _tTNRepository.AddNewTTN(ttn);
+                var windows = Application.Current.Windows;
+                foreach (Window window in windows)
+                {
+                    if (window.Name.Equals("TTN"))
+                    {
+                        window.DialogResult = true;
+                        _ = MessageBox.Show("Накладная Зарегистрирована", "Добавление Накладной", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                }
                 _ = MessageBox.Show("Новая Накладная Успешно Добавлена", "Добавление Накладной", MessageBoxButton.OK, MessageBoxImage.Information);
-                _navigation.Refresh();
-                _navigation.Refresh();
-                _navigation.Navigate(new ObjectPage());
             }
-
         }, () => TTNNumber != 0 && TTNNumber > 9 && ContractKey != 0);
     }
 

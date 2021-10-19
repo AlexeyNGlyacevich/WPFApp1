@@ -3,7 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Services;
+using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel
 {
@@ -342,20 +342,18 @@ namespace WPFApp1.ViewModel
         }
 
 
-        private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly IContractRepository _contractRepository;
 
         public Contracts Contract { get; set; }
         public Documentation Documentation { get; set; }
 
 
-        public ContractViewModel(PageService navigation, DataService dataservice)
+        public ContractViewModel(IContractRepository contractRepository)
         {
-            _dataservice = dataservice;
-            _navigation = navigation;
+            _contractRepository = contractRepository;
 
             Contract = new Contracts();
-            Contract = _dataservice.GetCurrentConract(_dataservice.ContractID);
+            Contract = _contractRepository.GetCurrentConract(_contractRepository.ContractID);
 
             CurrentContractID = Contract.ID;
             CurrentIDKey = Contract.IDKey;
@@ -370,7 +368,7 @@ namespace WPFApp1.ViewModel
             CurrentNote = Contract.Note;
 
             Documentation = new Documentation();
-            Documentation = _dataservice.GetDocumentationDataForCurrentContract(_dataservice.ContractID);
+            Documentation = _contractRepository.GetDocumentationDataForCurrentContract(_contractRepository.ContractID);
 
             CurrentDocumentationID = Documentation.ID;
             DocumentationContractID = Documentation.ContractID;
@@ -399,7 +397,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand ContractSaveChanges => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckContractRegistrationNumber((int)CurrentContractNumber) && Contract.Contract_Number != CurrentContractNumber)
+            if (_contractRepository.CheckContractRegistrationNumber((int)CurrentContractNumber) && Contract.Contract_Number != CurrentContractNumber)
             {
                 _ = MessageBox.Show("Договор с указанным номером уже существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -443,7 +441,7 @@ namespace WPFApp1.ViewModel
                     Documentation.Act_number = ActNumber;
                     Documentation.PSI = Date_of_PSI;
 
-                    _dataservice.UpdateContract(Contract, Documentation);
+                    _contractRepository.UpdateContract(Contract, Documentation);
                     _ = MessageBox.Show("Изменения Успешно Сохранены", "Cохранение Изменений", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch

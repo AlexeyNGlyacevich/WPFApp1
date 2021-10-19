@@ -94,7 +94,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand EditObject => new DelegateCommand<Main_Reestr>((Main_Reestr objekt) =>
         {
-            _projektRepository.GetCurrentProjectID(objekt);
+            _projektRepository.SetCurrentProjectID(objekt);
             _navigation.Navigate(new ObjectPage());
         });
 

@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFApp1.Pages.Tender
+namespace WPFApp1.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для AddNewTenderPage.xaml
+    /// Логика взаимодействия для AddNewTTNWindowDialog.xaml
     /// </summary>
-    public partial class AddNewTenderPage : Page
+    public partial class AddNewTTNWindowDialog : Window
     {
-        public AddNewTenderPage()
+        public AddNewTTNWindowDialog()
         {
             InitializeComponent();
-        }
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (e.Text == null || !e.Text.All(char.IsDigit))
-            {
-                e.Handled = true;
-            }
         }
     }
 }

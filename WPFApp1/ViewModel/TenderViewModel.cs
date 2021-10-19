@@ -3,14 +3,13 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Services;
+using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel
 {
     public class TenderViewModel : BindableBase
     {
-        private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly ITenderRepository _tenderRepository;
         public Tenders Tender { get; set; }
 
         private int? _idKey;
@@ -165,11 +164,11 @@ namespace WPFApp1.ViewModel
             }
         }
 
-        public TenderViewModel(PageService navigation, DataService dataservice)
+        public TenderViewModel(ITenderRepository tenderRepository)
         {
-            _navigation = navigation;
-            _dataservice = dataservice;
-            Tender = dataservice.GetCurrentTender(_dataservice.TenderID);
+            _tenderRepository = tenderRepository;
+
+            Tender = _tenderRepository.GetCuttentTender(_tenderRepository.GetTenderID());
 
             IDKey = Tender.IDKey;
             Date_purchase = Tender.Date_purchase;
@@ -190,7 +189,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand TenderSaveChanged => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckTenderRegistrationNumber(Tender_number) && Tender.Tender_number != Tender_number)
+            if (_tenderRepository.CheckTenderRegistrationNumber(Tender_number) && Tender.Tender_number != Tender_number)
             {
                 _ = MessageBox.Show("Тендер с указанным номером уже существует!", "Сохраненить Изменения", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -213,7 +212,7 @@ namespace WPFApp1.ViewModel
                 Tender.Tender_number = Tender_number;
                 Tender.Repository = Repository;
 
-                _dataservice.UpdateTender(Tender);
+                _tenderRepository.UpdateTender(Tender);
                 _ = MessageBox.Show("Изменения Успешно Сохранены", "Cохранение Изменений", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }, () => IDKey != Tender.IDKey || Date_purchase != Tender.Date_purchase || Final_proposal_date != Tender.final__proposal_date || Objekt_Name != Tender.Object_name || Traiding_date != Tender.trading_date || Traiding_date != Tender.trading_date ||

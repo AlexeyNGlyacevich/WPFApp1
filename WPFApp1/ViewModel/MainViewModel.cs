@@ -1,11 +1,5 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 using WPFApp1.Services;
 using WPFApp1.Pages;
 using System.Windows.Input;

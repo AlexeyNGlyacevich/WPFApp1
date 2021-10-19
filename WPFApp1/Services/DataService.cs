@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Mvvm;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -6,7 +7,7 @@ using WPFApp1.Model.AppDBcontext;
 
 namespace WPFApp1.Services
 {
-    public class DataService
+    public class DataService : BindableBase
     {
         public int TTNID { get; set; }
         public int TenderID { get; set; }

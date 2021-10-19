@@ -18,6 +18,8 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         bool CheckContractRegistrationNumber(int number);
 
+        bool ChecContractRegistrationNumberByCorrect(int number);
+
         void SetContractID(Contracts contract);
 
         bool AddNewContract(Contracts contract);

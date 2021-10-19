@@ -1,14 +1,8 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Pages;
-using WPFApp1.Services;
+using WPFApp1.Model.Repositories.Intefaces;
 
 namespace WPFApp1.ViewModel
 {
@@ -19,19 +13,19 @@ namespace WPFApp1.ViewModel
         public int? ObjektNumber { get; set; }
         public Main_Reestr CurrentObjekt { get; set; }
 
-        private readonly PageService _navigation;
-        private readonly DataService _dataservice;
+        private readonly IProjektRepository _projektRepository;
+        private readonly ITenderRepository _tenderRepository;
 
-        public AddNewTenderViewModel(DataService dataservice, PageService navigation)
+        public AddNewTenderViewModel(IProjektRepository projektRepositoty, ITenderRepository tenderRepository)
         {
-            _navigation = navigation;
-            _dataservice = dataservice;
-            CurrentObjekt = _dataservice.GetCurrentObjektInfo(_dataservice.CurrentObjektID);
+            _projektRepository = projektRepositoty;
+            _tenderRepository = tenderRepository;
+            CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
             ObjektNumber = CurrentObjekt.Doc_Number;
         }
         public ICommand AddNewTender => new DelegateCommand(() =>
         {
-            if (_dataservice.CheckTenderRegistrationNumber(TenderNumber))
+            if (_tenderRepository.CheckTenderRegistrationNumber(TenderNumber))
             {
                 _ = MessageBox.Show("Тендер с указанным номером уже зарегистрирован!", "Новый Тендер", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -43,11 +37,18 @@ namespace WPFApp1.ViewModel
                     IDKey = CurrentObjekt.ID,
                     Tender_number = TenderNumber
                 };
-                _dataservice.AddNewTender(tender);
+                _tenderRepository.AddNewTender(tender);
+                var windows = Application.Current.Windows;
+                foreach (Window window in windows)
+                {
+                    if (window.Name.Equals("Tender"))
+                    {
+                        window.DialogResult = true;
+                        _ = MessageBox.Show("Тендер Зарегистрирован", "Добавление Тендера", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                }
                 _ = MessageBox.Show("Новый Тендер Успешно Добавлен", "Новый Тендер", MessageBoxButton.OK, MessageBoxImage.Information);
-                _navigation.Refresh();
-                _navigation.Refresh();
-                _navigation.Navigate(new ObjectPage());
             }
 
         }, () => !string.IsNullOrEmpty(TenderNumber) && ObjektNumber != 0 && TenderNumber != "0");

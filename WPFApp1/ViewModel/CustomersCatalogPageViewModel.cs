@@ -9,8 +9,6 @@ namespace WPFApp1.ViewModel
 {
     public class CustomersCatalogPageViewModel : BindableBase
     {
-       
-
         public CustomersCatalogPageViewModel()
         {
 

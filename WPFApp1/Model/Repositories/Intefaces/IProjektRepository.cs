@@ -19,7 +19,7 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         void UpdateProjekt(Main_Reestr projekt);
 
-        void GetCurrentProjectID(Main_Reestr projekt);
+        void SetCurrentProjectID(Main_Reestr projekt);
 
         bool CheckCustomerID(string name);
 

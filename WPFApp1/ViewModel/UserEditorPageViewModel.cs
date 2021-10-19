@@ -10,7 +10,6 @@ namespace WPFApp1.ViewModel
 {
     public class UserEditoPageViewModel : BindableBase
     {
-
         public string Login { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
