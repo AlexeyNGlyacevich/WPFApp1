@@ -14,6 +14,8 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         IQueryable<Respons_persons> GetAdminstrativePersonsByCurrentProjekt(int projektID);
 
+        void UpdateAdminstrativePersonsByCurrentProject(int ProjectID, ObservableCollection<Respons_persons> collection);
+
         IQueryable<Respons_persons> GetEngenersPersons();
 
         IQueryable<Respons_persons> GetEngenersByCurrentcontract(int contractID);

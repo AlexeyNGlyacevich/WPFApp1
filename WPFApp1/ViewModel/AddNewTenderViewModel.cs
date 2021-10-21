@@ -44,13 +44,11 @@ namespace WPFApp1.ViewModel
                     if (window.Name.Equals("Tender"))
                     {
                         window.DialogResult = true;
-                        _ = MessageBox.Show("Тендер Зарегистрирован", "Добавление Тендера", MessageBoxButton.OK, MessageBoxImage.Information);
+                        _ = MessageBox.Show("Новый Тендер Успешно Добавлен", "Новый Тендер", MessageBoxButton.OK, MessageBoxImage.Information);
                         return;
                     }
                 }
-                _ = MessageBox.Show("Новый Тендер Успешно Добавлен", "Новый Тендер", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
         }, () => !string.IsNullOrEmpty(TenderNumber) && ObjektNumber != 0 && TenderNumber != "0");
     }
 }

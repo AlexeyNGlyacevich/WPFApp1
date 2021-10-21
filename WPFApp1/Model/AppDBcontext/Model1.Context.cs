@@ -26,15 +26,15 @@ namespace WPFApp1.Model.AppDBcontext
         }
     
         public virtual DbSet<Approval_List> Approval_List { get; set; }
-        public virtual DbSet<Contracts> Contracts { get; set; }
         public virtual DbSet<Documentation> Documentation { get; set; }
         public virtual DbSet<Main_Reestr> Main_Reestr { get; set; }
         public virtual DbSet<PersonStats> PersonStats { get; set; }
         public virtual DbSet<Respons_persons> Respons_persons { get; set; }
         public virtual DbSet<Tenders> Tenders { get; set; }
-        public virtual DbSet<TTN> TTN { get; set; }
         public virtual DbSet<User_Types> User_Types { get; set; }
         public virtual DbSet<Users_DB> Users_DB { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Contracts> Contracts { get; set; }
+        public virtual DbSet<TTN> TTN { get; set; }
     }
 }

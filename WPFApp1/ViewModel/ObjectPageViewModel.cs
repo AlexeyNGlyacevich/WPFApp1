@@ -16,7 +16,6 @@ namespace WPFApp1.ViewModel
     internal class ObjectPageViewModel : BindableBase
     {
         private readonly PageService _navigation;
-        private readonly IResponsPersonsRepository _responsPersonsRepository;
         private readonly IProjektRepository _projektRepository;
         private readonly ICustomersRepository _customersRepository;
         private readonly IContractRepository _contractRepository;
@@ -109,7 +108,7 @@ namespace WPFApp1.ViewModel
 
 
         public ObjectPageViewModel(PageService navigation, IProjektRepository projektRepository, ICustomersRepository customersRepository,
-            IResponsPersonsRepository responsPersonsRepository, IContractRepository contractRepository, ITenderRepository tenderRepository, ITTNRepository tTNRepository)
+            IContractRepository contractRepository, ITenderRepository tenderRepository, ITTNRepository tTNRepository)
         {
             _navigation = navigation;
             _projektRepository = projektRepository;
@@ -117,15 +116,12 @@ namespace WPFApp1.ViewModel
             _contractRepository = contractRepository;
             _tenderRepository = tenderRepository;
             _tTNRepository = tTNRepository;
-            _responsPersonsRepository = responsPersonsRepository;
 
             CurrentObjekt = _projektRepository.GetCurrentProjekt(_projektRepository.ProjektID);
             CurrentObjektContracts = new ObservableCollection<Contracts>(_projektRepository.GetContractsForCurrentProjekt(_projektRepository.ProjektID));
             CurrentObjektTenders = new ObservableCollection<Tenders>(_projektRepository.GetTendersForCurrentProject(_projektRepository.ProjektID));
             CurrentObjektTns = new ObservableCollection<TTN>(_projektRepository.GetTTNsForCurrentProjekt(_projektRepository.ProjektID));
             Customers = new ObservableCollection<Customers>(_customersRepository.GetAllActiveCustommers());
-            RespPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersonsByCurrentProjekt(CurrentObjekt.ID));
-            AllAdmPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersons());
 
             Doc_Number = CurrentObjekt.Doc_Number;
             Object_Name = CurrentObjekt.Object_name;
@@ -314,6 +310,16 @@ namespace WPFApp1.ViewModel
             }
         });
 
+        public ICommand EditADM_Persons => new DelegateCommand(() =>
+        {
+            _projektRepository.SetCurrentProjectID(CurrentObjekt);
+            EditADMPersonsByProjectWindowDialog editADMPersons = new EditADMPersonsByProjectWindowDialog();
+            _ = editADMPersons.ShowDialog();
+            if (editADMPersons.DialogResult == true)
+            {
+                _ = MessageBox.Show("Список Ответственных успешно обновлен", "Обновление Ответственных.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        });
 
     }
 }

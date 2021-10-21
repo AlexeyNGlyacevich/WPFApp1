@@ -66,7 +66,7 @@ namespace WPFApp1.Model.Repositories
             }
         }
 
-        public bool CheckTTNRegistrationNumber(int TTN_Number)
+        public bool CheckTTNRegistrationNumber(string TTN_Number)
         {
             var test = _appDBcontext.TTN.Any(x => x.Act_number == TTN_Number);
             return test;

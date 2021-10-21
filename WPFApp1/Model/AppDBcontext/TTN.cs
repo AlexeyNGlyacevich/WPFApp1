@@ -16,7 +16,7 @@ namespace WPFApp1.Model.AppDBcontext
     {
         public int id { get; set; }
         public Nullable<int> ContractID { get; set; }
-        public Nullable<int> Act_number { get; set; }
+        public string Act_number { get; set; }
         public Nullable<System.DateTime> Date_of_accept { get; set; }
         public string Customer { get; set; }
         public Nullable<System.DateTime> Date_of_contract { get; set; }

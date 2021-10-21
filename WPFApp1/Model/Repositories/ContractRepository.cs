@@ -45,7 +45,7 @@ namespace WPFApp1.Model.Repositories
             return true;
         }
 
-        public bool CheckContractRegistrationNumber(int number)
+        public bool CheckContractRegistrationNumber(string number)
         {
             var test = _appDBcontext.Contracts.Any(x => x.Contract_Number == number);
             return test;
@@ -115,14 +115,5 @@ namespace WPFApp1.Model.Repositories
             }
         }
 
-        // Написать метод проверяющий на пустую строку
-        public bool ChecContractRegistrationNumberByCorrect(int number)
-        {
-           if(number.ToString().Length > 1)
-           {
-                return true;
-           }
-            return false;
-        }
     }
 }

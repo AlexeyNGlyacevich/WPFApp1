@@ -33,7 +33,7 @@ namespace WPFApp1.Model.Repositories
 
         public IQueryable<Customers> GetAllActiveCustommers()
         {
-            var activecustomerslist = _appDBcontext.Customers.Where(x => x.Status == true);
+            var activecustomerslist = _appDBcontext.Customers.Where(x => x.Status == true).OrderBy(y => y.Customer_Name);
             return activecustomerslist;
         }
 

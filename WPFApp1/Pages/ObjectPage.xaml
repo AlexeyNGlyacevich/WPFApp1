@@ -298,7 +298,8 @@
                                                VerticalAlignment="Top" />
 
 
-                                        <ComboBox ItemsSource="{Binding Source={StaticResource CustomerCollection}}" x:Name="Cust"
+                                        <ComboBox ItemsSource="{Binding Source={StaticResource CustomerCollection}}"
+                                                  x:Name="Cust"
                                                   Margin=" 5 1 5 3" 
                                                   Height="22"
                                                   Width="350" 
@@ -379,42 +380,14 @@
                                         </GroupBox>
                                     </StackPanel>
                                 </GroupBox>
-                                <GroupBox Grid.Column="2"
-                                          Header="Назначить Ответственных за Проект" Margin="10,5,31,10">
-                                    <DockPanel HorizontalAlignment="Stretch" 
-                                               Margin="0 0 0 10">
-                                        <ListBox ItemsSource="{Binding RespPersons}"
-                                                 DockPanel.Dock="Left"
-                                                 Width="150">
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding First_Name}"/>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
-                                        <StackPanel Width="40"
-                                                    Orientation="Vertical"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center">
-                                            <Button Height="30"
-                                                    Width="30"
-                                                    Margin="5">
-                                            </Button>
-                                            <Button Height="30"
-                                                    Width="30"
-                                                     Margin="5">
-                                            </Button>
-                                        </StackPanel>
-                                        <ListBox ItemsSource="{Binding AllAdmPersons}"
-                                                 Width="150">
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding First_Name}"/>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
-                                    </DockPanel>
-                                </GroupBox>
+                                <Button Grid.Column="2"
+                                        Height="30"
+                                        Width="250"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Left"
+                                        Margin="15 15 1 1"
+                                        Content="Редактировать список Ответственных"
+                                        Command="{Binding EditADM_Persons}"/>
                             </Grid>
                     
                         </TabItem>

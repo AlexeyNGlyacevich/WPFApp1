@@ -22,9 +22,9 @@ namespace WPFApp1.Model.Repositories
             return admistrators;
         }
 
-        public IQueryable<Respons_persons> GetAdminstrativePersonsByCurrentProjekt(int projektID)
+        public IQueryable<Respons_persons> GetAdminstrativePersonsByCurrentProjekt(int ProjectID)
         {
-            var persons = _appDbContext.Main_Reestr.Where(x => x.ID == projektID).SelectMany(y => y.Respons_persons);
+            var persons = _appDbContext.Main_Reestr.Where(x => x.ID == ProjectID).SelectMany(y => y.Respons_persons);
             return persons;
         }
 
@@ -65,28 +65,42 @@ namespace WPFApp1.Model.Repositories
             return persons;
         }
 
-        public void SetAdminstrativePersonsByCurrentProjekt(int ProjektID, ObservableCollection<Respons_persons> collection)
+        public void SetAdminstrativePersonsByCurrentProjekt(int ProjectID, ObservableCollection<Respons_persons> collection)
         {
-            var projekt = _appDbContext.Main_Reestr.FirstOrDefault(x => x.ID == ProjektID);
-            if (projekt != null)
+            var project = _appDbContext.Main_Reestr.FirstOrDefault(x => x.ID == ProjectID);
+            if (project != null)
             {
                 foreach (Respons_persons person in collection)
                 {
                     if (person.IsSelected == true)
                     {
-                        projekt.Respons_persons.Add(person);
-                    }
-                }
-                var users = _appDbContext.Respons_persons.Where(x => x.IsSelected != false);
-                foreach(Respons_persons item in users)
-                {
-                    if(item.First_Name != null)
-                    {
-                        item.IsSelected = false;
+                        project.Respons_persons.Add(person);
+                        person.IsSelected = false;
                     }
                 }
             }
-            _appDbContext.SaveChanges();
+            _ = _appDbContext.SaveChanges();
+        }
+
+        public void UpdateAdminstrativePersonsByCurrentProject(int ProjectID, ObservableCollection<Respons_persons> collection)
+        {
+            var project = _appDbContext.Main_Reestr.FirstOrDefault(x => x.ID == ProjectID);
+            if (project == null)
+            {
+                return;
+            }
+            else
+            {
+                project.Respons_persons.Clear();
+                foreach (Respons_persons person in collection)
+                {
+                    if (person.First_Name != null)
+                    {
+                        project.Respons_persons.Add(person);
+                    }
+                }
+            }
+            _ = _appDbContext.SaveChanges();
         }
     }
 }

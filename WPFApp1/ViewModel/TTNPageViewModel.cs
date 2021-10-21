@@ -23,8 +23,8 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
-        private int? _act_number;
-        public int? Act_Number
+        private string _act_number;
+        public string Act_Number
         {
             get => _act_number;
             set
@@ -123,7 +123,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand ContractSaveChanged => new DelegateCommand(() =>
         {
-            if (_tTNRepository.CheckTTNRegistrationNumber((int)Act_Number) && TTN.Act_number != Act_Number)
+            if (_tTNRepository.CheckTTNRegistrationNumber(Act_Number) && TTN.Act_number != Act_Number)
             {
                 _ = MessageBox.Show("Накладная с указанным номером уже существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

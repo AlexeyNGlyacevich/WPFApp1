@@ -1,0 +1,117 @@
+﻿<Window x:Class="WPFApp1.DialogWindows.EditADMPersonsByProjectWindowDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp1.DialogWindows"
+        mc:Ignorable="d"
+        Title="Редактирование ответственных за Проект"
+        x:Name="AMD_PersonEdit"
+        Height="400" 
+        Width="400"
+        DataContext="{Binding Source={StaticResource VmLocator}, Path=EditADMPersonsByProject}"
+        ResizeMode="NoResize"
+        Background="WhiteSmoke"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=" 40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="160"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <StackPanel>
+                    <TextBlock Text="Назначенные"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"/>
+                    <ListBox ItemsSource="{Binding AssignedADMPersons}"
+                             SelectedItem="{Binding Person}"
+                             DockPanel.Dock="Left"
+                             Width="150"
+                             Height="255">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding First_Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1"      
+                        Width="50"                      
+                        Orientation="Vertical"                     
+                        HorizontalAlignment="Center"                     
+                        VerticalAlignment="Center">
+                <Button Height="40"
+                        Width="40"
+                        Margin="5"
+                        Command="{Binding RemoveFromCurrentADMcollection}">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <Path x:Name="Path"
+                              Data="{Binding Source={StaticResource Forward}}"
+                              Fill="Black"
+                              Stretch="Uniform"/>
+                        </DataTemplate>
+                    </Button.ContentTemplate> >
+                </Button>
+                <Button Height="40"
+                        Width="40"
+                        Margin="5"
+                        Command="{Binding AddToCurrentADMcollection}">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <Path x:Name="Path"
+                              Data="{Binding Source={StaticResource Back}}"
+                              Fill="Black"
+                              Stretch="Uniform"/>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+            </StackPanel>
+            <Grid Grid.Column="2">
+                <StackPanel>
+                    <TextBlock Text="Не Назначенные"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"/>
+                    <ListBox ItemsSource="{Binding RemainingADMPersons}"
+                             SelectedItem="{Binding AddPerson}"
+                             Width="150"
+                             Height="255"
+                             x:Name="ADMS">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding First_Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+            </Grid>
+        <DockPanel Grid.Row="2"
+                   HorizontalAlignment="Stretch">
+            <Button Content="Сохранить"
+                    Margin="200 4 4 4"
+                    Height="35"
+                    Width="100"
+                    IsDefault="True"
+                    Command="{Binding SaveChangesByResp_Persons}"/>
+            <Button Content="Отмена"
+                    DockPanel.Dock="Right"
+                    Height="35"
+                    Width="70"
+                    Margin="1 4 4 4"
+                    IsCancel="True"
+                    HorizontalAlignment="Right"
+                    Command="{Binding}"/>
+        </DockPanel>
+    </Grid>
+</Window>

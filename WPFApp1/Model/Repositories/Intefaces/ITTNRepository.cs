@@ -19,6 +19,6 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         void UpdateTTN(TTN ttn);
 
-        bool CheckTTNRegistrationNumber(int TTN_Number);
+        bool CheckTTNRegistrationNumber(string TTN_Number);
     }
 }

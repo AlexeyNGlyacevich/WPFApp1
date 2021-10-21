@@ -16,9 +16,7 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         Documentation GetDocumentationDataForCurrentContract(int contractID);
 
-        bool CheckContractRegistrationNumber(int number);
-
-        bool ChecContractRegistrationNumberByCorrect(int number);
+        bool CheckContractRegistrationNumber(string number);
 
         void SetContractID(Contracts contract);
 

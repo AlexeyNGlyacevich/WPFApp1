@@ -9,7 +9,7 @@ namespace WPFApp1.ViewModel
 {
     public class AddNewTTNPageViewModel : BindableBase
     {
-        public int TTNNumber { get; set; }
+        public string TTNNumber { get; set; }
         public int ContractKey { get; set; }
         public Main_Reestr CurrentObjekt { get; set; }
         public ObservableCollection<Contracts> Contracts { get; set; }
@@ -49,13 +49,12 @@ namespace WPFApp1.ViewModel
                     if (window.Name.Equals("TTN"))
                     {
                         window.DialogResult = true;
-                        _ = MessageBox.Show("Накладная Зарегистрирована", "Добавление Накладной", MessageBoxButton.OK, MessageBoxImage.Information);
+                        _ = MessageBox.Show("Новая Накладная Успешно Добавлена", "Добавление Накладной", MessageBoxButton.OK, MessageBoxImage.Information);
                         return;
                     }
                 }
-                _ = MessageBox.Show("Новая Накладная Успешно Добавлена", "Добавление Накладной", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-        }, () => TTNNumber != 0 && TTNNumber > 9 && ContractKey != 0);
+        }, () => !string.IsNullOrEmpty(TTNNumber) && ContractKey != 0 && TTNNumber != "0");
     }
 
 }

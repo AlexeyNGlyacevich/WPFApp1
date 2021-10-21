@@ -8,8 +8,8 @@ namespace WPFApp1.ViewModel
 {
     public class AddNewConrtactViewModel : BindableBase
     {
-        private int contractNumber;
-        public int ContractNumber
+        private string contractNumber;
+        public string ContractNumber
         {
             get => contractNumber;
 
@@ -41,11 +41,6 @@ namespace WPFApp1.ViewModel
                 _ = MessageBox.Show("Договор с указанным номером уже зарегистрирован!", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (_contractRepository.ChecContractRegistrationNumberByCorrect(ContractNumber) == false)
-            {
-                _ = MessageBox.Show("Неверно Указан номер!", "Добавление договора", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
             else
             {
                 Contracts contract = new Contracts
@@ -70,7 +65,7 @@ namespace WPFApp1.ViewModel
                     }
                 }
             }
-        }, () => ContractNumber != 0 && ContractNumber > 9);
+        }, () => !string.IsNullOrEmpty(ContractNumber));
 
     }
 }

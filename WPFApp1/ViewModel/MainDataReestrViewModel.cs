@@ -5,7 +5,6 @@ using WPFApp1.Pages;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
-using WPFApp1.Pages.EditorPages;
 using WPFApp1.Model.Repositories.Intefaces;
 using WPFApp1.DialogWindows;
 

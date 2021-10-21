@@ -37,7 +37,6 @@
                               Data="{Binding Source={StaticResource Back}}"
                               Fill="Black"
                               Stretch="Uniform"
-                             
                               />
                     </DataTemplate>
                 </Button.ContentTemplate>

@@ -111,6 +111,9 @@
     <Compile Include="DialogWindows\AddNewTTNWindowDialog.xaml.cs">
       <DependentUpon>AddNewTTNWindowDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\EditADMPersonsByProjectWindowDialog.xaml.cs">
+      <DependentUpon>EditADMPersonsByProjectWindowDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\RespPersonsWindowDialog.xaml.cs">
       <DependentUpon>RespPersonsWindowDialog.xaml</DependentUpon>
     </Compile>
@@ -230,7 +233,6 @@
     <Compile Include="Pages\TTN\TTNPage.xaml.cs">
       <DependentUpon>TTNPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\EventBus.cs" />
     <Compile Include="Services\Event\ChangePageEvent.cs" />
     <Compile Include="Services\Event\IEvent.cs" />
@@ -240,6 +242,7 @@
     <Compile Include="Services\Message\Message.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\EventSubscriber.cs" />
+    <Compile Include="Services\ResponcePersonsService.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModel\AddNewConrtactViewModel.cs" />
     <Compile Include="ViewModel\AddNewObjektPageViewModel.cs" />
@@ -252,6 +255,7 @@
     <Compile Include="ViewModel\AllUsersEditorPageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel.cs" />
     <Compile Include="ViewModel\CustomersCatalogPageViewModel.cs" />
+    <Compile Include="ViewModel\EditADMPersonsByProject.cs" />
     <Compile Include="ViewModel\MainDataReestrViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ObjectPageViewModel.cs" />
@@ -283,6 +287,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\AddNewTTNWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\EditADMPersonsByProjectWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

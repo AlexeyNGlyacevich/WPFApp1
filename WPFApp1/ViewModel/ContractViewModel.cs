@@ -29,8 +29,8 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
-        private int? _currentcontractnumber;
-        public int? CurrentContractNumber
+        private string _currentcontractnumber;
+        public string CurrentContractNumber
         {
             get => _currentcontractnumber;
             set
@@ -397,7 +397,7 @@ namespace WPFApp1.ViewModel
 
         public ICommand ContractSaveChanges => new DelegateCommand(() =>
         {
-            if (_contractRepository.CheckContractRegistrationNumber((int)CurrentContractNumber) && Contract.Contract_Number != CurrentContractNumber)
+            if (_contractRepository.CheckContractRegistrationNumber(CurrentContractNumber) && Contract.Contract_Number != CurrentContractNumber)
             {
                 _ = MessageBox.Show("Договор с указанным номером уже существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

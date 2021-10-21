@@ -43,9 +43,9 @@ namespace WPFApp1.Model.Repositories
             return list;
         }
 
-        public Users_DB GetCurrentUser(int userID)
+        public Users_DB GetCurrentUser(int UserID)
         {
-            var user = _appDbContext.Users_DB.FirstOrDefault(x => x.ID == userID);
+            var user = _appDbContext.Users_DB.FirstOrDefault(x => x.ID == UserID);
             return user;
         }
 
@@ -71,15 +71,15 @@ namespace WPFApp1.Model.Repositories
 
         public void UpdateUser(Users_DB user)
         {
-            var editedobjekt = _appDbContext.Users_DB.Find(user.ID);
-            if (editedobjekt == null)
+            var editedobject = _appDbContext.Users_DB.Find(user.ID);
+            if (editedobject == null)
             {
                 return;
             }
 
             try
             {
-                _appDbContext.Entry(editedobjekt).CurrentValues.SetValues(user);
+                _appDbContext.Entry(editedobject).CurrentValues.SetValues(user);
                 _ = _appDbContext.SaveChanges();
             }
             catch (Exception)

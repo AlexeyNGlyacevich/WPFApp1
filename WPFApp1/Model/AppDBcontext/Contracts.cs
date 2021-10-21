@@ -24,7 +24,7 @@ namespace WPFApp1.Model.AppDBcontext
     
         public int ID { get; set; }
         public Nullable<int> IDKey { get; set; }
-        public Nullable<int> Contract_Number { get; set; }
+        public string Contract_Number { get; set; }
         public Nullable<System.DateTime> Contract_Signing { get; set; }
         public string Object_name { get; set; }
         public string subject_of_contract { get; set; }
