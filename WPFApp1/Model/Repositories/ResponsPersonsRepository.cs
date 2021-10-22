@@ -41,27 +41,29 @@ namespace WPFApp1.Model.Repositories
 
         public IQueryable<Respons_persons> GetEngenersPersons()
         {
-            throw new NotImplementedException();
+            var persons = _appDbContext.Respons_persons.Where(x => (x.PersonStats.Role == "Инженер" || x.PersonStats.Role == "Экономист") && x.Activity == true);
+            return persons;
         }
 
         public IQueryable<Respons_persons> GetWorckers()
         {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Respons_persons> GetEngenersByCurrentcontract(int contractID)
-        {
-            var persons = _appDbContext.Contracts.Where(x => x.ID == contractID)
-                                                 .SelectMany(y => y.Respons_persons)
-                                                 .Where(z => (z.PersonStats.Role == "Инженер" || z.PersonStats.Role == "Экономист") && z.Activity == true);
+            var persons = _appDbContext.Respons_persons.Where(x => x.PersonStats.Role == "Специалист" && x.Activity == true);
             return persons;
         }
 
-        public IQueryable<Respons_persons> GetWorckersByCurrentcontract(int contractID)
+        public IQueryable<Respons_persons> GetEngenersByCurrentContract(int contractID)
+        {
+            var persons = _appDbContext.Contracts.Where(x => x.ID == contractID)
+                                                 .SelectMany(y => y.Respons_persons)
+                                                 .Where(z => (z.PersonStats.Role == "Инженер" || z.PersonStats.Role == "Экономист"));
+            return persons;
+        }
+
+        public IQueryable<Respons_persons> GetWorckersByCurrentContract(int contractID)
         {
             var persons = _appDbContext.Contracts.Where(x => x.ID == contractID)
                                                 .SelectMany(y => y.Respons_persons)
-                                                .Where(z => z.PersonStats.Role == "Специалист" && z.Activity == true);
+                                                .Where(z => z.PersonStats.Role == "Специалист");
             return persons;
         }
 

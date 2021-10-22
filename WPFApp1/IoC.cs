@@ -36,7 +36,8 @@ namespace WPFApp1
             _ = services.AddTransient<AllTTNPageViewModel>();
             _ = services.AddTransient<ResponsPersonsPageViewModel>();
             _ = services.AddTransient<CustomersCatalogPageViewModel>();
-            _ = services.AddTransient<EditADMPersonsByProject>();
+            _ = services.AddTransient<EditADMPersonsByProjectViewModel>();
+            _ = services.AddTransient<Contract_ENG_RespPersonsViewModel>();
 
 
             _ = services.AddScoped<ProjectStDBEntities>();

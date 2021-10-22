@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WPFApp1.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для RespPersonsWindowDialog.xaml
+    /// Логика взаимодействия для ContractRespPersonsWindowDialog.xaml
     /// </summary>
-    public partial class RespPersonsWindowDialog : Window
+    public partial class ContractRespPersonsWindowDialog : Window
     {
-        public RespPersonsWindowDialog()
+        public ContractRespPersonsWindowDialog()
         {
             InitializeComponent();
         }

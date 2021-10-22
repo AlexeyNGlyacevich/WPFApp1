@@ -8,7 +8,7 @@ using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
-    public class EditADMPersonsByProject : BindableBase
+    public class EditADMPersonsByProjectViewModel : BindableBase
     {
         private readonly IResponsPersonsRepository _responsPersonsRepository;
         private readonly IProjektRepository _projektRepository;
@@ -21,7 +21,7 @@ namespace WPFApp1.ViewModel
         public Respons_persons AddPerson { get; set; }
 
 
-        public EditADMPersonsByProject(IResponsPersonsRepository responsPersonsRepository, IProjektRepository projektRepository, ResponcePersonsService personsServive)
+        public EditADMPersonsByProjectViewModel(IResponsPersonsRepository responsPersonsRepository, IProjektRepository projektRepository, ResponcePersonsService personsServive)
         {
             _responsPersonsRepository = responsPersonsRepository;
             _projektRepository = projektRepository;
@@ -61,14 +61,14 @@ namespace WPFApp1.ViewModel
 
         public ICommand AddToCurrentADMcollection => new DelegateCommand(() =>
         {
-            if(AddPerson == null)
+            if (AddPerson == null)
             {
                 return;
             }
             else
             {
                 AssignedADMPersons.Add(AddPerson);
-                RemainingADMPersons.Remove(AddPerson);
+                _ = RemainingADMPersons.Remove(AddPerson);
             }
         });
 

@@ -18,9 +18,9 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         IQueryable<Respons_persons> GetEngenersPersons();
 
-        IQueryable<Respons_persons> GetEngenersByCurrentcontract(int contractID);
+        IQueryable<Respons_persons> GetEngenersByCurrentContract(int contractID);
 
-        IQueryable<Respons_persons> GetWorckersByCurrentcontract(int contractID);
+        IQueryable<Respons_persons> GetWorckersByCurrentContract(int contractID);
 
         IQueryable<Respons_persons> GetWorckers();
 

@@ -154,7 +154,7 @@
             </Grid.Resources>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource ProjektCollection} }">
+                    <ItemsControl ItemsSource="{Binding Source={StaticResource ProjektCollection}}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="3" 
@@ -170,7 +170,7 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        
+
                                         <StackPanel Orientation="Vertical"
                                                 Grid.Column="0"
                                                 VerticalAlignment="Center">
@@ -231,17 +231,59 @@
                                                             HorizontalAlignment="Left"
                                                             Margin="19 0 0 0 "
                                                             FontWeight="SemiBold"
-                                                            Text="{Binding Customers.Customer_Name , UpdateSourceTrigger=PropertyChanged}"/>
+                                                            Text="{Binding Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
-                                            <Expander Header="Ответственные за проект">
+                                            <Expander>
+                                                <Expander.Header>
+
+                                                    
+                                                        <StackPanel Orientation="Horizontal"
+                                                                        Grid.Column="1"
+                                                                    OverridesDefaultStyle="True">
+
+
+                                                            <ItemsControl ItemsSource="{Binding Respons_persons}">
+                                                                <ItemsControl.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <Button Background="Transparent"
+                                                                                    BorderBrush="Transparent"
+                                                                          
+                                                                                    Content="{Binding Respons_persons}">
+                                                                            <Button.ContentTemplate>
+                                                                                <DataTemplate>
+
+                                                                                    <Path Data="{Binding Source={StaticResource User}}"
+                                                                                   Stretch="UniformToFill"
+                                                                                      Fill="CadetBlue" />
+                                                                                </DataTemplate>
+                                                                            </Button.ContentTemplate>
+
+                                                                        </Button>
+                                                                    </DataTemplate>
+                                                                </ItemsControl.ItemTemplate>
+                                                            </ItemsControl>
+                                                        </StackPanel>
+
+                                                 
+                                                </Expander.Header>
+
                                                 <StackPanel Orientation="Vertical">
                                                     <ItemsControl ItemsSource="{Binding Respons_persons}">
                                                         <ItemsControl.ItemTemplate>
                                                             <DataTemplate>
                                                                 <StackPanel Orientation="Horizontal">
-                                                                    <Border>
-                                                                        
-                                                                    </Border>
+                                                                    <Border/>
+                                                                    <Button Background="Transparent"
+                                                                            BorderBrush="Transparent"
+                                                                            Content="{Binding Person_stats}">
+                                                                        <Button.ContentTemplate>
+                                                                            <DataTemplate>
+                                                                                <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
+                                                                                      Stretch="UniformToFill"
+                                                                                      Fill="CadetBlue" />
+                                                                            </DataTemplate>
+                                                                        </Button.ContentTemplate>
+                                                                    </Button>
                                                                     <TextBlock  VerticalAlignment="Center" 
                                                                                 TextAlignment="Center" 
                                                                                 HorizontalAlignment="Left"
@@ -264,7 +306,7 @@
                                             </Expander>
                                         </StackPanel>
 
-                                        <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.EditObject}" CommandParameter="{Binding}" Grid.Column="5" 
+                                        <Button Command="{Binding DataContext.EditObject, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" CommandParameter="{Binding}" Grid.Column="5" 
                                                 Content="Редактировать"
                                                 Height="40"
                                                 Width="auto"
@@ -274,8 +316,7 @@
                                             <Button.Effect>
                                                 <DropShadowEffect ShadowDepth="5"
                                                               Direction="260"  
-                                                              Color="DarkGray">
-                                                </DropShadowEffect>
+                                                              Color="DarkGray"/>
                                             </Button.Effect>
                                         </Button>
                                     </Grid>

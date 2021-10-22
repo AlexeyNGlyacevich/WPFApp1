@@ -46,7 +46,9 @@ namespace WPFApp1
 
         public CustomersCatalogPageViewModel CustomersCatalogPageViewModel => IoC.Resolve<CustomersCatalogPageViewModel>();
 
-        public EditADMPersonsByProject EditADMPersonsByProject => IoC.Resolve<EditADMPersonsByProject>();
+        public EditADMPersonsByProjectViewModel EditADMPersonsByProjectViewModel => IoC.Resolve<EditADMPersonsByProjectViewModel>();
+
+        public Contract_ENG_RespPersonsViewModel Contract_ENG_RespPersonsViewModel => IoC.Resolve<Contract_ENG_RespPersonsViewModel>();
 
     }
 }

@@ -111,11 +111,11 @@
     <Compile Include="DialogWindows\AddNewTTNWindowDialog.xaml.cs">
       <DependentUpon>AddNewTTNWindowDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\ContractRespPersonsWindowDialog.xaml.cs">
+      <DependentUpon>ContractRespPersonsWindowDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\EditADMPersonsByProjectWindowDialog.xaml.cs">
       <DependentUpon>EditADMPersonsByProjectWindowDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DialogWindows\RespPersonsWindowDialog.xaml.cs">
-      <DependentUpon>RespPersonsWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\AppDBcontext\Approval_List.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -254,8 +254,9 @@
     <Compile Include="ViewModel\AllTTNPageViewModel.cs" />
     <Compile Include="ViewModel\AllUsersEditorPageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel.cs" />
+    <Compile Include="ViewModel\Contract_ENG_RespPersonsViewModel.cs" />
     <Compile Include="ViewModel\CustomersCatalogPageViewModel.cs" />
-    <Compile Include="ViewModel\EditADMPersonsByProject.cs" />
+    <Compile Include="ViewModel\EditADMPersonsByProjectViewModel.cs" />
     <Compile Include="ViewModel\MainDataReestrViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ObjectPageViewModel.cs" />
@@ -290,11 +291,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DialogWindows\EditADMPersonsByProjectWindowDialog.xaml">
+    <Page Include="DialogWindows\ContractRespPersonsWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DialogWindows\RespPersonsWindowDialog.xaml">
+    <Page Include="DialogWindows\EditADMPersonsByProjectWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

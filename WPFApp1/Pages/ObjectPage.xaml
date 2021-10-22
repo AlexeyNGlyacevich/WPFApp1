@@ -223,8 +223,8 @@
                                                        FontWeight="Bold"/>
                                         </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal"
-                                                                Margin="5 10 1 1">
+                                        <StackPanel Orientation="Horizontal"         
+                                                    Margin="5 10 1 1">
 
                                             <TextBlock Text="Стадия : "
                                                                    Margin="5 1 1 1 "
@@ -279,8 +279,7 @@
                                                      VerticalAlignment="Top" 
                                                      HorizontalAlignment="Left"
                                                      FontWeight="Medium"
-                                                     FontSize="14"
-                                                                     />
+                                                     FontSize="14"/>
                                         </StackPanel>
                                     </StackPanel>
 
