@@ -10,6 +10,7 @@ namespace WPFApp1.Model.Repositories
     {
         private readonly ProjectStDBEntities _appDbContext;
 
+
         public ResponsPersonsRepository(ProjectStDBEntities appDbContext)
         {
             _appDbContext = appDbContext;
@@ -51,19 +52,27 @@ namespace WPFApp1.Model.Repositories
             return persons;
         }
 
-        public IQueryable<Respons_persons> GetEngenersByCurrentContract(int contractID)
+        public IQueryable<Respons_persons> GetEngenersByCurrentContract(int ContractID)
         {
-            var persons = _appDbContext.Contracts.Where(x => x.ID == contractID)
+            var persons = _appDbContext.Contracts.Where(x => x.ID == ContractID)
                                                  .SelectMany(y => y.Respons_persons)
-                                                 .Where(z => (z.PersonStats.Role == "Инженер" || z.PersonStats.Role == "Экономист"));
+                                                 .Where(z => z.PersonStats.Role == "Инженер" || z.PersonStats.Role == "Экономист");
             return persons;
         }
 
-        public IQueryable<Respons_persons> GetWorckersByCurrentContract(int contractID)
+        public IQueryable<Respons_persons> GetWorckersByCurrentContract(int ContractID)
         {
-            var persons = _appDbContext.Contracts.Where(x => x.ID == contractID)
+            var persons = _appDbContext.Contracts.Where(x => x.ID == ContractID)
                                                 .SelectMany(y => y.Respons_persons)
                                                 .Where(z => z.PersonStats.Role == "Специалист");
+            return persons;
+        }
+
+        public IQueryable<Respons_persons> GetADMPersonsByCurrentContract(int ContractID)
+        {
+            var persons = _appDbContext.Contracts.Where(x => x.ID == ContractID)
+                                    .SelectMany(y => y.Respons_persons)
+                                    .Where(x => x.PersonStats.Role == "ГИП" || x.PersonStats.Role=="Администратор");
             return persons;
         }
 
@@ -103,6 +112,84 @@ namespace WPFApp1.Model.Repositories
                 }
             }
             _ = _appDbContext.SaveChanges();
+        }
+
+        public void UpdateENGPersonsByContract(int ContractID, ObservableCollection<Respons_persons> collection)
+        {
+            var contract = _appDbContext.Contracts.FirstOrDefault(x => x.ID == ContractID);
+            if (contract == null)
+            {
+                return;
+            }
+            else
+            {
+                var list_persons = contract.Respons_persons.ToList();
+                _ = list_persons.RemoveAll(x => x.PersonStats.Role == "Инженер" || x.PersonStats.Role == "Экономист");
+                list_persons.AddRange(collection);
+                contract.Respons_persons.Clear();
+                foreach (Respons_persons person in list_persons)
+                {
+                    if (person.First_Name != null)
+                    {
+                        contract.Respons_persons.Add(person);
+                    }
+                }
+            }
+            _ = _appDbContext.SaveChanges();
+        }
+
+        public void UpdateAdministrativePersonsByContract(int ContractID, ObservableCollection<Respons_persons> collection)
+        {
+            var contract = _appDbContext.Contracts.FirstOrDefault(x => x.ID == ContractID);
+            if (contract == null)
+            {
+                return;
+            }
+            else
+            {
+                var list_persons = contract.Respons_persons.ToList();
+                _ = list_persons.RemoveAll(x => x.PersonStats.Role == "ГИП" || x.PersonStats.Role == "Администратор");
+                list_persons.AddRange(collection);
+                contract.Respons_persons.Clear();
+                foreach (Respons_persons person in list_persons)
+                {
+                    if (person.First_Name != null)
+                    {
+                        contract.Respons_persons.Add(person);
+                    }
+                }
+            }
+            _ = _appDbContext.SaveChanges();
+        }
+
+        public void UpdateWorckersByContract(int ContractID, ObservableCollection<Respons_persons> collection)
+        {
+            var contract = _appDbContext.Contracts.FirstOrDefault(x => x.ID == ContractID);
+            if (contract == null)
+            {
+                return;
+            }
+            else
+            {
+                var list_persons = contract.Respons_persons.ToList();
+                _ = list_persons.RemoveAll(x => x.PersonStats.Role == "Специалист");
+                list_persons.AddRange(collection);
+                contract.Respons_persons.Clear();
+                foreach (Respons_persons person in list_persons)
+                {
+                    if (person.First_Name != null)
+                    {
+                        contract.Respons_persons.Add(person);
+                    }
+                }
+            }
+            _ = _appDbContext.SaveChanges();
+        }
+
+        public void RemoveResponcePersonsByContract(Contracts contract)
+        {
+            contract.Respons_persons.Clear();
+
         }
     }
 }

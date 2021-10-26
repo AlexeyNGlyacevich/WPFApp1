@@ -50,5 +50,9 @@ namespace WPFApp1
 
         public Contract_ENG_RespPersonsViewModel Contract_ENG_RespPersonsViewModel => IoC.Resolve<Contract_ENG_RespPersonsViewModel>();
 
+        public Contract_ADM_RespPersViewModel Contract_ADM_RespPersViewModel => IoC.Resolve<Contract_ADM_RespPersViewModel>();
+
+        public ContractWorckerViewModel ContractWorckerViewModel => IoC.Resolve<ContractWorckerViewModel>();
+
     }
 }

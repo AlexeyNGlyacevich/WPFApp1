@@ -111,8 +111,14 @@
     <Compile Include="DialogWindows\AddNewTTNWindowDialog.xaml.cs">
       <DependentUpon>AddNewTTNWindowDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\ContractADMPersonsWindowDialog.xaml.cs">
+      <DependentUpon>ContractADMPersonsWindowDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\ContractRespPersonsWindowDialog.xaml.cs">
       <DependentUpon>ContractRespPersonsWindowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\ContractWorckersWindowDialog.xaml.cs">
+      <DependentUpon>ContractWorckersWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\EditADMPersonsByProjectWindowDialog.xaml.cs">
       <DependentUpon>EditADMPersonsByProjectWindowDialog.xaml</DependentUpon>
@@ -254,6 +260,8 @@
     <Compile Include="ViewModel\AllTTNPageViewModel.cs" />
     <Compile Include="ViewModel\AllUsersEditorPageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel.cs" />
+    <Compile Include="ViewModel\ContractWorckerViewModel.cs" />
+    <Compile Include="ViewModel\Contract_ADM_RespPersViewModel.cs" />
     <Compile Include="ViewModel\Contract_ENG_RespPersonsViewModel.cs" />
     <Compile Include="ViewModel\CustomersCatalogPageViewModel.cs" />
     <Compile Include="ViewModel\EditADMPersonsByProjectViewModel.cs" />
@@ -291,7 +299,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogWindows\ContractADMPersonsWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DialogWindows\ContractRespPersonsWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\ContractWorckersWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

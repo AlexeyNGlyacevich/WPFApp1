@@ -14,7 +14,15 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         IQueryable<Respons_persons> GetAdminstrativePersonsByCurrentProjekt(int projektID);
 
+        void SetAdminstrativePersonsByCurrentProjekt(int ProjektID, ObservableCollection<Respons_persons> collection);
+
         void UpdateAdminstrativePersonsByCurrentProject(int ProjectID, ObservableCollection<Respons_persons> collection);
+
+        void UpdateENGPersonsByContract(int ContractID, ObservableCollection<Respons_persons> collection);
+
+        void UpdateAdministrativePersonsByContract(int ContractID, ObservableCollection<Respons_persons> collection);
+
+        void UpdateWorckersByContract(int ContractID, ObservableCollection<Respons_persons> collection);
 
         IQueryable<Respons_persons> GetEngenersPersons();
 
@@ -22,9 +30,12 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         IQueryable<Respons_persons> GetWorckersByCurrentContract(int contractID);
 
+        IQueryable<Respons_persons> GetADMPersonsByCurrentContract(int contractID);
+
         IQueryable<Respons_persons> GetWorckers();
 
-        void SetAdminstrativePersonsByCurrentProjekt(int ProjektID, ObservableCollection<Respons_persons> collection);
+        void RemoveResponcePersonsByContract(Contracts contract);
+
 
 
     }

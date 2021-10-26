@@ -8,38 +8,38 @@ using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
-    public class Contract_ENG_RespPersonsViewModel : BindableBase
-    {
+    public class ContractWorckerViewModel : BindableBase
+   {
         private readonly IResponsPersonsRepository _responsPersonsRepository;
         private readonly ResponcePersonsService _personsService;
         private readonly IContractRepository _contractRepository;
 
         public int ContractID { get; set; }
-        public ObservableCollection<Respons_persons> AssignedENGPersons { get; set; }
-        public ObservableCollection<Respons_persons> RemainingENGPersons { get; set; }
+        public ObservableCollection<Respons_persons> AssignedWPersons { get; set; }
+        public ObservableCollection<Respons_persons> RemainingWPersons { get; set; }
         public Respons_persons RemPerson { get; set; }
         public Respons_persons AddPerson { get; set; }
 
 
-        public Contract_ENG_RespPersonsViewModel(IResponsPersonsRepository responsPersonsRepository, ResponcePersonsService personsServive, IContractRepository contractRepository)
+        public ContractWorckerViewModel(IResponsPersonsRepository responsPersonsRepository, ResponcePersonsService personsServive, IContractRepository contractRepository)
         {
             _responsPersonsRepository = responsPersonsRepository;
             _contractRepository = contractRepository;
             _personsService = personsServive;
 
             ContractID = _contractRepository.ContractID;
-            AssignedENGPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetEngenersByCurrentContract(ContractID));
-            RemainingENGPersons = new ObservableCollection<Respons_persons>(_personsService.SelectRemainingENGPersons(ContractID));
+            AssignedWPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetWorckersByCurrentContract(ContractID));
+            RemainingWPersons = new ObservableCollection<Respons_persons>(_personsService.SelectRemainingWPersons(ContractID));
         }
 
-        public ICommand SaveChangesByENG_Persons => new DelegateCommand(() =>
+        public ICommand SaveChangesByW_Persons => new DelegateCommand(() =>
         {
 
-            _responsPersonsRepository.UpdateENGPersonsByContract(ContractID, AssignedENGPersons);
+            _responsPersonsRepository.UpdateWorckersByContract(ContractID, AssignedWPersons);
             var windows = Application.Current.Windows;
             foreach (Window window in windows)
             {
-                if (window.Name.Equals("ENG_PersonList"))
+                if (window.Name.Equals("Worckers_List"))
                 {
                     window.DialogResult = true;
                     return;
@@ -47,7 +47,7 @@ namespace WPFApp1.ViewModel
             }
         });
 
-        public ICommand RemoveFromCurrentENGcollection => new DelegateCommand(() =>
+        public ICommand RemoveFromCurrentWcollection => new DelegateCommand(() =>
         {
             if (RemPerson == null)
             {
@@ -55,13 +55,13 @@ namespace WPFApp1.ViewModel
             }
             else
             {
-                RemainingENGPersons.Add(RemPerson);
-                _ = AssignedENGPersons.Remove(RemPerson);
+                RemainingWPersons.Add(RemPerson);
+                _ = AssignedWPersons.Remove(RemPerson);
 
             }
         });
 
-        public ICommand AddToCurrentENGcollection => new DelegateCommand(() =>
+        public ICommand AddToCurrentWcollection => new DelegateCommand(() =>
         {
             if (AddPerson == null)
             {
@@ -69,8 +69,8 @@ namespace WPFApp1.ViewModel
             }
             else
             {
-                AssignedENGPersons.Add(AddPerson);
-                _ = RemainingENGPersons.Remove(AddPerson);
+                AssignedWPersons.Add(AddPerson);
+                _ = RemainingWPersons.Remove(AddPerson);
             }
         });
     }

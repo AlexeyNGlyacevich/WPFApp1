@@ -9,12 +9,14 @@ namespace WPFApp1.Model.Repositories
     public class ContractRepository : IContractRepository
     {
         private readonly ProjectStDBEntities _appDBcontext;
+        private readonly IResponsPersonsRepository _responsPersons;
         public int ContractID { get; set; }
         public int ProjektID { get; set; }
 
-        public ContractRepository(ProjectStDBEntities appDBcontext)
+        public ContractRepository(ProjectStDBEntities appDBcontext, IResponsPersonsRepository responsPersons)
         {
             _appDBcontext = appDBcontext;
+            _responsPersons = responsPersons;
         }
 
         public bool AddNewContract(Contracts contract)
@@ -82,6 +84,7 @@ namespace WPFApp1.Model.Repositories
                 Documentation documentation = _appDBcontext.Documentation.FirstOrDefault(x => x.ContractID == contractID);
                 _ = _appDBcontext.Documentation.Remove(documentation);
                 Contracts contract = _appDBcontext.Contracts.FirstOrDefault(x => x.ID == contractID);
+                _responsPersons.RemoveResponcePersonsByContract(contract);
                 _ = _appDBcontext.Contracts.Remove(contract);
                 _ = _appDBcontext.SaveChanges();
             }
@@ -114,6 +117,7 @@ namespace WPFApp1.Model.Repositories
                 return;
             }
         }
+
 
     }
 }

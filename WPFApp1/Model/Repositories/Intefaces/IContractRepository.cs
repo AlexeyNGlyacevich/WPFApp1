@@ -27,5 +27,7 @@ namespace WPFApp1.Model.Repositories.Intefaces
         bool RemoveCurrentContract(int ContractID);
 
         void UpdateContract(Contracts contract, Documentation documentation);
+
+
     }
 }

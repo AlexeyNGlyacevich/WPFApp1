@@ -1,4 +1,4 @@
-﻿<Window x:Class="WPFApp1.DialogWindows.ContractRespPersonsWindowDialog"
+﻿<Window x:Class="WPFApp1.DialogWindows.ContractWorckersWindowDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:WPFApp1.DialogWindows"
         mc:Ignorable="d"
         Title="Исполнители по Договору"
-        x:Name="ENG_PersonList"
+        x:Name="Worckers_List"
         Height="400" 
         Width="400"
-        DataContext="{Binding Source={StaticResource VmLocator}, Path=Contract_ENG_RespPersonsViewModel}"
+        DataContext="{Binding Source={StaticResource VmLocator}, Path=ContractWorckerViewModel}"
         ResizeMode="NoResize"
         Background="WhiteSmoke"
         WindowStartupLocation="CenterScreen">
@@ -32,7 +32,7 @@
                     <TextBlock Text="Назначенные"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"/>
-                    <ListBox ItemsSource="{Binding AssignedENGPersons}"
+                    <ListBox ItemsSource="{Binding AssignedWPersons}"
                              SelectedItem="{Binding RemPerson}"
                              DockPanel.Dock="Left"
                              Width="150"
@@ -68,7 +68,7 @@
                         Margin="5"
                         BorderBrush="Transparent"
                         Background="Transparent"
-                        Command="{Binding RemoveFromCurrentENGcollection}">
+                        Command="{Binding RemoveFromCurrentWcollection}">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <Path x:Name="Path"
@@ -83,7 +83,7 @@
                         Margin="5"
                         BorderBrush="Transparent"
                         Background="Transparent"
-                        Command="{Binding AddToCurrentENGcollection}">
+                        Command="{Binding AddToCurrentWcollection}">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <Path x:Name="Path"
@@ -99,7 +99,7 @@
                     <TextBlock Text="Не Назначенные"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"/>
-                    <ListBox ItemsSource="{Binding RemainingENGPersons}"
+                    <ListBox ItemsSource="{Binding RemainingWPersons}"
                              SelectedItem="{Binding AddPerson}"
                              Width="150"
                              Height="255"
@@ -121,7 +121,6 @@
                                     <TextBlock Text="{Binding First_Name}"/>
                                 </StackPanel>
                             </DataTemplate>
-                                
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
@@ -134,7 +133,7 @@
                     Height="35"
                     Width="100"
                     IsDefault="True"
-                    Command="{Binding SaveChangesByENG_Persons}"/>
+                    Command="{Binding SaveChangesByW_Persons}"/>
             <Button Content="Отмена"
                     DockPanel.Dock="Right"
                     Height="35"

@@ -167,77 +167,79 @@
                             <StackPanel Orientation="Vertical">
 
                                 <TextBlock Text="Предмет договора: "
-                                                       Margin="5 13 5 5 " 
-                                                       TextAlignment="Left"  
-                                                       Height="20" 
-                                                       Width="Auto"
-                                                       VerticalAlignment="Top" />
+                                           Margin="5 13 5 5 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="Auto"
+                                           VerticalAlignment="Top" />
 
 
                                 <TextBox  Text="{Binding CurrentSubjectOfContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                      Margin="5 1 5 5 "            
-                                      Padding="0 0 5 5"      
-                                      TextAlignment="Left"              
-                                      Height="80"           
-                                      Width="320"          
-                                      VerticalAlignment="Top"            
-                                      FontWeight="Bold"          
-                                      TextWrapping="Wrap"/>
+                                          Margin="5 1 5 5 "            
+                                          Padding="0 0 5 5"      
+                                          TextAlignment="Left"              
+                                          Height="80"           
+                                          Width="320"          
+                                          VerticalAlignment="Top"            
+                                          FontWeight="Bold" 
+                                          TextWrapping="Wrap"/>
 
                                 <TextBlock Text="Наименование Заказчика(покупателя, подрядчика): "
-                                                       Margin="5 20 5 1 " 
-                                                       TextAlignment="Left"  
-                                                       Height="20" 
-                                                       Width="auto"
-                                                       VerticalAlignment="Top" />
+                                           Margin="5 20 5 1 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="auto"
+                                           VerticalAlignment="Top" />
 
-                                <TextBox Text="{Binding Contract.Main_Reestr.Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                     Margin="5 1 5 5 " 
-                                                     Padding="0 0 5 5"   
-                                                     TextAlignment="Left"   
-                                                     Height="60"  
-                                                     Width="320"
-                                                     VerticalAlignment="Top"
-                                                     FontWeight="Bold"
-                                                     TextWrapping="Wrap"/>
+                                <TextBox Text="{Binding Contract.Main_Reestr.Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"      
+                                         Margin="5 1 5 5 "         
+                                         Padding="0 0 5 5"             
+                                         TextAlignment="Left" 
+                                         Height="60"       
+                                         Width="320"       
+                                         VerticalAlignment="Top"     
+                                         FontWeight="Bold"     
+                                         TextWrapping="Wrap"/>
 
 
                                 <TextBlock Text="Наименование объекта: "
-                                                       Margin="5 20 5 1 " 
-                                                       TextAlignment="Left"  
-                                                       Height="20" 
-                                                       Width="Auto"
-                                                       VerticalAlignment="Top" />
+                                           Margin="5 20 5 1 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="Auto"
+                                           VerticalAlignment="Top" />
 
 
                                 <TextBox Text="{Binding CurrentObjektName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                                     Margin="5 1 5 5 "
-                                                     Padding="0 0 5 5" 
-                                                     TextAlignment="Left"
-                                                     Height="80"
-                                                     Width="320"
-                                                     VerticalAlignment="Top"
-                                                     FontWeight="Bold"
-                                                     TextWrapping="Wrap"/>
+                                         Margin="5 1 5 5 "
+                                         Padding="0 0 5 5" 
+                                         TextAlignment="Left"
+                                         Height="80"
+                                         Width="320"
+                                         VerticalAlignment="Top"
+                                         FontWeight="Bold"
+                                         TextWrapping="Wrap"/>
 
 
 
                                 <TextBlock Text="Дополнительная информация: "
-                                                       Margin="5 20 5 1 " 
-                                                       TextAlignment="Left"  
-                                                       Height="20" 
-                                                       Width="Auto"
-                                                       VerticalAlignment="Top" />
+                                           Margin="5 20 5 1 " 
+                                           TextAlignment="Left"  
+                                           Height="20" 
+                                           Width="Auto"
+                                           VerticalAlignment="Top" />
 
                                 <TextBox Text="{Binding CurrentNote, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                                     Margin="5 1 5 5 "
-                                                     Padding="0 0 5 5" 
-                                                     TextAlignment="Left"
-                                                     Height="120"
-                                                     Width="320"
-                                                     VerticalAlignment="Top"
-                                                     FontWeight="Bold"
-                                                     TextWrapping="Wrap"/>
+                                         Margin="5 1 5 5 "
+                                         Padding="0 0 5 5" 
+                                         TextAlignment="Left"
+                                         Height="120"
+                                         Width="320"
+                                         VerticalAlignment="Top"
+                                         FontWeight="Bold"
+                                         BorderBrush="Transparent"  
+                                         Background="Transparent"
+                                         TextWrapping="Wrap"/>
                             </StackPanel>
 
                         </GroupBox>
@@ -309,7 +311,6 @@
                                   Grid.Column="0" 
                                   Margin="5 5 5 10">
 
-
                             <StackPanel >
                                 <TextBlock Text="Дата выдачи исходны данных/начало проектирования"
                                                    Margin="5 5 5 1 "
@@ -337,93 +338,149 @@
                                 <TextBlock Text="Дата передачи документации заказчику на Согласование" 
                                                    Margin="5 10 5 1 " 
                                                    TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
+                                                   Height="20" />
 
                                 <DatePicker SelectedDate="{Binding DateOfTransferToTheCustomerApproval, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
+                                                    TextBlock.TextAlignment="Center"/>
 
                                 <TextBlock Text="Дата Согласования заказчиком" 
                                                    Margin="5 10 5 1 " 
                                                    TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
+                                                   Height="20" />
 
                                 <DatePicker SelectedDate="{Binding DateOfAgreementByTheCustomer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
+                                                    TextBlock.TextAlignment="Center"/>
 
                                 <TextBlock Text="Дата передачи документации в ЭКСПЕРТИЗУ" 
                                                    Margin="5 10 5 1 " 
                                                    TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
+                                                   Height="20" />
 
                                 <DatePicker SelectedDate="{Binding DateOfSubmissionForInspection}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
+                                                    TextBlock.TextAlignment="Center"/>
 
                                 <TextBlock Text="Дата получения заключения из ЭКСПЕРТИЗЫ" 
                                                    Margin="5 10 5 1 " 
                                                    TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
+                                                   Height="20" />
 
                                 <DatePicker SelectedDate="{Binding DateOfReceiptOfInspection}"
                                                     Margin="5 1 5 1"
                                                     TextBlock.FontWeight="Bold"
-                                                    TextBlock.TextAlignment="Center"
-                                                    />
-
+                                                    TextBlock.TextAlignment="Center"/>
                             </StackPanel>
 
                         </GroupBox>
-                        <GroupBox Grid.Column="1"
-                                          Header="Ответственные" 
-                                          Width="350"
-                                          Margin="5 5 1 10">
-                            <StackPanel>
-                                <Expander Header="Г И П " IsExpanded="True" Margin="5 5 5 5">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock  VerticalAlignment="Center"
-                                                            TextAlignment="Left" 
-                                                            HorizontalAlignment="Stretch"
-                                                            />
-                                    </StackPanel>
-                                </Expander>
-                                <Expander Header="ИТР и другие " IsExpanded="True" Margin="5 5 5 5">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock  VerticalAlignment="Center"
-                                                            TextAlignment="Left" 
-                                                            HorizontalAlignment="Stretch"
-                                                            />
-                                    </StackPanel>
+                        <GroupBox Grid.Column="1"   
+                                  Header="Ответственные"     
+                                  Width="350"  
+                                  Margin="5 5 1 10">
+                            <StackPanel Orientation="Vertical">
+
+                                <Expander IsExpanded="True" 
+                                          Margin="5 5 5 5">
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Г И П"/>
+                                            <Button Content="Редактировть"   
+                                                    Margin=" 190 0 0 0"    
+                                                    Command="{Binding EditADM_RespPersons}"/>
+                                        </StackPanel>
+                                    </Expander.Header>
+                                    <ItemsControl ItemsSource="{Binding ContractADM}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                        <Button Background="Transparent"       
+                                                                BorderBrush="Transparent"        
+                                                                Content="{Binding Person_stats}">
+                                                            <Button.ContentTemplate>
+                                                                <DataTemplate>
+                                                                    <Path Data="{Binding Source={StaticResource ResourceKey=User}}"         
+                                                                          Stretch="UniformToFill"       
+                                                                          Fill="CadetBlue" />
+                                                                </DataTemplate>
+                                                            </Button.ContentTemplate>
+                                                        </Button>
+                                                        <TextBlock  VerticalAlignment="Center"   
+                                                                    TextAlignment="Left" 
+                                                                    HorizontalAlignment="Stretch"
+                                                                    Margin="10 0 0 0"
+                                                                    Text="{Binding First_Name}"/>
+                                                        <TextBlock  VerticalAlignment="Center"   
+                                                                    TextAlignment="Left" 
+                                                                    HorizontalAlignment="Stretch"
+                                                                    Margin="5 0 0 0"
+                                                                    Text="{Binding Last_Name}"/>
+                                                    </StackPanel>
+                                               
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                 </Expander>
 
+                                <Expander IsExpanded="True"
+                                          Margin="5 5 5 5">
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="ИТР и другие"/>
+                                            <Button Content="Редактировть"
+                                                    Margin=" 147 0 0 0"
+                                                    Command="{Binding EditRespPersons_ENG}"/>
+                                        </StackPanel>
+                                    </Expander.Header>
+                                    <ItemsControl ItemsSource="{Binding ContractENG}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Background="Transparent"
+                                                                            BorderBrush="Transparent"
+                                                                            Content="{Binding Person_stats}">
+                                                        <Button.ContentTemplate>
+                                                            <DataTemplate>
+                                                                <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
+                                                                                      Stretch="UniformToFill"
+                                                                                      Fill="CadetBlue" />
+                                                            </DataTemplate>
+                                                        </Button.ContentTemplate>
+                                                    </Button>
+                                                    <TextBlock  VerticalAlignment="Center"   
+                                                                TextAlignment="Left" 
+                                                                HorizontalAlignment="Stretch"
+                                                                Margin="10 0 0 0"
+                                                                Text="{Binding First_Name}"/>
+                                                    <TextBlock  VerticalAlignment="Center"   
+                                                                TextAlignment="Left" 
+                                                                HorizontalAlignment="Stretch"
+                                                                Margin="5 0 0 0"
+                                                                Text="{Binding Last_Name}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Expander>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Данные по документации" 
-                                          Margin="5 5 5 10"
-                                          Grid.Column="2">
-                            <StackPanel>
-                                <TextBlock Text="Шифр Документации" 
-                                                   Margin="5 10 5 1 " 
-                                                   TextAlignment="Left"  
-                                                   Height="20" 
-                                                   />
+                        <GroupBox Header="Данные по документации"       
+                                  Margin="5 5 5 10"    
+                                  Grid.Column="2">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Шифр Документации"       
+                                           Margin="5 10 5 1 "  
+                                           TextAlignment="Left"     
+                                           Height="20"/>
                                 <TextBox Text="{Binding CurrentDocumentIndex }"
                                          Margin="5 1 5 1"
                                          TextBlock.FontWeight="Bold"
                                          TextBlock.TextAlignment="Center"
-                                         Height="20"
-                                         />
+                                         Height="22"/>
+
                             </StackPanel>
                         </GroupBox>
                     </Grid>
@@ -490,13 +547,45 @@
                                         TextBlock.FontWeight="Bold"          
                                         TextBlock.TextAlignment="Center"
                                                     />
-                                <Expander Header="Сборщик/Монтажиник " IsExpanded="True" Margin="5 5 5 5">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock  VerticalAlignment="Center"
-                                                            TextAlignment="Left" 
-                                                            HorizontalAlignment="Stretch"
-                                                            />
-                                    </StackPanel>
+                                <Expander  IsExpanded="True" 
+                                           Margin="5 15 5 5">
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Сборщик/Монтажник"/>
+                                            <Button Content="Редактировть"   
+                                                    Margin=" 50 0 0 0"    
+                                                    Command="{Binding EditW_Persons}"/>
+                                        </StackPanel>
+                                    </Expander.Header>
+                                    <ItemsControl ItemsSource="{Binding ContractWorckers}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Background="Transparent"
+                                                                            BorderBrush="Transparent"
+                                                                            Content="{Binding Person_stats}">
+                                                        <Button.ContentTemplate>
+                                                            <DataTemplate>
+                                                                <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
+                                                                                      Stretch="UniformToFill"
+                                                                                      Fill="CadetBlue" />
+                                                            </DataTemplate>
+                                                        </Button.ContentTemplate>
+                                                    </Button>
+                                                    <TextBlock  VerticalAlignment="Center"   
+                                                                TextAlignment="Left" 
+                                                                HorizontalAlignment="Stretch"
+                                                                Margin="10 0 0 0"
+                                                                Text="{Binding First_Name}"/>
+                                                    <TextBlock  VerticalAlignment="Center"   
+                                                                TextAlignment="Left" 
+                                                                HorizontalAlignment="Stretch"
+                                                                Margin="5 0 0 0"
+                                                                Text="{Binding Last_Name}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                 </Expander>
                             </StackPanel>
                         </GroupBox>
@@ -601,7 +690,7 @@
                                   Grid.Column="0"       
                                   Margin="5 5 5 10" 
                                   Width="300">
-                            
+
                             <StackPanel >
                                 <TextBlock Text="Дата отгрузки по договору :"      
                                            Margin="5 5 5 1 "     
@@ -625,12 +714,12 @@
                                          VerticalAlignment="Top"                             
                                          FontWeight="Bold"                         
                                          BorderThickness="1"/>
-                                
+
                                 <TextBlock Text="Дата подписания Акта :"        
                                            Margin="5 5 5 1 "      
                                            TextAlignment="Left"      
                                            Height="20" />
-                                
+
                                 <DatePicker SelectedDate="{Binding ActDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             Margin="5 1 5 1"
                                             TextBlock.FontWeight="Bold"
@@ -756,6 +845,8 @@
                     </Button.Style>
                 </Button>
             </StackPanel>
+
+
         </Grid>
     </Grid>
 </Page>

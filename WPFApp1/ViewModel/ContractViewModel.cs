@@ -1,7 +1,9 @@
 ﻿using DevExpress.Mvvm;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using WPFApp1.DialogWindows;
 using WPFApp1.Model.AppDBcontext;
 using WPFApp1.Model.Repositories.Intefaces;
 
@@ -343,14 +345,20 @@ namespace WPFApp1.ViewModel
 
 
         private readonly IContractRepository _contractRepository;
+        private readonly IResponsPersonsRepository _personsRepository;
 
         public Contracts Contract { get; set; }
         public Documentation Documentation { get; set; }
 
+        public ObservableCollection<Respons_persons> ContractENG { get; set; }
+        public ObservableCollection<Respons_persons> ContractADM { get; set; }
+        public ObservableCollection<Respons_persons> ContractWorckers { get; set; }
 
-        public ContractViewModel(IContractRepository contractRepository)
+
+        public ContractViewModel(IContractRepository contractRepository, IResponsPersonsRepository personsRepository)
         {
             _contractRepository = contractRepository;
+            _personsRepository = personsRepository;
 
             Contract = new Contracts();
             Contract = _contractRepository.GetCurrentConract(_contractRepository.ContractID);
@@ -392,6 +400,12 @@ namespace WPFApp1.ViewModel
             ActDate = Documentation.Act_Date;
             ActNumber = Documentation.Act_number;
             Date_of_PSI = Documentation.PSI;
+
+            ContractADM = new ObservableCollection<Respons_persons>(_personsRepository.GetADMPersonsByCurrentContract(Contract.ID));
+            ContractENG = new ObservableCollection<Respons_persons>(_personsRepository.GetEngenersByCurrentContract(Contract.ID));
+            ContractWorckers = new ObservableCollection<Respons_persons>(_personsRepository.GetWorckersByCurrentContract(Contract.ID));
+
+
 
         }
 
@@ -508,6 +522,43 @@ namespace WPFApp1.ViewModel
                  BuildStartDate != Documentation.build_start_date || DateOfOperationControl != Documentation.Operational_control || OperationControleResult != Documentation.Operational_control_result ||
                  DateOfAcceptanceControl != Documentation.Acceptance_control || AcceptanceControlResult != Documentation.Acceptance_control_results || AcceptanceControlProtocol != Documentation.Acceptance_control_protocol ||
                  DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number || Date_of_PSI != Documentation.PSI);
+
+
+        public ICommand EditRespPersons_ENG => new DelegateCommand(() =>
+        {
+            _contractRepository.SetContractID(Contract);
+            ContractRespPersonsWindowDialog contractENGPersons = new ContractRespPersonsWindowDialog();
+            _ = contractENGPersons.ShowDialog();
+            if (contractENGPersons.DialogResult == true)
+            {
+                ContractENG = new ObservableCollection<Respons_persons>(_personsRepository.GetEngenersByCurrentContract(Contract.ID));
+                _ = MessageBox.Show("Список Ответственных успешно обновлен", "Обновление Ответственных.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        });
+
+        public ICommand EditADM_RespPersons => new DelegateCommand(() =>
+        {
+            _contractRepository.SetContractID(Contract);
+            ContractADMPersonsWindowDialog contractADMPersons = new ContractADMPersonsWindowDialog();
+            _ = contractADMPersons.ShowDialog();
+            if (contractADMPersons.DialogResult == true)
+            {
+                ContractADM = new ObservableCollection<Respons_persons>(_personsRepository.GetADMPersonsByCurrentContract(Contract.ID));
+                _ = MessageBox.Show("Список Ответственных успешно обновлен", "Обновление Ответственных.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        });
+
+        public ICommand EditW_Persons => new DelegateCommand(() =>
+        {
+            _contractRepository.SetContractID(Contract);
+           ContractWorckersWindowDialog contractWockers = new ContractWorckersWindowDialog();
+            _ = contractWockers.ShowDialog();
+            if (contractWockers.DialogResult == true)
+            {
+                ContractWorckers = new ObservableCollection<Respons_persons>(_personsRepository.GetWorckersByCurrentContract(Contract.ID));
+                _ = MessageBox.Show("Список Ответственных успешно обновлен", "Обновление Ответственных.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        });
     }
 
 

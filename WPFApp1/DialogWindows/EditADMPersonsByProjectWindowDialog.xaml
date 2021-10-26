@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFApp1.DialogWindows"
         mc:Ignorable="d"
         Title="Редактирование ответственных за Проект"
-        x:Name="ENG_ContractPers"
+        x:Name="AMD_PersonEdit"
         Height="400" 
         Width="400"
         DataContext="{Binding Source={StaticResource VmLocator}, Path=EditADMPersonsByProjectViewModel}"
@@ -33,13 +33,26 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"/>
                     <ListBox ItemsSource="{Binding AssignedADMPersons}"
-                             SelectedItem="{Binding Person}"
+                             SelectedItem="{Binding RemPerson}"
                              DockPanel.Dock="Left"
                              Width="150"
                              Height="255">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding First_Name}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Background="Transparent"                
+                                            BorderBrush="Transparent"
+                                            Content="{Binding Person_stats}">
+                                        <Button.ContentTemplate>
+                                            <DataTemplate>
+                                                <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
+                                                      Stretch="UniformToFill"
+                                                      Fill="CadetBlue" />
+                                            </DataTemplate>
+                                        </Button.ContentTemplate>
+                                    </Button>
+                                    <TextBlock Text="{Binding First_Name}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -53,6 +66,8 @@
                 <Button Height="40"
                         Width="40"
                         Margin="5"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
                         Command="{Binding RemoveFromCurrentADMcollection}">
                     <Button.ContentTemplate>
                         <DataTemplate>
@@ -66,6 +81,8 @@
                 <Button Height="40"
                         Width="40"
                         Margin="5"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
                         Command="{Binding AddToCurrentADMcollection}">
                     <Button.ContentTemplate>
                         <DataTemplate>
@@ -89,7 +106,20 @@
                              x:Name="ADMS">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding First_Name}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Background="Transparent"                
+                                            BorderBrush="Transparent"
+                                            Content="{Binding Person_stats}">
+                                        <Button.ContentTemplate>
+                                            <DataTemplate>
+                                                <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
+                                                      Stretch="UniformToFill"
+                                                      Fill="CadetBlue" />
+                                            </DataTemplate>
+                                        </Button.ContentTemplate>
+                                    </Button>
+                                    <TextBlock Text="{Binding First_Name}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

@@ -8,36 +8,36 @@ using WPFApp1.Services;
 
 namespace WPFApp1.ViewModel
 {
-    public class EditADMPersonsByProjectViewModel : BindableBase
+    public class Contract_ADM_RespPersViewModel : BindableBase
     {
         private readonly IResponsPersonsRepository _responsPersonsRepository;
-        private readonly IProjektRepository _projektRepository;
+        private readonly IContractRepository _contractRepository;
         private readonly ResponcePersonsService _personsService;
 
-        public int CurrentProjectID { get; set; }
+        public int ContractID { get; set; }
         public ObservableCollection<Respons_persons> AssignedADMPersons { get; set; }
         public ObservableCollection<Respons_persons> RemainingADMPersons { get; set; }
         public Respons_persons RemPerson { get; set; }
         public Respons_persons AddPerson { get; set; }
 
 
-        public EditADMPersonsByProjectViewModel(IResponsPersonsRepository responsPersonsRepository, IProjektRepository projektRepository, ResponcePersonsService personsServive)
+        public Contract_ADM_RespPersViewModel(IResponsPersonsRepository responsPersonsRepository, ResponcePersonsService personsServive, IContractRepository contractRepository)
         {
             _responsPersonsRepository = responsPersonsRepository;
-            _projektRepository = projektRepository;
             _personsService = personsServive;
-            CurrentProjectID = _projektRepository.ProjektID;
-            AssignedADMPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetAdminstrativePersonsByCurrentProjekt(CurrentProjectID));
-            RemainingADMPersons = new ObservableCollection<Respons_persons>(_personsService.SelectRemainingADMPersons(CurrentProjectID));
+            _contractRepository = contractRepository;
+            ContractID = _contractRepository.ContractID;
+            AssignedADMPersons = new ObservableCollection<Respons_persons>(_responsPersonsRepository.GetADMPersonsByCurrentContract(ContractID));
+            RemainingADMPersons = new ObservableCollection<Respons_persons>(_personsService.SelectRemainingContractADMPersons(ContractID));
         }
 
-        public ICommand SaveChangesByResp_Persons => new DelegateCommand(() =>
+        public ICommand SaveChangesByADM_Persons => new DelegateCommand(() =>
         {
-            _responsPersonsRepository.UpdateAdminstrativePersonsByCurrentProject(CurrentProjectID, AssignedADMPersons);
+            _responsPersonsRepository.UpdateAdministrativePersonsByContract(ContractID, AssignedADMPersons);
             var windows = Application.Current.Windows;
             foreach (Window window in windows)
             {
-                if (window.Name.Equals("AMD_PersonEdit"))
+                if (window.Name.Equals("ADM_PersonList"))
                 {
                     window.DialogResult = true;
                     return;
@@ -71,6 +71,5 @@ namespace WPFApp1.ViewModel
                 _ = RemainingADMPersons.Remove(AddPerson);
             }
         });
-
     }
 }
