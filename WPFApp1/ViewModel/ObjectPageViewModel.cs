@@ -212,7 +212,6 @@ namespace WPFApp1.ViewModel
 
                     break;
                 case MessageBoxResult.No:
-                    _ = MessageBox.Show("Удаление Договора отменено", "Удаление договора", MessageBoxButton.OK, MessageBoxImage.Stop);
                     break;
                 case MessageBoxResult.None:
                     break;
@@ -248,7 +247,6 @@ namespace WPFApp1.ViewModel
 
                     break;
                 case MessageBoxResult.No:
-                    _ = MessageBox.Show("Удаление Тендера отменено", "Удаление Тендера", MessageBoxButton.OK, MessageBoxImage.Stop);
                     break;
                 case MessageBoxResult.None:
                     break;
@@ -297,7 +295,6 @@ namespace WPFApp1.ViewModel
 
                     break;
                 case MessageBoxResult.No:
-                    _ = MessageBox.Show("Удаление Накладной отменено", "Удаление Накладной", MessageBoxButton.OK, MessageBoxImage.Stop);
                     break;
                 case MessageBoxResult.None:
                     break;

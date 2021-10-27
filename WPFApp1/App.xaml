@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Style\DataGridView.xaml"/>
                 <ResourceDictionary Source="Style\DataPicker.xaml"/>
                 <ResourceDictionary Source="Style\Buttons.xaml"/>
+                <ResourceDictionary Source="Style\Expander.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
         <local:ViewModelLocator x:Key="VmLocator"/>
