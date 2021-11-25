@@ -130,7 +130,7 @@
         <Grid Grid.Row="2">
             
             <Expander Header="Поиск:"
-                      Margin="10 5 10 1">
+                      Margin="10 5 10 1" Style="{DynamicResource ExpanderStyleA}">
                 <Border BorderThickness="1"
                     BorderBrush="Black"
                     Margin="10 1 10 1"
@@ -240,23 +240,26 @@
                                                             FontWeight="SemiBold"
                                                             Text="{Binding Customers.Customer_Name, UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
-                                            <Expander>
+                                            <Expander x:Name="Exp1">
                                                 <Expander.Header>
-                                                    <Grid>
+                                                    <Grid >
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition x:Name="expand1" Width="auto"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <StackPanel Grid.Column="1"
+                                                        <StackPanel x:Name="HeaderB1" 
+                                                                    Grid.Column="1"
                                                                     Orientation="Horizontal">
                                                             <TextBlock Text="Ответственные :"
                                                                        VerticalAlignment="Center"
                                                                        FontSize="12"
                                                                        FontWeight="SemiBold"/>
+
                                                             <ListBox ItemsSource="{Binding Respons_persons}"
                                                                      BorderBrush="Transparent"
                                                                      Background="Transparent"
-                                                                     Margin="12 0 0 0">
+                                                                     Margin="12 0 0 0"
+                                                                     BorderThickness="0">
                                                                 <ListBox.ItemsPanel>
                                                                     <ItemsPanelTemplate>
                                                                         <WrapPanel Orientation="Horizontal"/>
@@ -264,11 +267,12 @@
                                                                 </ListBox.ItemsPanel>
                                                                 <ListBox.ItemTemplate>
                                                                     <DataTemplate>
-                                                                        <Button x:Name="Mbutton"
+                                                                        <Label  BorderThickness="0"
                                                                                 Background="Transparent"
                                                                                 BorderBrush="Transparent"
-                                                                                Content="{Binding Person_stats}">
-                                                                            <Button.ToolTip>
+                                                                                Content="{Binding Person_stats}"
+                                                                                Padding="0 0 0 0">
+                                                                            <Label.ToolTip>
                                                                                 <ToolTip Placement="top" 
                                                                                          ToolTipService.InitialShowDelay="3">
                                                                                     <StackPanel Orientation="Horizontal">
@@ -277,15 +281,35 @@
                                                                                         <TextBlock Text="{Binding Sub_Name}" Margin="5 0 0 0"/>
                                                                                     </StackPanel>
                                                                                 </ToolTip>
-                                                                            </Button.ToolTip>
-                                                                            <Button.ContentTemplate>
+                                                                            </Label.ToolTip>
+                                                                            <Label.ContentTemplate>
                                                                                 <DataTemplate>
                                                                                     <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
                                                                                           Stretch="UniformToFill"
-                                                                                          Fill="CadetBlue" />
+                                                                                          Fill="CadetBlue" 
+                                                                                          Stroke="Transparent"
+                                                                                         />
                                                                                 </DataTemplate>
-                                                                            </Button.ContentTemplate>
-                                                                        </Button>
+                                                                            </Label.ContentTemplate>
+                                                                            <Label.Resources>
+                                                                                <Style TargetType="Label">
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding ElementName=Exp1, Path=IsExpanded}" Value="True">
+                                                                                            <Setter Property="Foreground" Value="Transparent"/>
+                                                                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                                                                            <Setter Property="Opacity" Value="0.2"/>
+                                                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                                                            <Setter Property="Background" Value="Transparent"/>
+                                                                                        </DataTrigger>
+                                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                                                            <Setter Property="Background" Value="Transparent"/>
+                                                                                        </Trigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </Label.Resources>
+                                                                        </Label>
                                                                     </DataTemplate>
                                                                 </ListBox.ItemTemplate>
                                                             </ListBox>
@@ -293,22 +317,35 @@
                                                     </Grid>
                                                 </Expander.Header>
 
+
                                                 <StackPanel Orientation="Vertical">
                                                     <ItemsControl ItemsSource="{Binding Respons_persons}">
                                                         <ItemsControl.ItemTemplate>
                                                             <DataTemplate>
                                                                 <StackPanel Orientation="Horizontal">
-                                                                    <Button Background="Transparent"
+                                                                    <Label Background="Transparent"
                                                                             BorderBrush="Transparent"
-                                                                            Content="{Binding Person_stats}">
-                                                                        <Button.ContentTemplate>
+                                                                            Content="{Binding Person_stats}"
+                                                                            >
+                                                                        <Label.ContentTemplate>
                                                                             <DataTemplate>
                                                                                 <Path Data="{Binding Source={StaticResource ResourceKey=User}}"
                                                                                       Stretch="UniformToFill"
-                                                                                      Fill="CadetBlue" />
+                                                                                      Fill="CadetBlue"/>
                                                                             </DataTemplate>
-                                                                        </Button.ContentTemplate>
-                                                                    </Button>
+                                                                        </Label.ContentTemplate>
+                                                                        <Label.Resources>
+                                                                            <Style TargetType="Button">
+                                                                                <Style.Triggers>
+                                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                                        <Setter Property="Background" Value="WhiteSmoke"/>
+                                                                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                                                                    </Trigger>
+                                                                                </Style.Triggers>
+
+                                                                            </Style>
+                                                                        </Label.Resources>
+                                                                    </Label>
                                                                     <TextBlock  VerticalAlignment="Center" 
                                                                                 TextAlignment="Center" 
                                                                                 HorizontalAlignment="Left"
@@ -323,6 +360,7 @@
                                                                                 HorizontalAlignment="Left"
                                                                                 Margin="5 0 0 0"
                                                                                 Text="{Binding Sub_Name, UpdateSourceTrigger=PropertyChanged}" />
+                                                                
                                                                 </StackPanel>
                                                             </DataTemplate>
                                                         </ItemsControl.ItemTemplate>

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WPFApp1.Services.Message;
 
@@ -30,12 +28,11 @@ namespace WPFApp1.Services
             await Task.WhenAll(tasks);
         }
 
-
         public IDisposable Receive<TMessage>(object receiver, Func<TMessage, Task> handler) where TMessage : IMessage
         {
-            var sub = new MessageSubscriber(receiver.GetType(), typeof(TMessage), s => _consumers.TryRemove(s, out var _));
+            var sub = new MessageSubscriber(receiver.GetType(), typeof(TMessage), s => _consumers.TryRemove(s, out _));
 
-            _consumers.TryAdd(sub, (@event) => handler((TMessage)@event));
+            _ = _consumers.TryAdd(sub, (@event) => handler((TMessage)@event));
 
             return sub;
         }

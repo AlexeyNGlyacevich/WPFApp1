@@ -37,7 +37,7 @@ namespace WPFApp1.Model.Repositories
 
         public IQueryable<Respons_persons> GetActivePersons()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public IQueryable<Respons_persons> GetEngenersPersons()

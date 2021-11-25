@@ -36,6 +36,7 @@
                                         Binding="{Binding Path= Sub_Name}"/>
                     <DataGridTextColumn Header="Должность" 
                                         Width="*" 
+                                        IsReadOnly="True"
                                         Binding="{Binding Path= PersonStats.Role}"/>
                     <DataGridCheckBoxColumn Header="Работает Да/Нет"
                                             Width="150"

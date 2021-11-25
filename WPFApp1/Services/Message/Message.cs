@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPFApp1.Services.Message
+﻿namespace WPFApp1.Services.Message
 {
     public class Message : IMessage
     {
+        public int Guid { get; set; }
         public Message(int guid)
         {
             Guid = guid;
         }
-        public int Guid { get; set; }
-
-
     }
 }
