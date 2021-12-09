@@ -4,31 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="07ac12c059674f4d8bf6d22836665a0a" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="ProjectStDBModel.Approval_List" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Documentation" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Main_Reestr" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.PersonStats" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Respons_persons" Width="1.5" PointX="10.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Tenders" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.User_Types" Width="1.5" PointX="10.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Users_DB" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="ProjectStDBModel.FK_Tenders_Main_Reestr" ManuallyRouted="false" />
+      <Diagram DiagramId="465d4a5e4b4d450fb0ce230dff71d5e2" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectStDBModel.Approval_List" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Contracts" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Customers" Width="1.5" PointX="1.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Documentation" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Main_Reestr" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.PersonStats" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Respons_persons" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.TTN" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.User_Types" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Users_DB" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Approval_List" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Approval_List1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Reestr" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Documentation_Contracts" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectStDBModel.FK_TTN_Contracts" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Reestr_Customers" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectStDBModel.FK_Respons_persons_PersonStats" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectStDBModel.FK_Users_DB_User_Types" ManuallyRouted="false" />
-        <AssociationConnector Association="ProjectStDBModel.PersonsReesters" />
+        <AssociationConnector Association="ProjectStDBModel.ContractsPersons" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectStDBModel.PersonsReesters" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Currency_type" Width="1.5" PointX="0.75" PointY="4.75" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Currency_type" />
+        <EntityTypeShape EntityType="ProjectStDBModel.Tenders" Width="1.5" PointX="10.5" PointY="7.375" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Tenders_Currency_type" />
+        <AssociationConnector Association="ProjectStDBModel.FK_Tenders_Main_Reestr" />
         <AssociationConnector Association="ProjectStDBModel.TendersPersons" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Customers" Width="1.5" PointX="0.75" PointY="10" />
-        <AssociationConnector Association="ProjectStDBModel.FK_Reestr_Customers" />
-        <EntityTypeShape EntityType="ProjectStDBModel.Contracts" Width="1.5" PointX="3" PointY="4.5" />
-        <EntityTypeShape EntityType="ProjectStDBModel.TTN" Width="1.5" PointX="5.25" PointY="12.375" />
-        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Approval_List" />
-        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Approval_List1" />
-        <AssociationConnector Association="ProjectStDBModel.FK_Contracts_Reestr" />
-        <AssociationConnector Association="ProjectStDBModel.FK_Documentation_Contracts" />
-        <AssociationConnector Association="ProjectStDBModel.FK_TTN_Contracts" />
-        <AssociationConnector Association="ProjectStDBModel.ContractsPersons" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

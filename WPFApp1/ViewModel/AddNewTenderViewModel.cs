@@ -35,7 +35,8 @@ namespace WPFApp1.ViewModel
                 Tenders tender = new Tenders
                 {
                     IDKey = CurrentObjekt.ID,
-                    Tender_number = TenderNumber
+                    Tender_number = TenderNumber,
+                    ID_currency = 5
                 };
                 _tenderRepository.AddNewTender(tender);
                 var windows = Application.Current.Windows;

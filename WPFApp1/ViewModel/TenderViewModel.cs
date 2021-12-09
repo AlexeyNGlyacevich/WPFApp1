@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp1.Model.AppDBcontext;
@@ -11,6 +12,8 @@ namespace WPFApp1.ViewModel
     {
         private readonly ITenderRepository _tenderRepository;
         public Tenders Tender { get; set; }
+        public ObservableCollection<Currency_type> Currency { get; set; }
+        public decimal? CalcinBYN { get; set; }
 
         private int? _idKey;
         public int? IDKey
@@ -163,12 +166,33 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
+        private int? _id_currency;
+        public int? Current_Currency
+        {
+            get => _id_currency;
+            set
+            {
+                _id_currency = value;
+                RaisePropertiesChanged();
+            }
+        }
+        private decimal? _currency_rate;
+        public decimal? Currency_Rate
+        {
+            get => _currency_rate;
+            set
+            {
+                _currency_rate = value;
+                RaisePropertiesChanged();
+            }
+        }
 
         public TenderViewModel(ITenderRepository tenderRepository)
         {
             _tenderRepository = tenderRepository;
 
             Tender = _tenderRepository.GetCuttentTender(_tenderRepository.GetTenderID());
+            Currency = new ObservableCollection<Currency_type>(_tenderRepository.GetAllTypes());
 
             IDKey = Tender.IDKey;
             Date_purchase = Tender.Date_purchase;
@@ -185,6 +209,11 @@ namespace WPFApp1.ViewModel
             Final_price = Tender.final_price;
             Tender_number = Tender.Tender_number;
             Repository = Tender.Repository;
+            Current_Currency = Tender.ID_currency;
+            Currency_Rate = Tender.currency_rate;
+
+            CalcinBYN = Currency_Rate * Final_price;
+
         }
 
         public ICommand TenderSaveChanged => new DelegateCommand(() =>
@@ -211,6 +240,9 @@ namespace WPFApp1.ViewModel
                 Tender.final_price = Final_price;
                 Tender.Tender_number = Tender_number;
                 Tender.Repository = Repository;
+                Tender.ID_currency = Current_Currency;
+                Tender.currency_rate = Currency_Rate;
+
 
                 _tenderRepository.UpdateTender(Tender);
                 _ = MessageBox.Show("Изменения Успешно Сохранены", "Cохранение Изменений", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -218,7 +250,7 @@ namespace WPFApp1.ViewModel
         }, () => IDKey != Tender.IDKey || Date_purchase != Tender.Date_purchase || Final_proposal_date != Tender.final__proposal_date || Objekt_Name != Tender.Object_name || Traiding_date != Tender.trading_date || Traiding_date != Tender.trading_date ||
                  Subject_of_Contract != Tender.subject_of_a_contract || Starting_price != Tender.starting_price || Price_date_submission != Tender.price_date_submission ||
                  Price_inclusive_reduction != Tender.price_inclusive_reduction || Result != Tender.Result || Acceptance_date != Tender.Acceptance_date || Term_of_contract != Tender.Term_of_the_contract ||
-                 Final_price != Tender.final_price || Tender_number != Tender.Tender_number || Repository != Tender.Repository);
+                 Final_price != Tender.final_price || Tender_number != Tender.Tender_number || Repository != Tender.Repository || Tender.ID_currency != Current_Currency || Tender.currency_rate != Currency_Rate);
 
         public ICommand RestoreTenderdata => new DelegateCommand(() =>
         {
@@ -237,10 +269,15 @@ namespace WPFApp1.ViewModel
             Final_price = Tender.final_price;
             Tender_number = Tender.Tender_number;
             Repository = Tender.Repository;
+            Current_Currency = Tender.ID_currency;
+            Currency_Rate = Tender.currency_rate;
 
         }, () => IDKey != Tender.IDKey || Date_purchase != Tender.Date_purchase || Final_proposal_date != Tender.final__proposal_date || Objekt_Name != Tender.Object_name || Traiding_date != Tender.trading_date || Traiding_date != Tender.trading_date ||
                  Subject_of_Contract != Tender.subject_of_a_contract || Starting_price != Tender.starting_price || Price_date_submission != Tender.price_date_submission ||
                  Price_inclusive_reduction != Tender.price_inclusive_reduction || Result != Tender.Result || Acceptance_date != Tender.Acceptance_date || Term_of_contract != Tender.Term_of_the_contract ||
-                 Final_price != Tender.final_price || Tender_number != Tender.Tender_number || Repository != Tender.Repository);
+                 Final_price != Tender.final_price || Tender_number != Tender.Tender_number || Repository != Tender.Repository || Current_Currency != Tender.ID_currency || Currency_Rate != Tender.currency_rate);
+
+
     }
+
 }

@@ -56,7 +56,7 @@
                 <TextBlock Text="Фильтры"  
                            Width="50"    
                            Height="20"  
-                           Margin="5 2 2 2"/>
+                           Margin="10 2 2 2"/>
                 <TextBox Name="TenderFilteredText" 
                          TextChanged="TenderFilteredText_TextChanged"
                          Margin="2 2 2 2"

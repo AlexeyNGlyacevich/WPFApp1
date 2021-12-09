@@ -36,7 +36,10 @@ namespace WPFApp1.Model.AppDBcontext
         public string Repository { get; set; }
         public string Tender_number { get; set; }
         public Nullable<decimal> final_price { get; set; }
+        public Nullable<int> ID_currency { get; set; }
+        public Nullable<decimal> currency_rate { get; set; }
     
+        public virtual Currency_type Currency_type { get; set; }
         public virtual Main_Reestr Main_Reestr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Respons_persons> Respons_persons { get; set; }

@@ -30,8 +30,8 @@
                     <Grid Background="WhiteSmoke"
                           Height="auto">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="380"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="370"/>
+                            <ColumnDefinition Width="370"/>
                             <ColumnDefinition Width="*"/>
 
                         </Grid.ColumnDefinitions>
@@ -70,10 +70,10 @@
                                                Height="20"
                                                VerticalAlignment="Top" 
                                                HorizontalAlignment="Left"/>
-                                    
+
                                     <TextBox  Text="{Binding Tender_number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                               Margin="16 1 1 1 " 
-                                              TextAlignment="Left" 
+                                              TextAlignment="Center" 
                                               Height="20"
                                               Width="200" 
                                               VerticalAlignment="Top" 
@@ -94,6 +94,7 @@
                                                 Margin="9 0 0 0"
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
+                                                TextBlock.TextAlignment="Center"
                                                 SelectedDate="{Binding Date_purchase, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
 
@@ -108,6 +109,7 @@
                                                 Margin="42 0 0 0"
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
+                                                TextBlock.TextAlignment="Center"
                                                 SelectedDate="{Binding Traiding_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                                 </StackPanel>
 
@@ -123,17 +125,15 @@
                                                 Margin="90 0 0 0"
                                                 TextBlock.FontWeight="Bold"
                                                 Width="200"
+                                                TextBlock.TextAlignment="Center"
                                                 SelectedDate="{Binding Final_proposal_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"/>
                                 </StackPanel>
-
-
                             </StackPanel>
-
                         </GroupBox>
 
                         <GroupBox Header="Данные по договору" 
                                   Grid.Column="1"
-                                  Margin="10 5 5 35">
+                                  Margin="5 5 5 35">
                             
                             <StackPanel Orientation="Vertical">
 
@@ -212,33 +212,149 @@
                                            Margin="5 5 5 1 "  
                                            TextAlignment="Left"      
                                            Height="20"/>
-                                
-                                <TextBox Text="{Binding Starting_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+
+                                <DockPanel Width="290">
+                                    <TextBox Text="{Binding Starting_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
                                          Height="22"
-                                         Margin="5 1 10 1"         
+                                         Width="220"
+                                         Margin="1 1 10 1"
+                                         Padding="1 1 1 1" 
+                                         Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"  
                                          TextBlock.FontWeight="Bold"      
-                                         TextBlock.TextAlignment="Center"/>
-                                
+                                         TextAlignment="Center"/>
+                                    <Label Content="{Binding ElementName=currency, Path=Text}"
+                                           Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                           Padding="1"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="1"
+                                           Height="22"
+                                           Width="50"/>
+                                </DockPanel>
                                 <TextBlock Text="Цена предложения на дату подачи ООО ЭТР"          
                                            Margin="5 10 5 1 " 
                                            TextAlignment="Left"            
                                            Height="20"/>
-                                <TextBox Text="{Binding Price_date_submission, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}" 
-                                         Height="22"
-                                         Margin="5 1 10 1"       
-                                         TextBlock.FontWeight="Bold"   
-                                         TextBlock.TextAlignment="Center"
-                                                    />
+                                <DockPanel Width="290">
+                                    <TextBox Text="{Binding Price_date_submission, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}" 
+                                             Height="22"
+                                             Margin="1 1 10 1" 
+                                             Padding="1 1 1 1" 
+                                             Width="220"
+                                             Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                             TextBlock.FontWeight="Bold"   
+                                             TextAlignment="Center"/>
+                                    <Label Content="{Binding ElementName=currency, Path=Text}"
+                                           Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                           Padding="1"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="1"
+                                           Height="22"
+                                           Width="50"/>
+                                </DockPanel>
                                 <TextBlock Text="Цена предложения с учетом снижения ООО ЭТР"        
                                            Margin="5 10 5 1 "       
                                            TextAlignment="Left"        
-                                           Height="20" 
-                                                   />
-                                <TextBox Text="{Binding Price_inclusive_reduction, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+                                           Height="20"/>
+                                <DockPanel Width="290">
+                                    <TextBox Text="{Binding Price_inclusive_reduction, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
                                          Height="22"
-                                         Margin="5 1 10 1"           
+                                         Margin="1 1 10 1"  
+                                         Padding="1 1 1 1" 
+                                         Width="220"
+                                         Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
                                          TextBlock.FontWeight="Bold"         
-                                         TextBlock.TextAlignment="Center" />
+                                        TextAlignment="Center"/>
+                                    <Label Content="{Binding ElementName=currency, Path=Text}"
+                                           Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                           Padding="1"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="1"
+                                           Height="22"
+                                           Width="50"/>
+                                </DockPanel>
+                                <TextBlock Text="Тип валюты по тендеру:"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="22"
+                                           Width="290"/>
+
+                                <DockPanel Margin="5">
+                                    <ComboBox ItemsSource="{Binding Currency, UpdateSourceTrigger=PropertyChanged}"
+                                              x:Name="currency"
+                                              Margin="2"
+                                              DockPanel.Dock="Left"
+                                              Width="80"
+                                              FontWeight="SemiBold"
+                                              Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                              DisplayMemberPath="Type"
+                                              SelectedValuePath="id"
+                                              SelectedValue ="{Binding Current_Currency, UpdateSourceTrigger=PropertyChanged}">
+                                    </ComboBox>
+                                    <TextBlock Text="{Binding ElementName=currency, Path=SelectedItem.decription_type, UpdateSourceTrigger=PropertyChanged}"
+                                               Margin="3"
+                                               Width="200"
+                                               Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                               FontWeight="SemiBold"
+                                               Padding="10 0 0 0"/>
+                                </DockPanel>
+                                <TextBlock Text="Курс валюты к бел.рублю на момент торгов:"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="22"
+                                           Width="290">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=currency, Path=SelectedItem.Type}" Value="BYN">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <DockPanel Margin="5 0 5 5">
+                                    <DockPanel.Style>
+                                        <Style TargetType="DockPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=currency, Path=SelectedItem.Type}" Value="BYN">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DockPanel.Style>
+                                    <TextBox Text="{Binding Currency_Rate, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F3}}"
+                                         Margin="1 1 5 1"
+                                         Padding="1"
+                                         Height="22"
+                                         Width="80"
+                                         FontWeight="SemiBold"
+                                         TextAlignment="Center"
+                                         HorizontalAlignment="Left">
+                                    </TextBox>
+                                    <Label Content="{Binding ElementName=currency, Path=SelectedItem.Type, UpdateSourceTrigger=PropertyChanged}"
+                                          Foreground="{Binding ElementName=currency, Path=SelectedItem.Color, UpdateSourceTrigger=PropertyChanged}"
+                                           Width="30"
+                                           Margin="1"
+                                           Padding="1"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Height="22"
+                                           DockPanel.Dock="Left"/>
+                                    <Label Content="=  1 BYN"
+                                           Foreground="DarkRed"
+                                           Width="60"
+                                           Margin="1"
+                                           FontSize="14"
+                                           Padding="1"
+                                           FontWeight="SemiBold"
+                                           Height="22"
+                                           DockPanel.Dock="Left"/>
+                                    <Label/>
+
+                                </DockPanel>
                             </StackPanel>
                         </GroupBox>
                         
@@ -265,17 +381,73 @@
                                            Margin="5 5 5 1 "
                                            TextAlignment="Left"
                                            Height="20" />
-                                
-                                <TextBox  Text="{Binding Final_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                       
-                                          Margin="5 1 5 5 "                      
+                                <DockPanel Margin="6 0 6 0">
+                                    <TextBox  Text="{Binding Final_price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                            
                                           Padding="1 1 1 1" 
+                                          Margin="1 1 12 1"
                                           TextAlignment="Center"  
                                           Height="22"
-                                          Width="auto" 
+                                          Width="220" 
+                                          Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
                                           VerticalAlignment="Top"  
                                           FontWeight="Bold"
                                           BorderThickness="1"/>
-                                
+                                    <Label Content="{Binding ElementName=currency, Path=Text}"
+                                           Foreground="{Binding ElementName=currency, Path=SelectedItem.Color}"
+                                           Padding="1"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="1"
+                                           Height="22"
+                                           Width="40"/>
+                                </DockPanel>
+                                <TextBlock Text="Цена по результату торгов(переговоров) в руб.РБ :"
+                                           Margin="5 5 5 1 "
+                                           TextAlignment="Left"
+                                           Height="20">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=currency, Path=SelectedItem.Type}" Value="BYN">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <DockPanel Margin="6 0 6 0">
+                                    <TextBox  Text="{Binding CalcinBYN, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                            
+                                          Padding="1 1 1 1" 
+                                          Margin="1 1 12 1"
+                                          TextAlignment="Center"  
+                                          Height="22"
+                                          Width="220" 
+                                          IsReadOnly="True"
+                                          Foreground="DarkRed"
+                                          VerticalAlignment="Top"  
+                                          FontWeight="Bold"
+                                          BorderThickness="1"/>
+                                    <Label Content="BYN"
+                                           Foreground="DarkRed"
+                                           Padding="1"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="1"
+                                           Height="22"
+                                           Width="40"/>
+                                    <DockPanel.Style>
+                                                <Style TargetType="DockPanel">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=currency, Path=SelectedItem.Type}" Value="BYN">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                    </DockPanel.Style>
+                                        
+                                    
+                                </DockPanel>
+
                                 <TextBlock Text="Дата Акцепта :"
                                            Margin="5 5 5 1 "
                                            TextAlignment="Left"

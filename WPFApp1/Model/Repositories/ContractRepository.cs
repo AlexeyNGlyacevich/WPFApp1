@@ -118,6 +118,9 @@ namespace WPFApp1.Model.Repositories
             }
         }
 
-
+        public IQueryable<Currency_type> GetAllTypes()
+        {
+            return _appDBcontext.Currency_type;
+        }
     }
 }

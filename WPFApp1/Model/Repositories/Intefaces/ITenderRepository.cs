@@ -20,5 +20,7 @@ namespace WPFApp1.Model.Repositories.Intefaces
         void UpdateTender(Tenders tender);
 
         IQueryable<Tenders> GetAlltenders();
+
+        IQueryable<Currency_type> GetAllTypes();
     }
 }

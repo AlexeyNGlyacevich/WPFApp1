@@ -34,9 +34,9 @@ namespace WPFApp1.ViewModel
 
                 if (User_type == "Admin")
                 {
-                    _navigation.Navigate(new AdminPage());
+                    _navigation.Navigate(new SelectRolePage());
                 }
-                else if (User_type == "Ingener")
+                else
                 {
                     _navigation.Navigate(new MainDataReestrPage());
                 }

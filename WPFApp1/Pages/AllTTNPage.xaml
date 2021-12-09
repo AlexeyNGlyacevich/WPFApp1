@@ -143,16 +143,22 @@
 
                                     <StackPanel Grid.Column="2" Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Сумма по Договору(с НДС руб.): "
-                                                       Foreground="#a3a3a4"/>
-                                            <TextBlock  VerticalAlignment="Center" 
+                                            <TextBlock Text="Сумма по Договору(с НДС): "
+                                                        Foreground="#a3a3a4"/>
+                                            <DockPanel>
+                                                <TextBlock  VerticalAlignment="Center" 
                                                         TextAlignment="Center"
                                                         HorizontalAlignment="Left"
-                                                        Margin="5,0,0,0" 
+                                                        Margin="30,0,0,0" 
                                                         FontWeight="SemiBold"
-                                                        Foreground="DarkGreen"
+                                                        Foreground="{Binding Contracts.Currency_type.Color}"
                                                         FontSize="13"
                                                         Text="{Binding Value_with_NDS}"/>
+                                                <TextBlock Text="{Binding Contracts.Currency_type.Type}"
+                                                           Margin="5 1 0 0"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{Binding Contracts.Currency_type.Color}"/>
+                                            </DockPanel>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Заказчик: "

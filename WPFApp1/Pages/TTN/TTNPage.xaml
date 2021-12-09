@@ -245,12 +245,23 @@
                                     Margin="5 1 5 1"              
                                     TextBlock.FontWeight="Bold"        
                                     TextBlock.TextAlignment="Center"/>
-                        
-                        <TextBlock Text="Выполнено по договору - всего (с НДС руб):"             
-                                   Margin="5 5 5 1 "            
-                                   TextAlignment="Left"         
-                                   Height="20" />
-                        
+                        <DockPanel Margin="5 ">
+                            <TextBlock Text="Выполнено по договору - всего (с НДС):"             
+                                       DockPanel.Dock="Left"
+                                       Margin="5 5 5 1 "            
+                                       TextAlignment="Left"         
+                                       Height="20" />
+                            <TextBlock Text="{Binding TTN.Contracts.Currency_type.Type}"
+                                       Margin="1 5 1 1"
+                                       Width="45"
+                                       Height="22"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="{Binding TTN.Contracts.Currency_type.Color}"
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"/>
+                        </DockPanel>
+
                         <TextBox Text="{Binding Value_with_NDS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                
                                  Margin="5 1 5 5 "                                   
                                  Padding="1 1 1 1"                                    
@@ -259,6 +270,7 @@
                                  Width="auto" 
                                  VerticalAlignment="Top"  
                                  FontWeight="Bold"
+                                 Foreground="{Binding TTN.Contracts.Currency_type.Color}"
                                  BorderThickness="1"/>
 
                     </StackPanel>
@@ -267,12 +279,21 @@
                           Margin="5 5 5 10" 
                           Width="280">
                     <StackPanel >
-                       
-                        <TextBlock Text="Силами Генерального подрядччика(с НДС) :"               
-                                   Margin="5 5 5 1 "              
+                        <DockPanel Margin="5 1 5 1 ">
+                            <TextBlock Text="Силами Генерального подрядччика:"               
+                                   Margin="1 1 10 1 "              
                                    TextAlignment="Left"           
                                    Height="20"/>
-                        
+                            <TextBlock Text="{Binding TTN.Contracts.Currency_type.Type}"
+                                       Margin="1 5 1 1"
+                                       Width="45"
+                                       FontWeight="SemiBold"
+                                       Height="22"
+                                       FontSize="14"
+                                       Foreground="{Binding TTN.Contracts.Currency_type.Color}"
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"/>
+                        </DockPanel>
                         <TextBox Text="{Binding With_general_Contractor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                    
                                  Margin="5 1 5 5 "                                    
                                  Padding="1 1 1 1"                              
@@ -280,13 +301,24 @@
                                  Height="20"                              
                                  Width="auto"                            
                                  VerticalAlignment="Top"                            
-                                 FontWeight="Bold"                                
+                                 FontWeight="Bold"   
+                                 Foreground="{Binding TTN.Contracts.Currency_type.Color}"
                                  BorderThickness="1"/>
-
-                        <TextBlock Text=" Субподрядными организациями :"                
-                                   Margin="5 5 5 1 "               
+                        <DockPanel Margin="5 5 5 1">
+                            <TextBlock Text=" Субподрядными организациями :"                
+                                   Margin="1 1 5 1 "               
                                    TextAlignment="Left"                
                                    Height="20"/>
+                            <TextBlock Text="{Binding TTN.Contracts.Currency_type.Type}"
+                                       Margin="15 5 1 1"
+                                       Width="45"
+                                       Height="22"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="{Binding TTN.Contracts.Currency_type.Color}"
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"/>
+                        </DockPanel>
                         <TextBox Text="{Binding With_subcontractor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"                                    
                                  Margin="5 1 5 5 "                               
                                  Padding="1 1 1 1"                                  
@@ -295,6 +327,7 @@
                                  Width="auto"                                   
                                  VerticalAlignment="Top"  
                                  FontWeight="Bold"
+                                 Foreground="{Binding TTN.Contracts.Currency_type.Color}"
                                  BorderThickness="1"/>
                     </StackPanel>
                 </GroupBox>

@@ -15,7 +15,7 @@ namespace WPFApp1.ViewModel
         public MainViewModel(PageService navigation)
         {
             navigation.OnePageChanged += page => CurrentPage = page;
-            navigation.Navigate(new SelectRolePage());
+            navigation.Navigate(new LoginPage());
             _navigation = navigation;
         }
 
@@ -28,7 +28,7 @@ namespace WPFApp1.ViewModel
         public ICommand GoToMainReestr => new DelegateCommand(() =>
         {
             _navigation.ClearStack();
-            _navigation.Navigate(new MainDataReestrPage());
+            _navigation.Navigate(new LoginPage());
         });
 
 

@@ -121,6 +121,16 @@ namespace WPFApp1.ViewModel
                 RaisePropertiesChanged();
             }
         }
+        private int? _id_currency;
+        public int? Current_Currency
+        {
+            get => _id_currency;
+            set
+            {
+                _id_currency = value;
+                RaisePropertiesChanged();
+            }
+        }
 
         private int _currentdocumentationID;
         public int CurrentDocumentationID
@@ -353,6 +363,7 @@ namespace WPFApp1.ViewModel
         public ObservableCollection<Respons_persons> ContractENG { get; set; }
         public ObservableCollection<Respons_persons> ContractADM { get; set; }
         public ObservableCollection<Respons_persons> ContractWorckers { get; set; }
+        public ObservableCollection<Currency_type> Currency_Types { get; set; }
 
 
         public ContractViewModel(IContractRepository contractRepository, IResponsPersonsRepository personsRepository)
@@ -374,6 +385,7 @@ namespace WPFApp1.ViewModel
             CurrentFinishDate = Contract.finish_date;
             CurrentProjectManager = Contract.Project_Manager;
             CurrentNote = Contract.Note;
+            Current_Currency = Contract.ID_currency;
 
             Documentation = new Documentation();
             Documentation = _contractRepository.GetDocumentationDataForCurrentContract(_contractRepository.ContractID);
@@ -404,9 +416,7 @@ namespace WPFApp1.ViewModel
             ContractADM = new ObservableCollection<Respons_persons>(_personsRepository.GetADMPersonsByCurrentContract(Contract.ID));
             ContractENG = new ObservableCollection<Respons_persons>(_personsRepository.GetEngenersByCurrentContract(Contract.ID));
             ContractWorckers = new ObservableCollection<Respons_persons>(_personsRepository.GetWorckersByCurrentContract(Contract.ID));
-
-
-
+            Currency_Types = new ObservableCollection<Currency_type>(_contractRepository.GetAllTypes());
         }
 
         public ICommand ContractSaveChanges => new DelegateCommand(() =>
@@ -431,6 +441,7 @@ namespace WPFApp1.ViewModel
                     Contract.finish_date = CurrentFinishDate;
                     Contract.Project_Manager = CurrentProjectManager;
                     Contract.Note = CurrentNote;
+                    Contract.ID_currency = Current_Currency;
 
                     Documentation.ID = CurrentDocumentationID;
                     Documentation.ContractID = DocumentationContractID;
@@ -472,7 +483,7 @@ namespace WPFApp1.ViewModel
                  DateOfSubmissionDocumentationToMPO != Documentation.date_of_submission_of_documentation_to_MPO || DateOfTransferForPickingFromMPO != Documentation.date_of_transfer_for_picking_from_MPO ||
                  BuildStartDate != Documentation.build_start_date || DateOfOperationControl != Documentation.Operational_control || OperationControleResult != Documentation.Operational_control_result ||
                  DateOfAcceptanceControl != Documentation.Acceptance_control || AcceptanceControlResult != Documentation.Acceptance_control_results || AcceptanceControlProtocol != Documentation.Acceptance_control_protocol ||
-                 DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number || Date_of_PSI != Documentation.PSI);
+                 DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number || Date_of_PSI != Documentation.PSI || Contract.ID_currency != Current_Currency);
 
 
 
@@ -489,6 +500,7 @@ namespace WPFApp1.ViewModel
             CurrentFinishDate = Contract.finish_date;
             CurrentProjectManager = Contract.Project_Manager;
             CurrentNote = Contract.Note;
+            Current_Currency = Contract.ID_currency;
 
             CurrentDocumentationID = Documentation.ID;
             DocumentationContractID = Documentation.ContractID;
@@ -521,7 +533,7 @@ namespace WPFApp1.ViewModel
                  DateOfSubmissionDocumentationToMPO != Documentation.date_of_submission_of_documentation_to_MPO || DateOfTransferForPickingFromMPO != Documentation.date_of_transfer_for_picking_from_MPO ||
                  BuildStartDate != Documentation.build_start_date || DateOfOperationControl != Documentation.Operational_control || OperationControleResult != Documentation.Operational_control_result ||
                  DateOfAcceptanceControl != Documentation.Acceptance_control || AcceptanceControlResult != Documentation.Acceptance_control_results || AcceptanceControlProtocol != Documentation.Acceptance_control_protocol ||
-                 DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number || Date_of_PSI != Documentation.PSI);
+                 DateOfShipment != Documentation.Date_of_shipment || ActDate != Documentation.Act_Date || ActNumber != Documentation.Act_number || Date_of_PSI != Documentation.PSI || Current_Currency != Contract.ID_currency);
 
 
         public ICommand EditRespPersons_ENG => new DelegateCommand(() =>

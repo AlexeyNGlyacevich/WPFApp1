@@ -28,6 +28,8 @@ namespace WPFApp1.Model.Repositories.Intefaces
 
         void UpdateContract(Contracts contract, Documentation documentation);
 
+        IQueryable<Currency_type> GetAllTypes();
+
 
     }
 }

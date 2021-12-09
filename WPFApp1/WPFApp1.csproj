@@ -129,6 +129,9 @@
     <Compile Include="Model\AppDBcontext\Contracts.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\AppDBcontext\Currency_type.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\AppDBcontext\Customers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

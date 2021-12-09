@@ -35,6 +35,7 @@ namespace WPFApp1.Model.AppDBcontext
         public Nullable<int> approval_list_id { get; set; }
         public Nullable<int> orders_Id { get; set; }
         public string Note { get; set; }
+        public Nullable<int> ID_currency { get; set; }
     
         public virtual Approval_List Approval_List { get; set; }
         public virtual Approval_List Approval_List1 { get; set; }
@@ -45,5 +46,6 @@ namespace WPFApp1.Model.AppDBcontext
         public virtual ICollection<TTN> TTN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Respons_persons> Respons_persons { get; set; }
+        public virtual Currency_type Currency_type { get; set; }
     }
 }

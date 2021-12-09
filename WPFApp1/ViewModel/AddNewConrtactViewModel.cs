@@ -12,7 +12,6 @@ namespace WPFApp1.ViewModel
         public string ContractNumber
         {
             get => contractNumber;
-
             set
             {
                 contractNumber = value;
@@ -46,7 +45,8 @@ namespace WPFApp1.ViewModel
                 Contracts contract = new Contracts
                 {
                     IDKey = CurrentObjekt.ID,
-                    Contract_Number = ContractNumber
+                    Contract_Number = ContractNumber,
+                    ID_currency = 1
                 };
                 _ = _contractRepository.AddNewContract(contract);
                 Documentation documentation = new Documentation
